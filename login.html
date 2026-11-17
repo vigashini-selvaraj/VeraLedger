@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login | VeraLedger Client Portal</title>
+    <meta name="description" content="Sign in to your secure VeraLedger tax filing and accounting workspace.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .demo-auth-pill {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px dashed rgba(45, 212, 191, 0.35);
+            border-radius: 12px;
+            padding: 10px 14px;
+            margin-top: 18px;
+        }
+        .demo-quick-btn {
+            font-size: 0.78rem;
+            padding: 5px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(15, 23, 42, 0.7);
+            color: #E2E8F0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .demo-quick-btn:hover {
+            border-color: #2DD4BF;
+            color: #2DD4BF;
+            background: rgba(45, 212, 191, 0.1);
+        }
+        .login-service-notice {
+            background: rgba(13, 148, 136, 0.12);
+            border: 1px solid rgba(45, 212, 191, 0.35);
+            border-radius: 12px;
+            padding: 12px 14px;
+            font-size: 0.86rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            color: #E2E8F0;
+        }
+    </style>
+</head>
+
+<body class="dark-mode" style="background-color: #070F1E;">
+
+    <div class="auth-split-wrapper">
+        <!-- ==========================================================================
+             LEFT SIDE: LOGIN FORM
+             ========================================================================== -->
+        <div class="auth-form-column">
+            <!-- Top: Brand Logo (redirects to Home) -->
+            <div>
+                <a href="index.html" class="auth-brand-logo" title="Back to VeraLedger Home">
+                    <div class="auth-logo-icon">
+                        <i class="bi bi-layers"></i>
+                    </div>
+                    <div class="auth-logo-text">
+                        <span class="auth-logo-name">VeraLedger</span>
+                        <span class="auth-logo-tagline">TAX &amp; ACCOUNTING, MADE CLEAR</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Middle: Main Form Card -->
+            <div class="auth-form-inner">
+                <h1 class="auth-title">Welcome Back!</h1>
+                <p class="auth-subtitle">Sign in to continue your tax journey.</p>
+
+                <!-- Contextual Banner if redirected from Service Selection -->
+                <div id="serviceRedirectBanner" class="login-service-notice d-none">
+                    <i class="bi bi-info-circle-fill text-teal2 fs-5"></i>
+                    <div>
+                        <div class="fw-semibold text-white" id="selectedServiceText">Applying for Income Tax Filing</div>
+                        <div class="small text-white-50">Sign in to proceed directly to your filing form.</div>
+                    </div>
+                </div>
+
+                <form id="loginForm">
+                    <!-- Email Address Field -->
+                    <div class="auth-input-group">
+                        <label class="auth-input-label" for="loginEmail">Email Address</label>
+                        <div class="auth-input-wrap">
+                            <i class="bi bi-envelope auth-input-icon"></i>
+                            <input type="email" id="loginEmail" class="auth-input-field" required placeholder="alex@example.com" value="alex@example.com" autocomplete="email">
+                        </div>
+                    </div>
+
+                    <!-- Password Field with Show/Hide Toggle -->
+                    <div class="auth-input-group">
+                        <label class="auth-input-label" for="loginPassword">Password</label>
+                        <div class="auth-input-wrap">
+                            <i class="bi bi-lock auth-input-icon"></i>
+                            <input type="password" id="loginPassword" class="auth-input-field" required placeholder="••••••••••••" value="password123" autocomplete="current-password">
+                            <button type="button" class="auth-password-toggle" id="togglePasswordBtn" aria-label="Toggle password visibility">
+                                <i class="bi bi-eye" id="togglePasswordIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Remember Me & Forgot Password -->
+                    <div class="d-flex justify-content-between align-items-center mb-4 small">
+                        <label class="d-flex align-items-center gap-2 text-white-50 cursor-pointer user-select-none mb-0">
+                            <input type="checkbox" id="rememberMeCheckbox" class="form-check-input mt-0 bg-transparent border-secondary" checked>
+                            <span>Remember Me</span>
+                        </label>
+                        <a href="javascript:void(0)" id="forgotPasswordLink" class="text-teal2 text-decoration-none fw-semibold">Forgot Password?</a>
+                    </div>
+
+                    <!-- Sign In Button -->
+                    <button type="submit" class="btn-auth-primary">
+                        Sign In <i class="bi bi-arrow-right ms-2"></i>
+                    </button>
+
+                    <div id="loginFeedback" class="small mt-3 text-center" role="status"></div>
+                </form>
+
+                <!-- Divider -->
+                <div class="auth-divider">
+                    <span>or continue with</span>
+                </div>
+
+                <!-- Social Login Buttons -->
+                <div class="auth-social-row">
+                    <button type="button" class="auth-social-btn" id="googleLoginBtn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+                        </svg>
+                        <span>Google</span>
+                    </button>
+                    <button type="button" class="auth-social-btn" id="appleLoginBtn">
+                        <i class="bi bi-apple fs-5"></i>
+                        <span>Apple</span>
+                    </button>
+                </div>
+
+                <!-- One-Click Demo Roles -->
+                <div class="demo-auth-pill">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <span class="small text-teal2 fw-bold"><i class="bi bi-lightning-charge-fill text-warning me-1"></i>One-Click Demo Roles:</span>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="button" class="demo-quick-btn flex-grow-1" id="quickClientBtn">
+                            <i class="bi bi-person-fill text-teal2 me-1"></i> Client: Alex Morgan
+                        </button>
+                        <button type="button" class="demo-quick-btn flex-grow-1" id="quickAdminBtn">
+                            <i class="bi bi-shield-lock-fill text-teal2 me-1"></i> Admin: Rajesh FCA
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Create Account Link -->
+                <div class="text-center mt-4">
+                    <p class="small text-white-50 mb-0">Don't have an account? 
+                        <a href="register.html" id="registerLinkWithParams" class="text-teal2 fw-bold text-decoration-none">Create Account</a>
+                    </p>
+                </div>
+
+                <!-- 2. Trust & Security Highlights -->
+                <div class="auth-trust-strip">
+                    <div class="auth-trust-item">
+                        <i class="bi bi-shield-check"></i>
+                        <span>Bank-grade security</span>
+                    </div>
+                    <div class="auth-trust-item">
+                        <i class="bi bi-lock-fill"></i>
+                        <span>Data privacy</span>
+                    </div>
+                    <div class="auth-trust-item">
+                        <i class="bi bi-key-fill"></i>
+                        <span>Secure access</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Auth Footer -->
+            <div class="auth-footer">
+                <div class="d-flex gap-3">
+                    <a href="privacy.html" class="auth-footer-link">Privacy Policy</a>
+                    <span>&bull;</span>
+                    <a href="terms.html" class="auth-footer-link">Terms &amp; Conditions</a>
+                    <span>&bull;</span>
+                    <a href="help-center.html" class="auth-footer-link">Help &amp; Support</a>
+                </div>
+                <div>
+                    <span>&copy; 2026 VeraLedger Advisory LLP.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================================================
+             RIGHT SIDE: BRANDING PANEL
+             ========================================================================== -->
+        <div class="auth-brand-column">
+            <!-- Branding Header -->
+            <div class="auth-brand-hero-content">
+                <div class="d-inline-flex align-items-center gap-2 mb-3 px-3 py-1 rounded-pill" style="background: rgba(13, 148, 136, 0.15); border: 1px solid rgba(45, 212, 191, 0.3); font-size: 0.8rem; font-weight: 700; color: #2DD4BF;">
+                    <i class="bi bi-patch-check-fill"></i> Trusted Tax Advisory
+                </div>
+                <h2 class="auth-brand-headline">Your Taxes, <br><span>Simplified.</span></h2>
+                <p class="auth-brand-copy">
+                    Experience effortless tax filing, statutory compliance, and year-round advisory with 100% CPA verification and bank-grade privacy.
+                </p>
+            </div>
+
+            <!-- 3D Financial Illustration Frame -->
+            <div class="auth-illustration-frame">
+                <img src="images/login-financial-art.jpg" alt="VeraLedger 3D Financial Management" class="auth-illustration-img">
+            </div>
+
+            <!-- Security Highlights (3 Cards) -->
+            <div class="auth-security-highlights">
+                <div class="auth-security-pill">
+                    <div class="auth-security-icon">
+                        <i class="bi bi-shield-lock-fill"></i>
+                    </div>
+                    <div class="auth-security-title">256-Bit Encryption</div>
+                    <div class="auth-security-sub">Bank-grade SSL/TLS data protection</div>
+                </div>
+
+                <div class="auth-security-pill">
+                    <div class="auth-security-icon">
+                        <i class="bi bi-folder-check"></i>
+                    </div>
+                    <div class="auth-security-title">Secure Storage</div>
+                    <div class="auth-security-sub">Encrypted client vault repository</div>
+                </div>
+
+                <div class="auth-security-pill">
+                    <div class="auth-security-icon">
+                        <i class="bi bi-person-check-fill"></i>
+                    </div>
+                    <div class="auth-security-title">Trusted Assistance</div>
+                    <div class="auth-security-sub">ICAI certified Chartered Accountants</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Password Reset Modal -->
+    <div class="modal fade" id="forgotModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-white" style="background: #0B192C; border: 1.5px solid rgba(45, 212, 191, 0.3); border-radius: 18px;">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold text-teal2"><i class="bi bi-key-fill me-2"></i>Reset Password</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-3">
+                    <p class="text-white-50 small mb-3">Enter your registered email address and we will dispatch a secure one-time password recovery link.</p>
+                    <div class="auth-input-group mb-3">
+                        <label class="auth-input-label" for="resetEmail">Email Address</label>
+                        <div class="auth-input-wrap">
+                            <i class="bi bi-envelope auth-input-icon"></i>
+                            <input type="email" id="resetEmail" class="auth-input-field" placeholder="your-email@example.com" value="alex@example.com">
+                        </div>
+                    </div>
+                    <div id="resetFeedback" class="small text-success d-none">
+                        <i class="bi bi-check-circle-fill me-1"></i> A password reset link has been dispatched to your email!
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-outline-secondary rounded-pill px-3 py-2 text-white" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn-auth-primary rounded-pill px-4 py-2" id="sendResetBtn" style="width: auto;">Send Reset Link</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const serviceKey = urlParams.get('service');
+            const planKey = urlParams.get('plan');
+            const redirectUrl = urlParams.get('redirect');
+
+            // Show/Hide Password Toggle
+            const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+            const passwordInput = document.getElementById('loginPassword');
+            const togglePasswordIcon = document.getElementById('togglePasswordIcon');
+
+            if (togglePasswordBtn && passwordInput && togglePasswordIcon) {
+                togglePasswordBtn.addEventListener('click', () => {
+                    const isPassword = passwordInput.getAttribute('type') === 'password';
+                    passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+                    togglePasswordIcon.className = isPassword ? 'bi bi-eye-slash text-teal2' : 'bi bi-eye';
+                });
+            }
+
+            // Forgot password modal trigger
+            const forgotModalEl = document.getElementById('forgotModal');
+            const forgotModal = forgotModalEl ? new bootstrap.Modal(forgotModalEl) : null;
+            document.getElementById('forgotPasswordLink')?.addEventListener('click', () => {
+                forgotModal?.show();
+            });
+
+            document.getElementById('sendResetBtn')?.addEventListener('click', () => {
+                const fb = document.getElementById('resetFeedback');
+                if (fb) {
+                    fb.classList.remove('d-none');
+                    setTimeout(() => {
+                        forgotModal?.hide();
+                        fb.classList.add('d-none');
+                    }, 2000);
+                }
+            });
+
+            // Social buttons quick demo alerts
+            document.getElementById('googleLoginBtn')?.addEventListener('click', () => {
+                const result = VeraStore.login('alex@example.com', 'password123');
+                if (result.success) handleAuthSuccess(result.user, 'Google Account Verified');
+            });
+
+            document.getElementById('appleLoginBtn')?.addEventListener('click', () => {
+                const result = VeraStore.login('alex@example.com', 'password123');
+                if (result.success) handleAuthSuccess(result.user, 'Apple ID Verified');
+            });
+
+            // Format service names for clarity
+            const serviceNames = {
+                'itr': 'Income Tax Return (ITR)',
+                'gst': 'GST Compliance & Filing',
+                'accounting': 'Full-Stack Bookkeeping',
+                'bookkeeping': 'Full-Stack Bookkeeping',
+                'consultation': 'Senior CPA Consultation'
+            };
+
+            // If user arrived from an "Apply Now" button
+            if (serviceKey) {
+                const banner = document.getElementById('serviceRedirectBanner');
+                const text = document.getElementById('selectedServiceText');
+                if (banner && text) {
+                    text.textContent = `Applying for ${serviceNames[serviceKey] || serviceKey.toUpperCase()}${planKey ? ' (' + planKey.toUpperCase() + ')' : ''}`;
+                    banner.classList.remove('d-none');
+                }
+                const regLink = document.getElementById('registerLinkWithParams');
+                if (regLink) {
+                    regLink.href = `register.html?service=${encodeURIComponent(serviceKey)}${planKey ? '&plan=' + encodeURIComponent(planKey) : ''}&redirect=${encodeURIComponent(redirectUrl || 'apply.html')}`;
+                }
+            }
+
+            function handleAuthSuccess(user, providerNotice) {
+                const feedback = document.getElementById('loginFeedback');
+                if (feedback) {
+                    feedback.className = 'small mt-3 text-center text-success';
+                    feedback.innerHTML = `<i class="bi bi-check-circle-fill me-1"></i> ${providerNotice ? providerNotice + ' · ' : ''}Welcome back, <strong>${user.name}</strong>! Redirecting...`;
+                }
+
+                setTimeout(() => {
+                    if (user.role === 'admin') {
+                        window.location.href = 'admin.html';
+                    } else if (serviceKey) {
+                        window.location.href = `apply.html?service=${encodeURIComponent(serviceKey)}${planKey ? '&plan=' + encodeURIComponent(planKey) : ''}`;
+                    } else if (redirectUrl) {
+                        window.location.href = redirectUrl;
+                    } else {
+                        window.location.href = 'dashboard.html';
+                    }
+                }, 600);
+            }
+
+            // Quick Client Button
+            document.getElementById('quickClientBtn')?.addEventListener('click', () => {
+                const result = VeraStore.login('alex@example.com', 'password123');
+                if (result.success) {
+                    handleAuthSuccess(result.user);
+                }
+            });
+
+            // Quick Admin Button
+            document.getElementById('quickAdminBtn')?.addEventListener('click', () => {
+                const result = VeraStore.login('admin@veraledger.example', 'admin');
+                if (result.success) {
+                    handleAuthSuccess(result.user);
+                }
+            });
+
+            // Standard Form Submission
+            const form = document.getElementById('loginForm');
+            form?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const pass = document.getElementById('loginPassword').value;
+
+                const result = VeraStore.login(email, pass);
+                if (result.success) {
+                    handleAuthSuccess(result.user);
+                } else {
+                    const feedback = document.getElementById('loginFeedback');
+                    if (feedback) {
+                        feedback.className = 'small mt-3 text-center text-danger';
+                        feedback.textContent = 'Invalid credentials. Please try again.';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

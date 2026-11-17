@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Frequently Asked Questions (FAQs) | VeraLedger</title>
+    <meta name="description"
+        content="Get authoritative answers to common questions about Income Tax Returns (ITR), GST filing, document security, pricing, and CPA audits.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .faq-filter-btn {
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--ink);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .faq-filter-btn:hover {
+            border-color: var(--teal2);
+            color: var(--teal2);
+        }
+
+        .faq-filter-btn.active {
+            background: var(--teal2);
+            color: #FFFFFF !important;
+            border-color: var(--teal2);
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25);
+        }
+
+        .dark-mode .faq-filter-btn {
+            background: #162238;
+            border-color: #2B3D5E;
+            color: #F8FAFC;
+        }
+
+        .dark-mode .faq-filter-btn.active {
+            background: #2DD4BF;
+            color: #0A0F1D !important;
+            border-color: #2DD4BF;
+        }
+
+        .faq-search-box {
+            position: relative;
+            max-width: 580px;
+            margin: 0 auto 30px;
+        }
+
+        .faq-search-input {
+            width: 100%;
+            height: 50px;
+            padding: 10px 18px 10px 46px;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--ink);
+            font-size: 0.96rem;
+            box-shadow: var(--shadow);
+            transition: all 0.25s ease;
+        }
+
+        .faq-search-input:focus {
+            outline: none;
+            border-color: var(--teal2);
+            box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.15);
+        }
+
+        .dark-mode .faq-search-input {
+            background: #162238;
+            border-color: #2B3D5E;
+            color: #F8FAFC;
+        }
+
+        .faq-search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--teal2);
+            font-size: 1.1rem;
+        }
+
+        .accordion-item {
+            border: 1px solid var(--border-color);
+            border-radius: 12px !important;
+            margin-bottom: 14px;
+            background: var(--bg-card);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .accordion-item:hover {
+            border-color: var(--teal2);
+        }
+
+        .dark-mode .accordion-item {
+            background: #162238;
+            border-color: #2B3D5E;
+        }
+
+        .accordion-button {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--ink);
+            background: var(--bg-card);
+            padding: 20px 24px;
+            box-shadow: none !important;
+        }
+
+        .dark-mode .accordion-button {
+            background: #162238;
+            color: #F8FAFC;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: rgba(13, 148, 136, 0.05);
+            color: var(--teal2);
+        }
+
+        .dark-mode .accordion-button:not(.collapsed) {
+            background: rgba(45, 212, 191, 0.08);
+            color: #2DD4BF;
+        }
+
+        .accordion-body {
+            padding: 0 24px 22px;
+            color: var(--ink-secondary);
+            font-size: 0.96rem;
+            line-height: 1.65;
+        }
+
+        .dark-mode .accordion-body {
+            color: #CBD5E1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Global Dynamic Header Loaded via main.js -->
+    <div id="siteHeader"></div>
+
+    <main>
+        <!-- ==========================================================================
+             01. HERO SECTION
+             ========================================================================== -->
+        <section class="page-hero text-center position-relative">
+            <div class="container position-relative z-2">
+                <div class="d-inline-flex align-items-center gap-2 mb-2 text-teal2 small fw-semibold">
+                    <a href="index.html" class="text-decoration-none text-muted">Home</a>
+                    <span>&rsaquo;</span>
+                    <a href="support.html" class="text-decoration-none text-muted">Support</a>
+                    <span>&rsaquo;</span>
+                    <span class="text-teal2">FAQs</span>
+                </div>
+                <h1 class="mx-auto">Frequently Asked <span>Questions</span></h1>
+                <p class="hero-copy mx-auto">
+                    Clear, transparent answers to questions regarding our tax advisory, statutory filing timelines, fee structure, and security.
+                </p>
+
+                <!-- Search Input -->
+                <div class="faq-search-box">
+                    <i class="bi bi-search faq-search-icon"></i>
+                    <input type="text" class="faq-search-input" id="faqSearchInput"
+                        placeholder="Filter questions by keyword (e.g., 80C, refund, audit, GST)...">
+                </div>
+
+                <!-- Category Filters -->
+                <div class="d-flex justify-content-center flex-wrap gap-2 mt-2" id="faqFilterButtons">
+                    <button type="button" class="faq-filter-btn active" data-filter="all">All Topics</button>
+                    <button type="button" class="faq-filter-btn" data-filter="tax">Income Tax (ITR)</button>
+                    <button type="button" class="faq-filter-btn" data-filter="gst">GST &amp; Business</button>
+                    <button type="button" class="faq-filter-btn" data-filter="security">Security &amp; Vault</button>
+                    <button type="button" class="faq-filter-btn" data-filter="billing">Pricing &amp; Refunds</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             02. ACCORDION FAQ SECTION
+             ========================================================================== -->
+        <section class="section-pad">
+            <div class="container" style="max-width: 860px;">
+
+                <div class="accordion" id="faqAccordion">
+
+                    <!-- FAQ 1: Tax -->
+                    <div class="accordion-item faq-item" data-category="tax">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                How do VeraLedger CPAs decide between the Old and New Tax Regime?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                For every ITR application, our certified CPAs run a dual-regime tax simulation. We calculate your net tax liability under the Old Regime (incorporating HRA, Section 80C investments, 80D health insurance, home loan interest, and NPS 80CCD) versus the concessional slab rates and standard deduction under Section 115BAC (New Regime). You receive an itemized comparative report and your return is prepared under the regime that yields maximum tax savings.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2: Tax -->
+                    <div class="accordion-item faq-item" data-category="tax">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                What if I have capital gains from equity shares, mutual funds, or crypto?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Simply upload your annual capital gains statements downloaded from your broker (Zerodha, Groww, Upstox, CAMS, or KFintech). Our CPAs classify your transactions into Short-Term (STCG) and Long-Term Capital Gains (LTCG), adjust eligible cost-inflation indexations for real estate, set off allowable business or capital losses, and file the correct ITR-2 or ITR-3 form.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3: Tax -->
+                    <div class="accordion-item faq-item" data-category="tax">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Does VeraLedger assist if the Income Tax Department issues a defective notice?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes. All VeraLedger plans come with free statutory shield protection. If you receive an intimation under Section 143(1), a defective return notice under Section 139(9), or a mismatch query under Section 142(1), our practice team prepares and files a formal rectified return or statutory legal response on the CPC portal at zero extra fee.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4: GST -->
+                    <div class="accordion-item faq-item" data-category="gst">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                What is the monthly filing turnaround for GSTR-1 and GSTR-3B?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Once you upload your sales and purchase invoices by the 5th of each calendar month, our GST team validates B2B transactions, matches available Input Tax Credit against auto-populated GSTR-2B, sends you the draft computation for approval by the 8th, and submits the filings on GSTN well ahead of the 11th (GSTR-1) and 20th (GSTR-3B) statutory deadlines.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5: GST -->
+                    <div class="accordion-item faq-item" data-category="gst">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                Can I claim Input Tax Credit (ITC) if my vendor hasn't uploaded their invoice?
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Under Section 16(2)(aa) of the CGST Act, ITC can only be claimed if the invoice appears in your auto-generated GSTR-2B statement. Our team flags any mismatched or missing vendor entries so you can follow up with non-compliant suppliers before submitting your return, preventing future demand notices with 18% statutory interest.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 6: Security -->
+                    <div class="accordion-item faq-item" data-category="security">
+                        <h2 class="accordion-header" id="headingSix">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                How are my financial records and PAN details safeguarded?
+                            </button>
+                        </h2>
+                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                All documents are encrypted both in transit (using TLS 1.3 with 256-bit AES encryption) and at rest in ISO/IEC 27001 certified data centers. Access to your client workspace is strictly restricted to your designated ICAI-registered Chartered Accountant. We never sell, monetize, or disclose your financial records to third-party lenders or advertising platforms.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 7: Security -->
+                    <div class="accordion-item faq-item" data-category="security">
+                        <h2 class="accordion-header" id="headingSeven">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                Can I request permanent deletion of my uploaded documents?
+                            </button>
+                        </h2>
+                        <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes. Subject to mandatory statutory audit retention periods specified by ICAI regulations, you have full ownership of your data under the India Digital Personal Data Protection (DPDP) Act. You can submit a deletion request anytime from your Profile Settings or by emailing privacy@veraledger.example.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 8: Billing -->
+                    <div class="accordion-item faq-item" data-category="billing">
+                        <h2 class="accordion-header" id="headingEight">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                                Are your quoted fees all-inclusive, or are there hidden processing charges?
+                            </button>
+                        </h2>
+                        <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                All VeraLedger pricing is completely transparent and flat. The fee displayed on our Pricing page covers end-to-end document review, optimization modeling, CPA verification, government portal submission, and e-verification assistance. There are zero surprise fees or payment gateway processing surcharges.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 9: Billing -->
+                    <div class="accordion-item faq-item" data-category="billing">
+                        <h2 class="accordion-header" id="headingNine">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                                What is your refund policy if my return cannot be prepared?
+                            </button>
+                        </h2>
+                        <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We operate under a 100% Satisfaction &amp; Accuracy Guarantee. If for any reason our practice cannot fulfill your filing application due to technical limitations before statutory submission, you are entitled to a full 100% refund processed back to your original payment method within 3 to 5 business days.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Still have questions banner -->
+                <div class="content-card p-4 text-center mt-5" style="border-style: dashed;">
+                    <h3 class="h5 fw-bold mb-1">Didn't find what you were searching for?</h3>
+                    <p class="text-muted small mb-3">Our support team is online Monday to Saturday, 9:30 AM to 6:00 PM IST.</p>
+                    <div class="d-flex justify-content-center gap-2 flex-wrap">
+                        <a href="support.html" class="btn btn-brand btn-sm">Contact Support Desk</a>
+                        <a href="help-center.html" class="btn btn-outline-brand btn-sm">Visit Help Centre</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Global Dynamic Footer Loaded via main.js -->
+    <div id="siteFooter"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Category filtering logic
+        const filterBtns = document.querySelectorAll('#faqFilterButtons .faq-filter-btn');
+        const faqItems = document.querySelectorAll('.faq-item');
+        const searchInput = document.getElementById('faqSearchInput');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const cat = btn.getAttribute('data-filter');
+
+                faqItems.forEach(item => {
+                    if (cat === 'all' || item.getAttribute('data-category') === cat) {
+                        item.classList.remove('d-none');
+                    } else {
+                        item.classList.add('d-none');
+                    }
+                });
+            });
+        });
+
+        // Search filtering logic
+        searchInput?.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            faqItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.classList.toggle('d-none', !text.includes(query));
+            });
+        });
+
+        // Check URL parameter e.g. faq.html?cat=tax
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const initialCat = params.get('cat');
+            if (initialCat) {
+                const targetBtn = document.querySelector(`#faqFilterButtons [data-filter="${initialCat}"]`);
+                if (targetBtn) targetBtn.click();
+            }
+        });
+    </script>
+</body>
+
+</html>

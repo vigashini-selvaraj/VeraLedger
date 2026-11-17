@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title id="pageTitle">Tax &amp; Regulatory Insights | VeraLedger</title>
+    <meta name="description" id="metaDescription"
+        content="Actionable regulatory analysis, tax guides, and compliance protocols curated by certified Chartered Accountants at VeraLedger.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Global Dynamic Header Loaded via js/main.js -->
+    <div id="siteHeader"></div>
+
+    <main>
+        <!-- ==========================================================================
+             01. ARTICLE HERO
+             ========================================================================== -->
+        <section class="blog-hero-section pb-4">
+            <div class="hero-ambient-glow" aria-hidden="true"></div>
+
+            <div class="container position-relative z-2">
+                <!-- Centered Breadcrumbs -->
+                <nav class="breadcrumb-nav mb-4 d-flex align-items-center justify-content-center flex-wrap" aria-label="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="separator"><i class="bi bi-chevron-right"></i></span>
+                    <a href="blog.html">The VeraLedger Journal</a>
+                    <span class="separator"><i class="bi bi-chevron-right"></i></span>
+                    <span class="current" id="detailBreadcrumbCurrent">Tax Filing Checklist</span>
+                </nav>
+
+                <div class="article-hero-wrap text-center">
+                    <!-- Category & Meta Row Centered -->
+                    <div class="d-flex flex-wrap align-items-center justify-content-center gap-2 mb-3">
+                        <span id="detailCategoryPill" class="blog-badge-pill position-static">Tax Planning</span>
+                        <span class="small text-muted-custom">·</span>
+                        <span id="detailReadTime" class="small text-muted-custom">
+                            <i class="bi bi-clock me-1 text-teal2"></i> 5 min read
+                        </span>
+                        <span class="small text-muted-custom">·</span>
+                        <span id="detailUpdatedDate" class="small text-muted-custom">
+                            <i class="bi bi-calendar3 me-1 text-teal2"></i> AY 2025–26 Edition
+                        </span>
+                    </div>
+
+                    <!-- Large Article Title Centered -->
+                    <h1 id="detailHeadline" class="blog-hero-title h1 mb-3 mx-auto text-center">
+                        A simple checklist to <span>prepare for tax filing.</span>
+                    </h1>
+
+                    <!-- Short Introduction / Subheading Centered with Proper Font -->
+                    <p id="detailHeroCopy" class="blog-hero-copy fs-5 mx-auto text-center">
+                        A structured breakdown of essential income statements, deduction proofs, and bank records to eliminate year-end scramble and ensure 100% compliance.
+                    </p>
+
+                    <!-- Author Bylines Centered -->
+                    <div class="d-flex align-items-center justify-content-center gap-3 pt-3 border-top mt-4 mx-auto" style="max-width: 440px;" id="detailAuthorRow">
+                        <div class="service-icon" style="width:46px;height:46px;font-size:18px;">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <div class="text-start">
+                            <strong class="d-block text-ink" id="detailAuthorName">Priya Sharma, FCA</strong>
+                            <span class="small text-muted-custom" id="detailAuthorRole">Lead Tax Partner · ICAI Fellow Member</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             02. FEATURED COVER IMAGE
+             ========================================================================== -->
+        <section class="pt-0 pb-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="rounded-4 overflow-hidden shadow-sm border" style="max-height: 480px;">
+                            <img id="detailHeroImage" class="w-100 object-fit-cover" style="height: 440px;"
+                                src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=85"
+                                alt="Article feature cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             03. MAIN ARTICLE LAYOUT: STICKY TOC + ARTICLE CONTENT
+             ========================================================================== -->
+        <section class="blog-section-spacing pt-2">
+            <div class="container">
+                <div class="row justify-content-center g-5">
+                    <!-- Left Column: Sticky Table of Contents on Desktop -->
+                    <div class="col-lg-4 col-xl-3 d-none d-lg-block">
+                        <aside class="article-toc-sticky">
+                            <div class="article-toc-title">
+                                <i class="bi bi-list-nested text-teal2"></i> Table of Contents
+                            </div>
+                            <nav class="article-toc-nav" id="articleTocNav">
+                                <a href="#sec-overview" class="article-toc-link active">01. Article Overview</a>
+                                <a href="#sec-part-1" class="article-toc-link">02. Primary Income Records</a>
+                                <a href="#sec-part-2" class="article-toc-link">03. Deductions &amp; Proofs</a>
+                                <a href="#sec-part-3" class="article-toc-link">04. Submission Checklist</a>
+                                <a href="#sec-takeaways" class="article-toc-link">05. Key Takeaways</a>
+                                <a href="#sec-insight" class="article-toc-link">06. Expert Insight</a>
+                            </nav>
+
+                            <!-- Quick Action: Share Card -->
+                            <div class="pt-3 mt-4 border-top">
+                                <span class="small fw-bold text-muted-custom d-block mb-2">Share this guide:</span>
+                                <div class="d-flex align-items-center gap-2">
+                                    <button type="button" class="btn btn-sm btn-outline-brand copy-link-btn" id="tocCopyBtn" title="Copy article link">
+                                        <i class="bi bi-link-45deg me-1"></i> Copy
+                                    </button>
+                                    <a href="https://www.linkedin.com/sharing/share-offsite/" target="_blank" rel="noopener" class="btn btn-sm btn-light border text-muted-custom" title="Share on LinkedIn">
+                                        <i class="bi bi-linkedin"></i>
+                                    </a>
+                                    <a href="https://twitter.com/intent/tweet" target="_blank" rel="noopener" class="btn btn-sm btn-light border text-muted-custom" title="Share on Twitter / X">
+                                        <i class="bi bi-twitter-x"></i>
+                                    </a>
+                                </div>
+                                <span class="small text-success d-none mt-2 d-block" id="tocCopyNotice">✓ Link copied to clipboard!</span>
+                            </div>
+                        </aside>
+                    </div>
+
+                    <!-- Right Column: Narrow Reading Column -->
+                    <div class="col-lg-8 col-xl-8">
+                        <article class="article-reading-col">
+                            <!-- ==========================================================================
+                                 02. ARTICLE OVERVIEW — What readers will learn
+                                 ========================================================================== -->
+                            <div class="article-overview-box" id="sec-overview">
+                                <h3 class="article-overview-title">
+                                    <i class="bi bi-compass text-teal2"></i> What you will learn in this guide:
+                                </h3>
+                                <ul class="article-overview-list" id="detailOverviewList">
+                                    <li>How to retrieve and reconcile your Form 16 against AIS/TIS without discrepancy notices.</li>
+                                    <li>Which deduction certificates are strictly required vs. optional under statutory scrutiny.</li>
+                                    <li>Pre-submission validation steps to expedite refund processing within 10 to 14 days.</li>
+                                </ul>
+                            </div>
+
+                            <!-- ==========================================================================
+                                 04. MAIN ARTICLE CONTENT
+                                 ========================================================================== -->
+                            <div id="detailArticleContent">
+                                <p class="fs-5 text-ink lh-base">
+                                    Preparing for tax filing is fundamentally about having the right numbers confirmed before you open any filing software. When your paperwork is gathered in advance, filing transforms from an anxious scramble into a calm, methodical 15-minute verification.
+                                </p>
+
+                                <div id="sec-part-1">
+                                    <h2 class="h3 mt-5 mb-3">1. Primary <span>income records</span></h2>
+                                    <p>
+                                        Your gross receipts and salary certificates form the baseline of your statutory return. Depending on whether you are salaried, freelancing, or managing a registered enterprise, collect these essential records:
+                                    </p>
+                                    <div class="editorial-list-wrap my-4">
+                                        <div class="editorial-list-item">
+                                            <span class="editorial-step-num">01</span>
+                                            <div>
+                                                <h4 class="h6 mb-1 text-ink">Form 16 (Part A &amp; Part B)</h4>
+                                                <p class="text-muted-custom small mb-0">Issued by your employer, detailing gross salary, standard deduction, professional tax, and exact TDS withheld under your PAN.</p>
+                                            </div>
+                                        </div>
+                                        <div class="editorial-list-item">
+                                            <span class="editorial-step-num">02</span>
+                                            <div>
+                                                <h4 class="h6 mb-1 text-ink">Annual Information Statement (AIS) &amp; TIS</h4>
+                                                <p class="text-muted-custom small mb-0">Directly synchronized from the income tax e-filing portal to capture high-value savings interest, dividends, and securities transactions.</p>
+                                            </div>
+                                        </div>
+                                        <div class="editorial-list-item">
+                                            <span class="editorial-step-num">03</span>
+                                            <div>
+                                                <h4 class="h6 mb-1 text-ink">Form 26AS Tax Credit Ledger</h4>
+                                                <p class="text-muted-custom small mb-0">Your consolidated tax passbook proving all tax deducted at source by employers, banks, and clients has been remitted to the government.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Magazine Pullquote -->
+                                <blockquote class="magazine-pullquote" id="detailPullquote">
+                                    "The single biggest cause of Section 143(1) tax adjustment notices is omitted bank savings account interest that was already reported to the department via AIS."
+                                    <span class="magazine-pullquote-author">— Priya Sharma, FCA</span>
+                                </blockquote>
+
+                                <div id="sec-part-2">
+                                    <h2 class="h3 mt-5 mb-3">2. Deductions and <span>tax-saving proofs</span></h2>
+                                    <p>
+                                        If you are evaluating the Old Tax Regime to see if deductions beat the lower rates of the New Regime under Section 115BAC, assemble your receipts early:
+                                    </p>
+                                    <ul class="text-muted-custom lh-lg ps-3 mb-4">
+                                        <li><strong>Section 80C Receipts:</strong> PPF deposits, EPF contributions, ELSS mutual fund statements, life insurance premiums, and principal repayment statements for home loans.</li>
+                                        <li><strong>Section 80D Health Insurance:</strong> Premium receipts for self, spouse, dependent children, and parents (with senior citizen add-on benefits up to ₹50,000).</li>
+                                        <li><strong>House Rent Allowance (HRA):</strong> Rent agreements and rent payment receipts, alongside the landlord's PAN if annual rent exceeds ₹1,00,000.</li>
+                                        <li><strong>Home Loan Interest (Section 24b):</strong> Provisional interest certificate issued by your lender for owner-occupied property up to ₹2,00,000.</li>
+                                    </ul>
+                                </div>
+
+                                <div id="sec-part-3">
+                                    <h2 class="h3 mt-5 mb-3">3. Final pre-submission <span>checkpoint</span></h2>
+                                    <p>
+                                        Before submitting the return or transmitting it to the Centralized Processing Center (CPC), run a 3-point accuracy check:
+                                    </p>
+                                    <p>
+                                        First, confirm that interest income from all active savings accounts and fixed deposits is declared under "Income from Other Sources". Second, check that exempt allowances match your salary slip specifications. Finally, ensure your Aadhaar-PAN linkage is operative so e-verification via Aadhaar OTP completes seamlessly.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- ==========================================================================
+                                 05. KEY TAKEAWAYS — Visually appealing summary
+                                 ========================================================================== -->
+                            <div class="article-takeaways-card" id="sec-takeaways">
+                                <h3 class="article-takeaways-header">
+                                    <i class="bi bi-bookmark-check-fill text-success"></i> Key Takeaways &amp; Action Items
+                                </h3>
+                                <ul class="article-takeaways-list" id="detailTakeawaysList">
+                                    <li><strong>Pre-fill Verification:</strong> Always reconcile your Form 16 against both AIS (Annual Information Statement) and Form 26AS before filing.</li>
+                                    <li><strong>Dual Regime Math:</strong> Keep documentation for Section 80C, 80D, and HRA handy even if you suspect the New Tax Regime is more beneficial.</li>
+                                    <li><strong>Bank Account Validation:</strong> Ensure your refund bank account is pre-validated on the Income Tax Portal with matched PAN names.</li>
+                                </ul>
+                            </div>
+
+                            <!-- ==========================================================================
+                                 06. IMPORTANT NOTE / EXPERT INSIGHT — Highlighted Financial Tip
+                                 ========================================================================== -->
+                            <div class="expert-insight-box" id="sec-insight">
+                                <div class="expert-insight-header">
+                                    <i class="bi bi-lightbulb-fill text-warning"></i>
+                                    <span id="detailInsightTitle">Expert Advisory Note · Section 87A Rebate</span>
+                                </div>
+                                <p class="expert-insight-body" id="detailInsightBody">
+                                    Under the revised New Tax Regime (Section 115BAC), individuals with taxable income up to ₹7,00,000 pay zero tax after Section 87A rebate. Together with the enhanced standard deduction of ₹75,000, salaried filers earning up to ₹7,75,000 incur zero statutory tax liability.
+                                </p>
+                            </div>
+
+                            <!-- ==========================================================================
+                                 08. SHARE THIS ARTICLE — Social Sharing & Copy Link
+                                 ========================================================================== -->
+                            <div class="article-share-strip">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-share-fill text-teal2"></i>
+                                    <strong class="text-ink small">Share this insight:</strong>
+                                </div>
+                                <div class="d-flex align-items-center flex-wrap gap-2">
+                                    <button type="button" class="share-btn-pill copy-link-btn" id="bottomCopyBtn">
+                                        <i class="bi bi-link-45deg"></i> Copy Link
+                                    </button>
+                                    <a href="https://www.linkedin.com/sharing/share-offsite/" target="_blank" rel="noopener" class="share-btn-pill" id="shareLinkedIn">
+                                        <i class="bi bi-linkedin text-primary"></i> LinkedIn
+                                    </a>
+                                    <a href="https://twitter.com/intent/tweet" target="_blank" rel="noopener" class="share-btn-pill" id="shareTwitter">
+                                        <i class="bi bi-twitter-x"></i> X (Twitter)
+                                    </a>
+                                    <a href="https://api.whatsapp.com/send" target="_blank" rel="noopener" class="share-btn-pill" id="shareWhatsApp">
+                                        <i class="bi bi-whatsapp text-success"></i> WhatsApp
+                                    </a>
+                                </div>
+                                <div class="w-100 text-center small text-success d-none mt-2" id="bottomCopyNotice">
+                                    ✓ Article link copied to clipboard!
+                                </div>
+                            </div>
+
+                            <!-- Author Bio Card -->
+                            <div class="article-author-bio-card mt-5 p-4 rounded-4 d-flex flex-column flex-sm-row align-items-sm-center gap-3" id="detailBioCard">
+                                <div class="service-icon flex-shrink-0" style="width:60px;height:60px;font-size:24px;">
+                                    <i class="bi bi-person-workspace"></i>
+                                </div>
+                                <div>
+                                    <h4 class="h5 mb-1 text-ink" id="detailBioName">Written by Priya Sharma, FCA</h4>
+                                    <p class="text-muted-custom small mb-2" id="detailBioBio">
+                                        Priya is a Senior Tax Partner at VeraLedger with over 11 years of experience advising tech founders, salaried executives, and cross-border consultants on direct tax compliance.
+                                    </p>
+                                    <a href="blog.html" class="small fw-bold text-teal2 text-decoration-none">
+                                        <i class="bi bi-arrow-left me-1"></i> Back to all articles
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- ==========================================================================
+                                 09. NEWSLETTER SUBSCRIPTION — Invite readers to receive more insights
+                                 ========================================================================== -->
+                            <div class="newsletter-article-box">
+                                <div class="row align-items-center g-3">
+                                    <div class="col-md-7">
+                                        <span class="badge-tag newsletter-badge mb-2"><i class="bi bi-envelope-check me-1"></i> Executive Briefing</span>
+                                        <h3 class="h4 text-white mb-1">Stay ahead of tax &amp; regulatory changes.</h3>
+                                        <p class="small text-white-50 mb-0">Join 18,500+ subscribers who receive our fortnightly tax analysis directly in their inbox.</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <form id="articleNewsletterForm">
+                                            <div class="d-flex flex-column gap-2">
+                                                <input type="email" class="form-control form-control-sm py-2" placeholder="Your work email" required>
+                                                <button type="submit" class="btn-brand btn-sm py-2">Get Free Insights</button>
+                                            </div>
+                                        </form>
+                                        <div id="articleNewsletterSuccess" class="alert alert-success d-none small mb-0 mt-2 py-1 text-dark">
+                                            ✓ Subscribed successfully!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             07. RELATED ARTICLES — Three Recommended Articles Based on Topic
+             ========================================================================== -->
+        <section class="blog-section-spacing section-soft">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div>
+                        <span class="eyebrow">Continue Reading</span>
+                        <h2 class="h3 mb-0">Related <span>articles.</span></h2>
+                    </div>
+                    <a href="blog.html" class="arrow-link d-none d-md-inline-flex">View all articles <i class="bi bi-arrow-up-right ms-1"></i></a>
+                </div>
+
+                <div class="row g-4" id="detailRelatedGrid">
+                    <!-- Related 1 -->
+                    <div class="col-md-6 col-lg-4">
+                        <article class="blog-card h-100">
+                            <div class="blog-thumb-wrap">
+                                <span class="blog-badge-pill">GST Updates</span>
+                                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=85"
+                                    alt="GST accounting routine">
+                            </div>
+                            <div class="blog-body">
+                                <div class="blog-meta-row">
+                                    <span><i class="bi bi-clock me-1 text-teal2"></i> 6 min read</span>
+                                    <span>·</span>
+                                    <span>Compliance</span>
+                                </div>
+                                <h3 class="h5">Building a consistent monthly GST routine</h3>
+                                <p>Create a repeatable checklist for input tax credit reconciliations and zero-penalty deadlines.</p>
+                                <a href="blog-detail.html?id=gst-routine&topic=Building+a+consistent+monthly+GST+routine&image=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1554224155-6726b3ff858f%3Fauto%3Dformat%26fit%3Dcrop%26w%3D800%26q%3D85&category=GST+Updates&readTime=6+min+read&author=Kavita+Rao%2C+CPA"
+                                    class="arrow-link mt-auto">Read article <i class="bi bi-arrow-up-right ms-1"></i></a>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Related 2 -->
+                    <div class="col-md-6 col-lg-4">
+                        <article class="blog-card h-100">
+                            <div class="blog-thumb-wrap">
+                                <span class="blog-badge-pill">Business &amp; Finance</span>
+                                <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=85"
+                                    alt="Freelance tax strategy">
+                            </div>
+                            <div class="blog-body">
+                                <div class="blog-meta-row">
+                                    <span><i class="bi bi-clock me-1 text-teal2"></i> 5 min read</span>
+                                    <span>·</span>
+                                    <span>Freelance</span>
+                                </div>
+                                <h3 class="h5">Demystifying Section 44ADA for Tech Consultants</h3>
+                                <p>How independent developers can legally claim a 50% presumptive expense deduction.</p>
+                                <a href="blog-detail.html?id=44ada&topic=Demystifying+Section+44ADA+for+Tech+Consultants&image=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1450133064473-71024230f91b%3Fauto%3Dformat%26fit%3Dcrop%26w%3D800%26q%3D85&category=Business+%26+Finance&readTime=5+min+read&author=David+Miller%2C+CPA"
+                                    class="arrow-link mt-auto">Read article <i class="bi bi-arrow-up-right ms-1"></i></a>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Related 3 -->
+                    <div class="col-md-6 col-lg-4">
+                        <article class="blog-card h-100">
+                            <div class="blog-thumb-wrap">
+                                <span class="blog-badge-pill">Tax Planning</span>
+                                <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=85"
+                                    alt="Capital gains tax calculations">
+                            </div>
+                            <div class="blog-body">
+                                <div class="blog-meta-row">
+                                    <span><i class="bi bi-clock me-1 text-teal2"></i> 7 min read</span>
+                                    <span>·</span>
+                                    <span>Capital Gains</span>
+                                </div>
+                                <h3 class="h5">Capital gains tax on equity &amp; mutual funds</h3>
+                                <p>Navigating revised short-term and long-term tax rates and 8-year loss carry-forwards.</p>
+                                <a href="blog-detail.html?id=capital-gains&topic=Capital+gains+tax+on+equity+%26+mutual+funds&image=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1556761175-b413da4baf72%3Fauto%3Dformat%26fit%3Dcrop%26w%3D800%26q%3D85&category=Tax+Planning&readTime=7+min+read&author=Priya+Sharma%2C+FCA"
+                                    class="arrow-link mt-auto">Read article <i class="bi bi-arrow-up-right ms-1"></i></a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             10. FINAL CTA — Need professional assistance with your finances?
+             ========================================================================== -->
+        <section class="blog-section-spacing pt-4">
+            <div class="container">
+                <div class="cta-band d-lg-flex align-items-center justify-content-between gap-4">
+                    <div>
+                        <span class="eyebrow" style="color: #b7ddd3;">Personalized Advisory</span>
+                        <h2 class="mt-2 mb-2">Need professional assistance with <span>your finances?</span></h2>
+                        <p class="mb-0">Connect with VeraLedger's certified Chartered Accountants to review your filing, resolve notices, and optimize tax savings.</p>
+                    </div>
+                    <div class="d-flex flex-wrap gap-3 mt-4 mt-lg-0 flex-shrink-0">
+                        <a href="contact.html" class="btn-light-brand">Book a consultation <i class="bi bi-arrow-up-right ms-1"></i></a>
+                        <a href="services.html" class="btn-outline-light text-white border-white px-3 py-2 rounded-2 fw-bold text-decoration-none d-inline-flex align-items-center">Explore all services</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Global Dynamic Footer -->
+    <div id="siteFooter"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Dynamic Article Population & Magazine Interactions Engine -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = (urlParams.get("id") || "").toLowerCase().trim();
+        const customTopic = urlParams.get("topic");
+        const customImage = urlParams.get("image");
+        const customCategory = urlParams.get("category");
+        const customReadTime = urlParams.get("readTime");
+        const customAuthor = urlParams.get("author");
+
+        // Rich Articles Knowledge Base
+        const articlesDb = {
+            "tax-regime": {
+                title: "New vs. Old Tax Regime in FY 2025–26: The Definitive Threshold Analysis",
+                twoTone: 'New vs. Old Tax Regime in FY 2025–26: <span>The Definitive Threshold Analysis</span>',
+                category: "Tax Strategy",
+                readTime: "8 min read",
+                date: "FY 2025–26 Regulatory Edition",
+                author: "David Miller, CPA",
+                role: "Senior Tax Strategist · Ex-Big 4 Senior Manager",
+                bio: "David leads personal wealth and corporate tax planning at VeraLedger, specializing in algorithmic regime evaluations, HNI portfolios, and statutory deductions.",
+                image: "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1200&q=85",
+                summary: "An exhaustive mathematical breakdown demonstrating the exact salary levels where the revised Section 115BAC outweighs itemized deductions under 80C, 80D, Section 24b, and HRA.",
+                overview: [
+                    "Mathematical comparison between the ₹75,000 standard deduction under 115BAC and itemized claims.",
+                    "Exact threshold calculation: Why ₹4.25 Lakhs in deductions is the critical breakeven for ₹15L salaries.",
+                    "Procedural rules on switching regimes annually for salaried filers vs. business professionals."
+                ],
+                pullquote: '"For individuals with combined deductions surpassing ₹4,25,000, the Old Tax Regime remains an exceptional wealth-preservation instrument."',
+                quoteAuthor: "— David Miller, CPA",
+                content: `
+                    <p class="fs-5 text-ink lh-base">
+                        With every union budget adjusting statutory slabs, taxpayers are faced with a recurring dilemma: should you opt for the simplicity of the New Concessional Regime under Section 115BAC, or maintain meticulous investment receipts under the Old Regime?
+                    </p>
+                    <div id="sec-part-1">
+                        <h2 class="h3 mt-5 mb-3">1. The revised <span>Section 115BAC structure</span></h2>
+                        <p>
+                            The New Tax Regime provides wider tax slabs with lower headline marginal rates. Notably, the standard deduction has been increased to ₹75,000 for salaried employees. Slabs progress smoothly: 0-3L (Nil), 3-7L (5%), 7-10L (10%), 10-12L (15%), 12-15L (20%), and above 15L (30%).
+                        </p>
+                        <p>
+                            Furthermore, with Section 87A rebate expanding to ₹7,00,000, anyone earning up to ₹7,75,000 (after the ₹75,000 standard deduction) pays precisely zero rupee in statutory income tax.
+                        </p>
+                    </div>
+                    <div id="sec-part-2">
+                        <h2 class="h3 mt-5 mb-3">2. When the <span>Old Regime still wins</span></h2>
+                        <p>
+                            The Old Regime continues to be advantageous for individuals with substantial deductions. If you pay high rent in a metro city (HRA deduction under Section 10(13A)), service a home loan (Section 24b up to ₹2 Lakhs), and invest ₹1.5 Lakhs in Section 80C alongside medical insurance under 80D, your aggregate deductions can easily surpass the breakeven threshold.
+                        </p>
+                        <p>
+                            Our advisory data indicates that for an employee earning ₹18,00,000 with metro HRA of ₹3,00,000, home loan interest of ₹2,00,000, and full 80C/80D utilization, the Old Regime produces net tax savings of ₹54,600 over the New Regime.
+                        </p>
+                    </div>
+                    <div id="sec-part-3">
+                        <h2 class="h3 mt-5 mb-3">3. Annual election and <span>procedural advice</span></h2>
+                        <p>
+                            Evaluate your total eligible investment declarations before tax filing. For salaried filers, the election is made directly in the ITR filed under Section 139(1), regardless of what was declared to your employer in Form 12BB during the fiscal year.
+                        </p>
+                    </div>
+                `,
+                takeaways: [
+                    "<strong>The ₹7.75 Lakh Threshold:</strong> With the ₹75,000 standard deduction in the New Tax Regime, any income up to ₹7.75 Lakhs is 100% tax-free under Section 87A rebate.",
+                    "<strong>The Deductions Breakeven:</strong> If your total itemized deductions (80C + 80D + HRA + Home Loan Interest) exceed ₹4.25 Lakhs at ₹15L salary, the Old Regime still saves you more money.",
+                    "<strong>Switching Rules:</strong> Salaried individuals can switch between regimes every year, whereas business professionals can only switch once and cannot easily return."
+                ],
+                insightTitle: "Statutory Rule · Employer Form 12BB vs. Final ITR Filing",
+                insightBody: "You are not locked into the tax regime chosen in your employer's HR portal. Even if TDS was deducted under the New Regime all year, you can legitimately switch to the Old Regime while filing your verified ITR to claim full refunds."
+            },
+            "checklist": {
+                title: "A simple checklist to prepare for tax filing",
+                twoTone: 'A simple checklist to <span>prepare for tax filing.</span>',
+                category: "Income Tax",
+                readTime: "5 min read",
+                date: "AY 2025–26 Edition",
+                author: "Priya Sharma, FCA",
+                role: "Lead Tax Partner · ICAI Fellow Member",
+                bio: "Priya is a Senior Tax Partner at VeraLedger with over 11 years of experience advising tech founders, salaried executives, and cross-border consultants on direct tax compliance.",
+                image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=85",
+                summary: "A structured breakdown of essential income statements, deduction proofs, and bank records before you begin your tax filing journey.",
+                overview: [
+                    "Primary statutory records: Form 16, AIS, and Form 26AS matching protocols.",
+                    "Deduction proofs required for Sections 80C, 80D, 24b, and HRA exemption claims.",
+                    "Pre-submission validation checklist to guarantee immediate processing and fast refunds."
+                ],
+                pullquote: '"Preparing for tax filing is fundamentally about having the right numbers confirmed before you open any filing software."',
+                quoteAuthor: "— Priya Sharma, FCA",
+                takeaways: [
+                    "<strong>Pre-fill Verification:</strong> Always reconcile your Form 16 against both AIS (Annual Information Statement) and Form 26AS before filing.",
+                    "<strong>Dual Regime Math:</strong> Keep documentation for Section 80C, 80D, and HRA handy even if you suspect the New Tax Regime is more beneficial.",
+                    "<strong>Bank Account Validation:</strong> Ensure your refund bank account is pre-validated on the Income Tax Portal with matched PAN names."
+                ],
+                insightTitle: "Expert Tip · AIS Feedback Mechanism",
+                insightBody: "If your AIS displays duplicate or incorrect transaction entries (e.g., duplicated stock sales), submit immediate online feedback on the e-filing portal before filing to prevent automated Section 143(1) mismatch notices."
+            },
+            "gst-routine": {
+                title: "Building a consistent monthly GST routine",
+                twoTone: 'Building a consistent <span>monthly GST routine.</span>',
+                category: "GST Updates",
+                readTime: "6 min read",
+                date: "Compliance Edition",
+                author: "Kavita Rao, CPA",
+                role: "GST & Indirect Tax Specialist",
+                bio: "Kavita oversees indirect taxation and automated reconciliation engines for over 450 corporate and retail entities at VeraLedger.",
+                image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=85",
+                summary: "Create a repeatable checklist for input tax credit reconciliations, ledger checks, and zero-penalty deadlines.",
+                overview: [
+                    "Weekly milestones: From outward invoicing on the 5th to GSTR-3B payment by the 20th.",
+                    "Rule 36(4) compliance: Strict matching against GSTR-2B generated on the 14th of each month.",
+                    "How to handle vendor non-compliance and avoid Section 50 interest penalties."
+                ],
+                pullquote: '"A single delayed invoice or an unreflected vendor filing can freeze your working capital. Consistency is your best compliance shield."',
+                quoteAuthor: "— Kavita Rao, CPA",
+                takeaways: [
+                    "<strong>Rule 36(4) Reconciliations:</strong> Input Tax Credit (ITC) must match GSTR-2B generated on the 14th of every month; never claim unreflected vendor invoices.",
+                    "<strong>Inward vs. Outward Matching:</strong> Reconcile sales registered in your ERP with GSTR-1 by the 11th of every month to avoid interest under Section 50.",
+                    "<strong>Cash vs. Credit Ledger:</strong> Maintain an optimal balance between electronic cash ledgers and credit ledgers before initiating final GSTR-3B offsets."
+                ],
+                insightTitle: "Advisory Rule · 180-Day Supplier Payment Trap",
+                insightBody: "Under Section 16(2) of the CGST Act, if you do not pay a supplier within 180 days from the invoice date, you must reverse the claimed Input Tax Credit with 18% statutory interest."
+            },
+            "records": {
+                title: "Keeping business records ready throughout the year",
+                twoTone: 'Keeping business records <span>ready throughout the year.</span>',
+                category: "Accounting",
+                readTime: "4 min read",
+                date: "Operations Guide",
+                author: "Rajesh Mehta, ACA",
+                role: "Head of Corporate Accounting & Audits",
+                bio: "Rajesh brings 14 years of corporate accounting experience, helping high-growth startups and established firms maintain immaculate, audit-proof financial ledgers.",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+                summary: "Simple monthly reconciliation habits to keep invoices and expenses organized without year-end scramble.",
+                overview: [
+                    "Adopting a digital-first receipt capture policy to eliminate paper loss.",
+                    "Weekly multi-bank feed reconciliations and automated suspense account clearing.",
+                    "Audit preparedness routines that satisfy both statutory auditors and tax officials."
+                ],
+                pullquote: '"When bookkeeping is maintained on a rolling monthly cycle, tax audits and investor reporting become effortless milestones."',
+                quoteAuthor: "— Rajesh Mehta, ACA",
+                takeaways: [
+                    "<strong>Digital Receipt Capture:</strong> Discard paper shoeboxes; capture and classify receipts digitally within 48 hours of spend.",
+                    "<strong>Bank Feeds Synchronization:</strong> Reconcile all business bank and corporate card feeds at the end of every week.",
+                    "<strong>Quarterly Trial Balance Reviews:</strong> Run trial balances quarterly to detect unclassified expenses and suspense balances before year-end."
+                ],
+                insightTitle: "Accounting Best Practice · Petty Cash Reconciliations",
+                insightBody: "Maintain an imprest petty cash system. Do not allow cash withdrawals to remain unvouched; reconcile weekly to prevent disallowance under Section 40A(3) for cash payments exceeding ₹10,000."
+            },
+            "44ada": {
+                title: "Demystifying Section 44ADA for Tech Consultants",
+                twoTone: 'Demystifying Section 44ADA <span>for Tech Consultants.</span>',
+                category: "Business & Finance",
+                readTime: "5 min read",
+                date: "Freelance & Remote",
+                author: "David Miller, CPA",
+                role: "Senior Tax Strategist",
+                bio: "David specializes in freelance taxation, tech consultant contracts, and remote cross-border income structures.",
+                image: "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=85",
+                summary: "How independent developers and consultants can legally claim a 50% presumptive expense deduction with minimal paperwork.",
+                overview: [
+                    "Eligibility criteria: Which tech professions qualify under Section 44AA & 44ADA.",
+                    "The 50% presumptive computation: Declaring ₹25L profit on ₹50L revenue with zero receipts.",
+                    "Advance tax timeline: Paying 100% of tax liability by March 15 to avoid 234C penalties."
+                ],
+                pullquote: '"Section 44ADA is the most powerful tax simplification mechanism ever created for high-earning independent consultants in India."',
+                quoteAuthor: "— David Miller, CPA",
+                takeaways: [
+                    "<strong>₹75 Lakh Limit:</strong> Eligible professionals with gross receipts up to ₹75 Lakhs (with up to 5% cash receipts) can declare 50% profit without keeping books.",
+                    "<strong>No Need for Expense Receipts:</strong> You do not need to preserve laptop bills, software subscriptions, or home office receipts to justify the 50% expense claim.",
+                    "<strong>Advance Tax Rule:</strong> Unlike salaried employees, 44ADA filers must pay 100% of their estimated advance tax by March 15 to avoid Section 234C interest."
+                ],
+                insightTitle: "Advance Tax Alert · Section 234C Exemption",
+                insightBody: "Under Section 44ADA, you are exempted from quarterly advance tax installments (June, Sept, Dec). You only need to remit your total tax in one single installment on or before March 15."
+            },
+            "capital-gains": {
+                title: "Capital gains tax on equity & mutual funds",
+                twoTone: 'Capital gains tax on <span>equity & mutual funds.</span>',
+                category: "Tax Planning",
+                readTime: "7 min read",
+                date: "Wealth & Investments",
+                author: "Priya Sharma, FCA",
+                role: "Lead Tax Partner",
+                bio: "Priya advises domestic and NRI investors on portfolio taxation, capital loss set-offs, and wealth structuring.",
+                image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85",
+                summary: "Navigating revised short-term and long-term tax rates, grandfathering adjustments, and 8-year loss carry-forwards.",
+                overview: [
+                    "The revised 12.5% Long-Term Capital Gains (LTCG) framework for listed equities and mutual funds.",
+                    "How to utilize the enhanced ₹1.25 Lakh annual tax-free exemption threshold.",
+                    "Loss harvesting rules: Setting off short-term vs. long-term losses across financial years."
+                ],
+                pullquote: '"Tax loss harvesting in March is the easiest way to offset portfolio gains and protect your compounded returns."',
+                quoteAuthor: "— Priya Sharma, FCA",
+                takeaways: [
+                    "<strong>Revised Rates:</strong> Long-Term Capital Gains (LTCG) on listed equities are now taxed at 12.5%, with the annual exemption limit increased to ₹1.25 Lakhs.",
+                    "<strong>Short-Term Gains:</strong> Short-Term Capital Gains (STCG) on equity shares subject to STT are taxed at a flat 20% under Section 111A.",
+                    "<strong>Loss Carry-Forward:</strong> Both short-term and long-term capital losses can be carried forward for 8 consecutive assessment years, provided returns are filed before the deadline."
+                ],
+                insightTitle: "Key Rule · Timely Filing for Loss Carry-Forward",
+                insightBody: "Under Section 80, you cannot carry forward capital losses to subsequent years if your income tax return is filed after the due date under Section 139(1)."
+            },
+            "tips": {
+                title: "What to keep in your digital document folder",
+                twoTone: 'What to keep in your <span>digital document folder.</span>',
+                category: "Financial Tips",
+                readTime: "4 min read",
+                date: "Security & Organization",
+                author: "Rajesh Mehta, ACA",
+                role: "Head of Corporate Accounting",
+                bio: "Rajesh specializes in client vault architectures and secure financial recordkeeping.",
+                image: "https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=1200&q=85",
+                summary: "A simple structure for keeping encrypted receipts, Form 16s, and ledger archives easy to locate anytime.",
+                overview: [
+                    "The 6-year statutory record retention requirement under Indian direct tax law.",
+                    "How to structure digital folders by financial year with encrypted naming conventions.",
+                    "Pre-validating bank statements and refund bank accounts on the e-filing portal."
+                ],
+                pullquote: '"A clean digital vault saves you hours of panic whenever a loan officer, visa authority, or tax assessor asks for verification."',
+                quoteAuthor: "— Rajesh Mehta, ACA",
+                takeaways: [
+                    "<strong>Bank Statements:</strong> Maintain password-removed PDF copies of all bank accounts for the past 6 statutory years.",
+                    "<strong>Encrypted Vault Storage:</strong> Store Aadhaar, PAN, and investment proofs in encrypted, two-factor authenticated cloud folders.",
+                    "<strong>ITR-V Acknowledgments:</strong> Keep acknowledgment receipts and Computation of Income sheets archived together."
+                ],
+                insightTitle: "Security Tip · Remove PDF Passwords",
+                insightBody: "Never upload password-protected bank statements or Form 16s to your CPA or client portal. Remove passwords first using secure offline PDF utilities to prevent processing delays."
+            },
+            "director-remuneration": {
+                title: "Director Remuneration, TDS & DIN Compliance: What Every Founder Must Know",
+                twoTone: 'Director Remuneration, TDS & DIN: <span>What Every Founder Must Know</span>',
+                category: "Corporate Governance",
+                readTime: "6 min read",
+                date: "MCA & Corporate Law",
+                author: "Rajesh Mehta, ACA",
+                role: "Head of Corporate Compliance",
+                bio: "Rajesh advises startups and mid-market enterprises on Companies Act governance, board resolutions, and managerial remuneration.",
+                image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85",
+                summary: "Understand statutory limits on director executive salaries, mandatory Section 192 vs 194J TDS deductions, and avoiding director disqualification under Section 164.",
+                overview: [
+                    "Executive salary vs. professional advisory fee: When to apply Section 192 vs 194J TDS.",
+                    "Statutory remuneration limits under Section 197 of the Companies Act 2013.",
+                    "Mandatory annual DIR-3 KYC compliance to prevent DIN deactivation."
+                ],
+                pullquote: '"Treating company funds as a personal piggy bank is the single fastest way to trigger MCA scrutiny and director disqualification."',
+                quoteAuthor: "— Rajesh Mehta, ACA",
+                takeaways: [
+                    "<strong>Salary vs. Advisory Fees:</strong> Executive directors drawing salaries require Section 192 TDS; independent director sitting fees require Section 194J TDS.",
+                    "<strong>DIR-3 KYC Deadline:</strong> Directors must file DIR-3 KYC annually by September 30 to prevent deactivation of their DIN and MCA filing blocks.",
+                    "<strong>Board Resolutions:</strong> Every managerial compensation adjustment must be backed by a board resolution and shareholder approval under Section 197."
+                ],
+                insightTitle: "MCA Compliance Alert · Section 164 Disqualification",
+                insightBody: "Failure to file company financial statements or annual returns for 3 consecutive financial years disqualifies all directors for 5 years and freezes their DINs across all registered entities."
+            },
+            "firc": {
+                title: "Foreign Inward Remittance Certificates (FIRC): Essential Guide for Remote Work",
+                twoTone: 'Foreign Inward Remittance Certificates (FIRC): <span>Guide for Remote Work</span>',
+                category: "Cross-Border Finance",
+                readTime: "8 min read",
+                date: "International Tax",
+                author: "David Miller, CPA",
+                role: "Senior Tax Strategist",
+                bio: "David specializes in cross-border tech consulting, international banking, and export compliance under FEMA and GST.",
+                image: "images/service-consult.jpg",
+                summary: "How to obtain and reconcile FIRCs from authorized dealer banks to substantiate zero-rated GST export claims and avoid automated tax scrutiny.",
+                overview: [
+                    "Why domestic bank credit SMS is not legal proof of export under the IGST Act.",
+                    "How to request Electronic Foreign Inward Remittance Advice (e-FIRA) from AD banks.",
+                    "Matching RBI Purpose Codes (P0802 for software) to avoid 18% GST tax demands."
+                ],
+                pullquote: '"Without an official electronic FIRA, tax authorities can classify your overseas software earnings as domestic supply subject to 18% GST plus interest."',
+                quoteAuthor: "— David Miller, CPA",
+                takeaways: [
+                    "<strong>Zero-Rated GST Proof:</strong> Under Section 16 of the IGST Act, export of services is zero-rated only when foreign exchange remittance is officially proven via FIRC or e-FIRA.",
+                    "<strong>Purpose Codes Matter:</strong> Ensure your foreign payment platform (Stripe, Wise, PayPal, Wire) specifies the exact RBI purpose code (e.g., P0802 for software).",
+                    "<strong>Scrutiny Defense:</strong> Without an electronic FIRC, tax authorities may classify your overseas earnings as domestic supply subject to 18% GST plus interest."
+                ],
+                insightTitle: "FEMA Rule · 9-Month Remittance Window",
+                insightBody: "Under FEMA regulations, foreign currency payments for exported software or technical services must be realized and repatriated to India within 9 months from the date of invoice."
+            }
+        };
+
+        // Determine which article to render
+        let currentArticle = null;
+        if (articleId && articlesDb[articleId]) {
+            currentArticle = articlesDb[articleId];
+        }
+
+        // Apply topic, image, category overrides
+        const finalTitle = customTopic || (currentArticle ? currentArticle.title : "A simple checklist to prepare for tax filing");
+        const finalCategory = customCategory || (currentArticle ? currentArticle.category : "Tax Planning");
+        const finalImage = customImage || (currentArticle ? currentArticle.image : "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=85");
+        const finalReadTime = customReadTime || (currentArticle ? currentArticle.readTime : "5 min read");
+        const finalAuthor = customAuthor || (currentArticle ? currentArticle.author : "Priya Sharma, FCA");
+
+        // Update Document Title
+        document.title = `${finalTitle} | VeraLedger Insights`;
+
+        // Update Breadcrumbs
+        const breadcrumbEl = document.getElementById("detailBreadcrumbCurrent");
+        if (breadcrumbEl) breadcrumbEl.textContent = finalTitle;
+
+        // Update Category Pill
+        const categoryPillEl = document.getElementById("detailCategoryPill");
+        if (categoryPillEl) categoryPillEl.textContent = finalCategory;
+
+        // Update Read Time
+        const readTimeEl = document.getElementById("detailReadTime");
+        if (readTimeEl) readTimeEl.innerHTML = `<i class="bi bi-clock me-1 text-teal2"></i> ${finalReadTime}`;
+
+        // Update Headline with Two-Tone
+        const headlineEl = document.getElementById("detailHeadline");
+        if (headlineEl) {
+            if (currentArticle && currentArticle.twoTone && !customTopic) {
+                headlineEl.innerHTML = currentArticle.twoTone;
+            } else {
+                const words = finalTitle.split(" ");
+                if (words.length > 3) {
+                    const splitIdx = Math.floor(words.length * 0.55);
+                    const part1 = words.slice(0, splitIdx).join(" ");
+                    const part2 = words.slice(splitIdx).join(" ");
+                    headlineEl.innerHTML = `${part1} <span>${part2}</span>`;
+                } else {
+                    headlineEl.innerHTML = `<span>${finalTitle}</span>`;
+                }
+            }
+        }
+
+        // Update Hero Copy
+        const copyEl = document.getElementById("detailHeroCopy");
+        if (copyEl && currentArticle && currentArticle.summary) {
+            copyEl.textContent = currentArticle.summary;
+        }
+
+        // Update Author
+        const authorNameEl = document.getElementById("detailAuthorName");
+        const authorRoleEl = document.getElementById("detailAuthorRole");
+        if (authorNameEl) authorNameEl.textContent = finalAuthor;
+        if (authorRoleEl && currentArticle) authorRoleEl.textContent = currentArticle.role;
+
+        // Update Main Cover Image
+        const heroImgEl = document.getElementById("detailHeroImage");
+        if (heroImgEl) {
+            heroImgEl.src = finalImage;
+            heroImgEl.alt = finalTitle;
+        }
+
+        // Update Overview List
+        const overviewEl = document.getElementById("detailOverviewList");
+        if (overviewEl && currentArticle && currentArticle.overview) {
+            overviewEl.innerHTML = currentArticle.overview.map(item => `<li>${item}</li>`).join("");
+        }
+
+        // Update Content
+        const contentEl = document.getElementById("detailArticleContent");
+        if (contentEl && currentArticle && currentArticle.content) {
+            contentEl.innerHTML = currentArticle.content;
+        }
+
+        // Update Pullquote
+        const pullquoteEl = document.getElementById("detailPullquote");
+        if (pullquoteEl && currentArticle && currentArticle.pullquote) {
+            pullquoteEl.innerHTML = `${currentArticle.pullquote} <span class="magazine-pullquote-author">${currentArticle.quoteAuthor || '— ' + finalAuthor}</span>`;
+        }
+
+        // Update Takeaways
+        const takeawaysEl = document.getElementById("detailTakeawaysList");
+        if (takeawaysEl && currentArticle && currentArticle.takeaways) {
+            takeawaysEl.innerHTML = currentArticle.takeaways.map(t => `<li>${t}</li>`).join("");
+        }
+
+        // Update Expert Insight
+        const insightTitleEl = document.getElementById("detailInsightTitle");
+        const insightBodyEl = document.getElementById("detailInsightBody");
+        if (insightTitleEl && currentArticle && currentArticle.insightTitle) {
+            insightTitleEl.textContent = currentArticle.insightTitle;
+        }
+        if (insightBodyEl && currentArticle && currentArticle.insightBody) {
+            insightBodyEl.textContent = currentArticle.insightBody;
+        }
+
+        // Update Author Bio Card
+        const bioNameEl = document.getElementById("detailBioName");
+        const bioBioEl = document.getElementById("detailBioBio");
+        if (bioNameEl) bioNameEl.textContent = `Written by ${finalAuthor}`;
+        if (bioBioEl && currentArticle && currentArticle.bio) bioBioEl.textContent = currentArticle.bio;
+
+        // Clipboard Copy Link Handlers
+        function copyArticleUrl(noticeId) {
+            const currentUrl = window.location.href;
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(currentUrl).then(() => {
+                    const notice = document.getElementById(noticeId);
+                    if (notice) {
+                        notice.classList.remove("d-none");
+                        setTimeout(() => notice.classList.add("d-none"), 3000);
+                    }
+                });
+            } else {
+                // Fallback
+                const tempInput = document.createElement("input");
+                tempInput.value = currentUrl;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand("copy");
+                document.body.removeChild(tempInput);
+                const notice = document.getElementById(noticeId);
+                if (notice) {
+                    notice.classList.remove("d-none");
+                    setTimeout(() => notice.classList.add("d-none"), 3000);
+                }
+            }
+        }
+
+        const tocCopyBtn = document.getElementById("tocCopyBtn");
+        if (tocCopyBtn) tocCopyBtn.addEventListener("click", () => copyArticleUrl("tocCopyNotice"));
+
+        const bottomCopyBtn = document.getElementById("bottomCopyBtn");
+        if (bottomCopyBtn) bottomCopyBtn.addEventListener("click", () => copyArticleUrl("bottomCopyNotice"));
+
+        // Social Sharing Dynamic URLs
+        const encodedUrl = encodeURIComponent(window.location.href);
+        const encodedTitle = encodeURIComponent(finalTitle);
+
+        const shareLinkedIn = document.getElementById("shareLinkedIn");
+        if (shareLinkedIn) shareLinkedIn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+
+        const shareTwitter = document.getElementById("shareTwitter");
+        if (shareTwitter) shareTwitter.href = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`;
+
+        const shareWhatsApp = document.getElementById("shareWhatsApp");
+        if (shareWhatsApp) shareWhatsApp.href = `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`;
+
+        // Table of Contents Active Link Highlight on Scroll
+        const tocLinks = document.querySelectorAll("#articleTocNav .article-toc-link");
+        const sections = document.querySelectorAll("[id^='sec-']");
+
+        window.addEventListener("scroll", function() {
+            let currentSec = "";
+            sections.forEach(sec => {
+                const secTop = sec.offsetTop - 120;
+                if (window.pageYOffset >= secTop) {
+                    currentSec = sec.getAttribute("id");
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === `#${currentSec}`) {
+                    link.classList.add("active");
+                }
+            });
+        });
+
+        // Article Newsletter Form
+        const articleNewsletterForm = document.getElementById("articleNewsletterForm");
+        const articleNewsletterSuccess = document.getElementById("articleNewsletterSuccess");
+        if (articleNewsletterForm && articleNewsletterSuccess) {
+            articleNewsletterForm.addEventListener("submit", function(e) {
+                e.preventDefault();
+                articleNewsletterForm.classList.add("d-none");
+                articleNewsletterSuccess.classList.remove("d-none");
+            });
+        }
+    });
+    </script>
+</body>
+
+</html>

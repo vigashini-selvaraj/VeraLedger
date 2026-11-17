@@ -1,0 +1,1479 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Client Dashboard | VeraLedger Tax &amp; Accounting</title>
+    <meta name="description" content="Manage your tax filings, track statutory milestones, upload documents, and collaborate with your certified CPA.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="dashboard-page">
+
+    <div class="app-dashboard-layout">
+        <!-- Backdrop for mobile sidebar -->
+        <div class="app-sidebar-backdrop" id="sidebarBackdrop"></div>
+
+        <!-- ==========================================================================
+             SIDEBAR NAVIGATION
+             ========================================================================== -->
+        <aside class="app-sidebar" id="appSidebar">
+            <!-- Sidebar Header / Logo -->
+            <div class="app-sidebar-header">
+                <a href="index.html" class="brand app-sidebar-brand" title="Back to VeraLedger Home">
+                    <span class="brand-mark"><i class="bi bi-layers"></i></span>
+                    <span>
+                        <span class="brand-name d-block">VeraLedger</span>
+                        <span class="brand-tag d-block">TAX &amp; ACCOUNTING, MADE CLEAR</span>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="app-sidebar-nav">
+                <div class="app-sidebar-section-title">Main Portal</div>
+                
+                <a class="app-sidebar-link active" data-tab="overview">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Overview</span>
+                </a>
+
+                <a class="app-sidebar-link" data-tab="applications">
+                    <i class="bi bi-file-earmark-text-fill"></i>
+                    <span>My Applications</span>
+                    <span class="app-sidebar-badge" id="sideActiveAppsCount">1</span>
+                </a>
+
+                <a class="app-sidebar-link" data-tab="documents">
+                    <i class="bi bi-folder2-open"></i>
+                    <span>Documents</span>
+                </a>
+
+                <a class="app-sidebar-link" data-tab="returns">
+                    <i class="bi bi-check2-circle"></i>
+                    <span>My Returns</span>
+                </a>
+
+                <div class="app-sidebar-section-title mt-2">Billing &amp; Support</div>
+
+                <a class="app-sidebar-link" data-tab="payments">
+                    <i class="bi bi-credit-card-2-front-fill"></i>
+                    <span>Payments &amp; Invoices</span>
+                </a>
+
+                <a class="app-sidebar-link" data-tab="messages">
+                    <i class="bi bi-chat-left-dots-fill"></i>
+                    <span>Messages</span>
+                    <span class="badge bg-danger rounded-pill" style="font-size: 0.65rem; margin-left: auto;">1 New</span>
+                </a>
+
+                <a class="app-sidebar-link" data-tab="profile">
+                    <i class="bi bi-gear-fill"></i>
+                    <span>Profile Settings</span>
+                </a>
+            </nav>
+
+            <!-- Sidebar Footer: Assigned CPA & Logout -->
+            <div class="app-sidebar-footer">
+                <div class="app-cpa-chip">
+                    <div class="app-cpa-chip-icon">
+                        <i class="bi bi-patch-check-fill"></i>
+                    </div>
+                    <div class="overflow-hidden">
+                        <div class="text-white small fw-bold text-truncate" id="sideCpaName">Rajesh Kumar, FCA</div>
+                        <div class="text-white-50" style="font-size: 0.7rem;">Assigned Senior CPA</div>
+                    </div>
+                </div>
+
+                <button type="button" class="app-sidebar-logout" id="logoutBtn">
+                    <i class="bi bi-box-arrow-left"></i> Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- ==========================================================================
+             MAIN CONTENT WRAPPER
+             ========================================================================== -->
+        <div class="app-main-content">
+            <!-- Top Navigation Bar -->
+            <header class="app-topbar">
+                <div class="app-topbar-left">
+                    <button class="btn btn-sm btn-outline-secondary d-lg-none" id="sidebarToggleBtn" aria-label="Toggle navigation">
+                        <i class="bi bi-list fs-5"></i>
+                    </button>
+                    <span class="app-topbar-date d-none d-sm-inline-flex align-items-center">
+                        <i class="bi bi-calendar3 me-2 text-teal2"></i>
+                        <span id="currentDateDisplay">Tuesday, 17 Nov 2026</span>
+                    </span>
+                    <div class="app-search-wrap">
+                        <i class="bi bi-search"></i>
+                        <input type="text" class="app-search-input" id="dashSearchInput" placeholder="Search filings, documents, invoices...">
+                    </div>
+                </div>
+
+                <div class="app-topbar-right">
+                    <!-- Notifications Dropdown -->
+                    <div class="dropdown">
+                        <button class="app-notif-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Notifications">
+                            <i class="bi bi-bell"></i>
+                            <span class="app-notif-pulse"></span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end shadow-lg p-2" style="width: 320px; border-radius: 14px;">
+                            <div class="d-flex align-items-center justify-content-between p-2 border-bottom">
+                                <span class="fw-bold small text-ink">Notifications</span>
+                                <span class="badge bg-teal2 text-white small">1 Unread</span>
+                            </div>
+                            <div class="p-2 border-bottom">
+                                <div class="d-flex align-items-start gap-2">
+                                    <i class="bi bi-info-circle-fill text-teal2 mt-1"></i>
+                                    <div>
+                                        <div class="small fw-semibold text-ink">CPA Review Underway</div>
+                                        <div class="text-muted small" style="font-size: 0.75rem;">Rajesh Kumar is checking your capital gains schedule.</div>
+                                        <div class="text-muted" style="font-size: 0.7rem;">2 hours ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-2 border-bottom">
+                                <div class="d-flex align-items-start gap-2">
+                                    <i class="bi bi-check-circle-fill text-success mt-1"></i>
+                                    <div>
+                                        <div class="small fw-semibold text-ink">Document Verified</div>
+                                        <div class="text-muted small" style="font-size: 0.75rem;">Form 16 Part A &amp; B verified successfully.</div>
+                                        <div class="text-muted" style="font-size: 0.7rem;">Yesterday</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-2 text-center">
+                                <a href="javascript:void(0)" class="text-teal2 small fw-bold text-decoration-none">Mark all as read</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Theme Toggle Button -->
+                    <button class="app-topbar-action-btn" id="themeToggle" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme">
+                        <i class="bi bi-moon-stars"></i>
+                    </button>
+
+                    <!-- Direction (LTR/RTL) Toggle Button -->
+                    <button class="app-topbar-action-btn app-topbar-pill-btn" id="directionToggle" type="button" aria-label="Toggle text direction" title="Toggle LTR / RTL">
+                        RTL
+                    </button>
+
+                    <!-- User Profile Dropdown -->
+                    <div class="dropdown">
+                        <button class="app-user-dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="app-user-avatar" id="topUserAvatar">AM</div>
+                            <div class="d-none d-md-block text-start">
+                                <div class="small fw-bold text-ink lh-1" id="topUserName">Alex Morgan</div>
+                                <div class="text-muted" style="font-size: 0.72rem;" id="topUserRole">Verified Client</div>
+                            </div>
+                            <i class="bi bi-chevron-down small text-muted ms-1"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="border-radius: 12px;">
+                            <li><h6 class="dropdown-header">Account Management</h6></li>
+                            <li><a class="dropdown-item small" href="javascript:void(0)" onclick="switchTab('profile')"><i class="bi bi-person me-2"></i>Profile Settings</a></li>
+                            <li><a class="dropdown-item small" href="javascript:void(0)" onclick="switchTab('documents')"><i class="bi bi-folder me-2"></i>Document Vault</a></li>
+                            <li><a class="dropdown-item small" href="javascript:void(0)" onclick="switchTab('payments')"><i class="bi bi-credit-card me-2"></i>Invoices &amp; Receipts</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item small text-danger" href="javascript:void(0)" id="topLogoutLink"><i class="bi bi-box-arrow-left me-2"></i>Sign Out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content Container -->
+            <div class="app-body-container">
+
+                <!-- ==================================================================
+                     TAB 1: DASHBOARD OVERVIEW
+                     ================================================================== -->
+                <div class="dashboard-tab-pane active" id="tab-overview">
+                    <!-- Personalized Welcome Section -->
+                    <div class="app-welcome-card">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <div>
+                                <div class="d-inline-flex align-items-center gap-2 mb-2 px-3 py-1 rounded-pill" style="background: rgba(45, 212, 191, 0.15); border: 1px solid rgba(45, 212, 191, 0.3); font-size: 0.78rem; font-weight: 750; color: #2DD4BF;">
+                                    <i class="bi bi-shield-check"></i> Assessment Year 2026–27
+                                </div>
+                                <h1 class="h2 fw-bold text-white mb-2">Welcome Back, <span id="welcomeUserName">Alex Morgan</span>!</h1>
+                                <p class="text-white-50 mb-0" style="max-width: 620px;">
+                                    Here's an overview of your tax filing activities, statutory documentation milestones, and CPA engagement status.
+                                </p>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="apply.html" class="btn btn-brand px-4 py-2">
+                                    <i class="bi bi-plus-lg me-1"></i> Start New Filing
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4 Summary Metric Cards -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="app-stat-card" onclick="switchTab('applications')" style="cursor: pointer;">
+                                <div class="app-stat-header">
+                                    <div class="app-stat-icon teal"><i class="bi bi-file-earmark-text"></i></div>
+                                    <span class="app-stat-badge bg-teal2 text-white">Active</span>
+                                </div>
+                                <div class="app-stat-value" id="cardActiveApps">1</div>
+                                <div class="app-stat-label">Active Applications</div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="app-stat-card" onclick="switchTab('returns')" style="cursor: pointer;">
+                                <div class="app-stat-header">
+                                    <div class="app-stat-icon green"><i class="bi bi-check2-all"></i></div>
+                                    <span class="app-stat-badge bg-success text-white">Processed</span>
+                                </div>
+                                <div class="app-stat-value" id="cardCompletedFilings">3</div>
+                                <div class="app-stat-label">Completed Filings</div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="app-stat-card" onclick="switchTab('documents')" style="cursor: pointer;">
+                                <div class="app-stat-header">
+                                    <div class="app-stat-icon amber"><i class="bi bi-file-earmark-arrow-up"></i></div>
+                                    <span class="app-stat-badge bg-warning text-dark">Action Needed</span>
+                                </div>
+                                <div class="app-stat-value" id="cardPendingDocs">1</div>
+                                <div class="app-stat-label">Pending Documents</div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="app-stat-card" onclick="switchTab('payments')" style="cursor: pointer;">
+                                <div class="app-stat-header">
+                                    <div class="app-stat-icon blue"><i class="bi bi-credit-card-check"></i></div>
+                                    <span class="app-stat-badge bg-primary text-white">All Settled</span>
+                                </div>
+                                <div class="app-stat-value" id="cardOutstandingPay">₹0</div>
+                                <div class="app-stat-label">Outstanding Payments</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Progress Timeline: Primary Filing Tracker -->
+                    <div class="timeline-5stage-wrap">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                            <div>
+                                <span class="badge bg-teal2 text-white small me-2">Primary Filing Status</span>
+                                <h3 class="h5 fw-bold text-ink mb-1 mt-2" id="timelineFilingTitle">Income Tax Return (ITR-2) — FY 2025–26</h3>
+                                <p class="text-muted small mb-0">Application ID: <strong id="timelineAppId">VL-ITR-2026-104</strong> · Assigned CPA: <strong id="timelineCpaName">Rajesh Kumar, FCA</strong></p>
+                            </div>
+                            <div>
+                                <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 small fw-bold">
+                                    <i class="bi bi-shield-check me-1"></i> 100% CPA Verified Pipeline
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- 5-Stage Stepper -->
+                        <div class="timeline-5stage">
+                            <div class="timeline-5stage-track">
+                                <div class="timeline-5stage-progress" id="timelineProgressBar" style="width: 50%;"></div>
+                            </div>
+
+                            <div class="timeline-step-node completed" id="step1Node">
+                                <div class="timeline-node-circle"><i class="bi bi-check-lg"></i></div>
+                                <div class="timeline-node-title">1. Service Requested</div>
+                                <div class="timeline-node-sub">16 Nov 2026</div>
+                            </div>
+
+                            <div class="timeline-step-node completed" id="step2Node">
+                                <div class="timeline-node-circle"><i class="bi bi-check-lg"></i></div>
+                                <div class="timeline-node-title">2. Docs Submitted</div>
+                                <div class="timeline-node-sub">Form 16 &amp; AIS</div>
+                            </div>
+
+                            <div class="timeline-step-node active" id="step3Node">
+                                <div class="timeline-node-circle">3</div>
+                                <div class="timeline-node-title">3. Accountant Review</div>
+                                <div class="timeline-node-sub text-teal2 fw-bold">Underway</div>
+                            </div>
+
+                            <div class="timeline-step-node" id="step4Node">
+                                <div class="timeline-node-circle">4</div>
+                                <div class="timeline-node-title">4. Return Prepared</div>
+                                <div class="timeline-node-sub">Computation Draft</div>
+                            </div>
+
+                            <div class="timeline-step-node" id="step5Node">
+                                <div class="timeline-node-circle">5</div>
+                                <div class="timeline-node-title">5. Successfully Filed</div>
+                                <div class="timeline-node-sub">ITR-V Receipt</div>
+                            </div>
+                        </div>
+
+                        <!-- Accountant Note Box -->
+                        <div class="mt-4 p-3 bg-light rounded-3 border d-flex align-items-start gap-3">
+                            <i class="bi bi-chat-quote-fill text-teal2 fs-4"></i>
+                            <div>
+                                <div class="fw-bold small text-ink mb-1">Latest Update from Rajesh Kumar, FCA:</div>
+                                <div class="small text-muted mb-0">"AIS dividend entries and Form 16 Part A/B have been reconciled. Currently modeling dual-regime optimization under Section 115BAC to ensure you pay the absolute minimum tax."</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Applications & Actions Grid -->
+                    <div class="row g-4">
+                        <!-- Left: Recent Applications Table -->
+                        <div class="col-lg-8">
+                            <div class="dash-content-card p-4 h-100">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4 class="h6 fw-bold text-ink mb-0"><i class="bi bi-file-earmark-text text-teal2 me-2"></i>Active Applications</h4>
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="switchTab('applications')">View All</button>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table align-middle mb-0">
+                                        <thead>
+                                            <tr class="small text-muted text-uppercase" style="font-size: 0.74rem;">
+                                                <th>Application ID</th>
+                                                <th>Service</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th class="text-end">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="overviewAppsTableBody">
+                                            <!-- Dynamically rendered -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Quick Actions -->
+                        <div class="col-lg-4">
+                            <div class="dash-content-card p-4 h-100">
+                                <h4 class="h6 fw-bold text-ink mb-3"><i class="bi bi-lightning-charge text-warning me-2"></i>Quick Actions</h4>
+                                <div class="d-flex flex-column gap-2">
+                                    <button class="btn btn-outline-brand text-start py-2 d-flex align-items-center gap-2" onclick="switchTab('documents')">
+                                        <i class="bi bi-cloud-arrow-up text-teal2 fs-5"></i>
+                                        <div>
+                                            <div class="small fw-bold text-ink">Upload Tax Documents</div>
+                                            <div class="text-muted" style="font-size: 0.72rem;">Add Form 16, AIS, or bank statements</div>
+                                        </div>
+                                    </button>
+
+                                    <button class="btn btn-outline-brand text-start py-2 d-flex align-items-center gap-2" onclick="switchTab('returns')">
+                                        <i class="bi bi-file-earmark-pdf text-danger fs-5"></i>
+                                        <div>
+                                            <div class="small fw-bold text-ink">Download Past ITR-V</div>
+                                            <div class="text-muted" style="font-size: 0.72rem;">Instant CPC verified acknowledgment</div>
+                                        </div>
+                                    </button>
+
+                                    <button class="btn btn-outline-brand text-start py-2 d-flex align-items-center gap-2" onclick="switchTab('messages')">
+                                        <i class="bi bi-chat-dots text-primary fs-5"></i>
+                                        <div>
+                                            <div class="small fw-bold text-ink">Query Assigned CPA</div>
+                                            <div class="text-muted" style="font-size: 0.72rem;">Direct advisory thread with your accountant</div>
+                                        </div>
+                                    </button>
+
+                                    <a href="apply.html" class="btn btn-outline-brand text-start py-2 d-flex align-items-center gap-2">
+                                        <i class="bi bi-plus-circle text-success fs-5"></i>
+                                        <div>
+                                            <div class="small fw-bold text-ink">Request Another Service</div>
+                                            <div class="text-muted" style="font-size: 0.72rem;">GST, Bookkeeping or Notice Defense</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================================================================
+                     TAB 2: MY APPLICATIONS
+                     ================================================================== -->
+                <div class="dashboard-tab-pane" id="tab-applications">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+                        <div>
+                            <h2 class="h4 fw-bold text-ink mb-1">My Applications</h2>
+                            <p class="text-muted small mb-0">Track all your submitted filing packages, assigned Chartered Accountants, and review statuses.</p>
+                        </div>
+                        <a href="apply.html" class="btn btn-brand">
+                            <i class="bi bi-plus-lg me-1"></i> Apply for New Service
+                        </a>
+                    </div>
+
+                    <!-- Status Filter Tabs -->
+                    <div class="d-flex flex-wrap gap-2 mb-4" id="appFilterButtons">
+                        <button class="btn btn-sm btn-dark px-3 py-1 active" data-filter="all">All Applications</button>
+                        <button class="btn btn-sm btn-outline-secondary px-3 py-1" data-filter="Under Review">Under Review</button>
+                        <button class="btn btn-sm btn-outline-secondary px-3 py-1" data-filter="Action Required">Action Required</button>
+                        <button class="btn btn-sm btn-outline-secondary px-3 py-1" data-filter="Completed">Completed</button>
+                    </div>
+
+                    <!-- Applications List Container -->
+                    <div class="row g-4" id="applicationsGridContainer">
+                        <!-- Populated dynamically via JS -->
+                    </div>
+                </div>
+
+                <!-- ==================================================================
+                     TAB 3: DOCUMENTS SECTION
+                     ================================================================== -->
+                <div class="dashboard-tab-pane" id="tab-documents">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+                        <div>
+                            <h2 class="h4 fw-bold text-ink mb-1">Document Management Vault</h2>
+                            <p class="text-muted small mb-0">Upload required financial statements, check verification status, and maintain encrypted audit trails.</p>
+                        </div>
+                    </div>
+
+                    <!-- Upload Dropzone Card -->
+                    <div class="dash-content-card p-4 mb-4">
+                        <h4 class="h6 fw-bold text-ink mb-3"><i class="bi bi-cloud-arrow-up text-teal2 me-2"></i>Upload Required Tax Documents</h4>
+                        <div class="app-dropzone mb-3" id="mainDropzone" onclick="document.getElementById('vaultFileInput').click()">
+                            <i class="bi bi-cloud-upload text-teal2 fs-1 mb-2 d-block"></i>
+                            <div class="fw-bold text-ink mb-1">Drag &amp; drop files here, or click to browse</div>
+                            <div class="text-muted small">Supports PDF, XLSX, JPG, PNG, and ZIP up to 25 MB</div>
+                            <input type="file" id="vaultFileInput" class="d-none" multiple>
+                        </div>
+                        
+                        <div class="row g-3 align-items-center">
+                            <div class="col-md-5">
+                                <label class="form-label small fw-semibold">Target Application</label>
+                                <select class="form-select form-select-sm" id="vaultAppSelect">
+                                    <option value="VL-ITR-2026-104">VL-ITR-2026-104 (Income Tax Return)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-semibold">Document Category</label>
+                                <select class="form-select form-select-sm" id="vaultCategorySelect">
+                                    <option value="Income Tax &amp; Form 16">Form 16 / Salary Certificate</option>
+                                    <option value="AIS / 26AS">Annual Information Statement (AIS)</option>
+                                    <option value="Bank Statements">Bank Statement (Savings/Current)</option>
+                                    <option value="Deduction Proof">Deduction Proof (80C, 80D, HRA)</option>
+                                    <option value="GST Sales/Purchase">GST Sales/Purchase Register</option>
+                                    <option value="KYC &amp; Identification">PAN / Aadhaar / Business KYC</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex align-items-end">
+                                <button type="button" class="btn btn-brand btn-sm w-100 py-2" id="vaultUploadBtn">
+                                    <i class="bi bi-upload me-1"></i> Upload &amp; Queue for CPA
+                                </button>
+                            </div>
+                        </div>
+                        <div id="vaultUploadSuccess" class="small text-success mt-2 d-none">
+                            <i class="bi bi-check-circle-fill me-1"></i> Document successfully uploaded and queued for audit!
+                        </div>
+                    </div>
+
+                    <!-- Category Pills Filter -->
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <button class="btn btn-sm btn-dark px-3 py-1 active" data-doc-cat="all">All Documents</button>
+                        <button class="btn btn-sm btn-outline-secondary px-3 py-1" data-doc-cat="Form 16">Income Tax &amp; Form 16</button>
+                        <button class="btn btn-sm btn-outline-secondary px-3 py-1" data-doc-cat="AIS / 26AS">AIS / Tax Credits</button>
+                        <button class="btn btn-sm btn-outline-secondary px-3 py-1" data-doc-cat="Deduction Proof">Deductions &amp; Housing Loan</button>
+                        <button class="btn btn-sm btn-outline-secondary px-3 py-1" data-doc-cat="KYC">KYC &amp; Identification</button>
+                    </div>
+
+                    <!-- Documents Table -->
+                    <div class="dash-content-card p-0 overflow-hidden">
+                        <div class="table-responsive">
+                            <table class="table align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr class="small text-muted text-uppercase" style="font-size: 0.74rem;">
+                                        <th>Document Name</th>
+                                        <th>Category</th>
+                                        <th>Date Uploaded</th>
+                                        <th>Size</th>
+                                        <th>Verification Status</th>
+                                        <th class="text-end">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="vaultDocumentsTableBody">
+                                    <!-- Populated dynamically via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================================================================
+                     TAB 4: MY RETURNS
+                     ================================================================== -->
+                <div class="dashboard-tab-pane" id="tab-returns">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+                        <div>
+                            <h2 class="h4 fw-bold text-ink mb-1">My Filed Returns</h2>
+                            <p class="text-muted small mb-0">Direct Central Processing Centre (CPC) statutory receipts, filed ITR acknowledgments, and audited statements.</p>
+                        </div>
+                    </div>
+
+                    <!-- Returns Table -->
+                    <div class="dash-content-card p-0 overflow-hidden mb-4">
+                        <div class="table-responsive">
+                            <table class="table align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr class="small text-muted text-uppercase" style="font-size: 0.74rem;">
+                                        <th>Assessment Year</th>
+                                        <th>Return Type</th>
+                                        <th>Filing Date</th>
+                                        <th>Acknowledgment No.</th>
+                                        <th>Filing Status</th>
+                                        <th class="text-end">Download</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong class="text-ink">AY 2025–26</strong> <span class="small text-muted">(FY 2024–25)</span></td>
+                                        <td><span class="badge bg-light text-dark border">ITR-2 (Capital Gains &amp; 44ADA)</span></td>
+                                        <td>24 Jul 2025</td>
+                                        <td><code>e-ITR/2025/9842104812</code></td>
+                                        <td><span class="badge bg-success-subtle text-success border border-success-subtle"><i class="bi bi-check-circle-fill me-1"></i> E-Verified &amp; Processed</span></td>
+                                        <td class="text-end">
+                                            <button class="btn btn-sm btn-outline-success" onclick="downloadMockDocument('ITR2_AY2025-26_Acknowledgment.pdf')">
+                                                <i class="bi bi-download me-1"></i> Download ITR-V
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong class="text-ink">AY 2024–25</strong> <span class="small text-muted">(FY 2023–24)</span></td>
+                                        <td><span class="badge bg-light text-dark border">ITR-1 (Sahaj)</span></td>
+                                        <td>18 Jul 2024</td>
+                                        <td><code>e-ITR/2024/7741209112</code></td>
+                                        <td><span class="badge bg-primary-subtle text-primary border border-primary-subtle"><i class="bi bi-currency-rupee me-1"></i> Refund Issued (₹14,200)</span></td>
+                                        <td class="text-end">
+                                            <button class="btn btn-sm btn-outline-success" onclick="downloadMockDocument('ITR1_AY2024-25_Acknowledgment.pdf')">
+                                                <i class="bi bi-download me-1"></i> Download ITR-V
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong class="text-ink">AY 2023–24</strong> <span class="small text-muted">(FY 2022–23)</span></td>
+                                        <td><span class="badge bg-light text-dark border">ITR-1 (Sahaj)</span></td>
+                                        <td>20 Jul 2023</td>
+                                        <td><code>e-ITR/2023/5549012398</code></td>
+                                        <td><span class="badge bg-success-subtle text-success border border-success-subtle"><i class="bi bi-check-circle-fill me-1"></i> Processed With Zero Demand</span></td>
+                                        <td class="text-end">
+                                            <button class="btn btn-sm btn-outline-success" onclick="downloadMockDocument('ITR1_AY2023-24_Acknowledgment.pdf')">
+                                                <i class="bi bi-download me-1"></i> Download ITR-V
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================================================================
+                     TAB 5: PAYMENTS & INVOICES
+                     ================================================================== -->
+                <div class="dashboard-tab-pane" id="tab-payments">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+                        <div>
+                            <h2 class="h4 fw-bold text-ink mb-1">Payments &amp; Invoices</h2>
+                            <p class="text-muted small mb-0">View all completed tax filing advisory fees, statutory challan payments, and tax invoices.</p>
+                        </div>
+                    </div>
+
+                    <!-- Payment Overview Cards -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <div class="app-stat-card">
+                                <span class="app-stat-label">Total Amount Paid</span>
+                                <div class="app-stat-value text-success">₹7,497</div>
+                                <span class="small text-muted">Across 3 statutory engagements</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="app-stat-card">
+                                <span class="app-stat-label">Pending Payments</span>
+                                <div class="app-stat-value text-primary">₹0</div>
+                                <span class="small text-success"><i class="bi bi-check-circle me-1"></i> All accounts up to date</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="app-stat-card">
+                                <span class="app-stat-label">Active Notice Shield</span>
+                                <div class="app-stat-value text-teal2">100%</div>
+                                <span class="small text-muted">Free Section 143(1) defense active</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Invoices Table -->
+                    <div class="dash-content-card p-0 overflow-hidden">
+                        <div class="p-3 border-bottom d-flex justify-content-between align-items-center">
+                            <h4 class="h6 fw-bold text-ink mb-0">Transaction &amp; Invoice History</h4>
+                            <span class="small text-muted">All prices GST-inclusive with full input tax credit claimable</span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr class="small text-muted text-uppercase" style="font-size: 0.74rem;">
+                                        <th>Invoice ID</th>
+                                        <th>Service Description</th>
+                                        <th>Date</th>
+                                        <th>Amount</th>
+                                        <th>Payment Method</th>
+                                        <th>Status</th>
+                                        <th class="text-end">Invoice</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>INV-2026-0814</strong></td>
+                                        <td>Income Tax Return (ITR-2 Professional Filing)</td>
+                                        <td>16 Nov 2026</td>
+                                        <td><span class="fw-bold text-ink">₹2,499</span></td>
+                                        <td><i class="bi bi-qr-code text-teal2 me-1"></i> UPI (PhonePe)</td>
+                                        <td><span class="badge bg-success-subtle text-success">Paid</span></td>
+                                        <td class="text-end">
+                                            <button class="btn btn-sm btn-outline-secondary" onclick="downloadMockDocument('Invoice_INV-2026-0814.pdf')">
+                                                <i class="bi bi-file-earmark-pdf me-1"></i> Tax Invoice
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>INV-2025-0422</strong></td>
+                                        <td>Annual Tax Optimization &amp; Capital Gains Statement Sync</td>
+                                        <td>12 Aug 2025</td>
+                                        <td><span class="fw-bold text-ink">₹3,999</span></td>
+                                        <td><i class="bi bi-bank text-teal2 me-1"></i> Net Banking (HDFC)</td>
+                                        <td><span class="badge bg-success-subtle text-success">Paid</span></td>
+                                        <td class="text-end">
+                                            <button class="btn btn-sm btn-outline-secondary" onclick="downloadMockDocument('Invoice_INV-2025-0422.pdf')">
+                                                <i class="bi bi-file-earmark-pdf me-1"></i> Tax Invoice
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>INV-2024-0911</strong></td>
+                                        <td>Section 80C &amp; HRA Mathematical Optimization</td>
+                                        <td>10 Mar 2024</td>
+                                        <td><span class="fw-bold text-ink">₹999</span></td>
+                                        <td><i class="bi bi-credit-card text-teal2 me-1"></i> Debit Card (Visa)</td>
+                                        <td><span class="badge bg-success-subtle text-success">Paid</span></td>
+                                        <td class="text-end">
+                                            <button class="btn btn-sm btn-outline-secondary" onclick="downloadMockDocument('Invoice_INV-2024-0911.pdf')">
+                                                <i class="bi bi-file-earmark-pdf me-1"></i> Tax Invoice
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================================================================
+                     TAB 6: MESSAGES & SUPPORT
+                     ================================================================== -->
+                <div class="dashboard-tab-pane" id="tab-messages">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
+                        <div>
+                            <h2 class="h4 fw-bold text-ink mb-1">CPA Advisory Communication</h2>
+                            <p class="text-muted small mb-0">Direct 1-on-1 encrypted channel with your designated Chartered Accountant.</p>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <!-- Chat Box -->
+                        <div class="col-lg-8">
+                            <div class="app-chat-card">
+                                <!-- Chat Header -->
+                                <div class="p-3 border-bottom d-flex align-items-center justify-content-between bg-light">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="app-user-avatar" style="width: 40px; height: 40px;">RK</div>
+                                        <div>
+                                            <div class="fw-bold text-ink small">Rajesh Kumar, FCA</div>
+                                            <div class="text-muted" style="font-size: 0.75rem;">
+                                                <span class="text-success"><i class="bi bi-circle-fill" style="font-size: 8px;"></i> Online</span> &bull; ICAI Reg #084912 &bull; Senior Partner
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-success-subtle text-success small">End-to-End Encrypted</span>
+                                </div>
+
+                                <!-- Messages List -->
+                                <div class="app-chat-messages" id="chatMessagesList">
+                                    <div class="chat-bubble cpa">
+                                        <div class="fw-bold small text-teal2 mb-1">Rajesh Kumar, FCA &bull; 10:14 AM</div>
+                                        <div>Hello Alex, I've reviewed your uploaded Form 16 Part A/B and cross-verified it against your AIS tax credit statement. Everything is matching accurately.</div>
+                                    </div>
+
+                                    <div class="chat-bubble user">
+                                        <div class="small text-white-50 mb-1">You &bull; 10:28 AM</div>
+                                        <div>Hi Rajesh! Great to hear. Do you also need the Home Loan Interest certificate from SBI for the Section 24b deduction?</div>
+                                    </div>
+
+                                    <div class="chat-bubble cpa">
+                                        <div class="fw-bold small text-teal2 mb-1">Rajesh Kumar, FCA &bull; 10:35 AM</div>
+                                        <div>Yes, please upload that certificate under the Documents tab. Claiming the ₹2,00,000 deduction will make the Old Regime significantly more beneficial than the New Regime for your income bracket.</div>
+                                    </div>
+                                </div>
+
+                                <!-- Chat Input -->
+                                <div class="p-3 border-top bg-light">
+                                    <form id="chatSendForm" class="d-flex gap-2">
+                                        <input type="text" class="form-control" id="chatInputText" placeholder="Type your query for CA Rajesh Kumar..." required>
+                                        <button type="submit" class="btn btn-brand px-4">
+                                            <i class="bi bi-send-fill me-1"></i> Send
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: CPA Profile & Support SLA -->
+                        <div class="col-lg-4">
+                            <div class="dash-content-card p-3 mb-3">
+                                <div class="d-flex align-items-center gap-3 pb-3 border-bottom mb-3">
+                                    <div class="app-user-avatar" style="width: 44px; height: 44px; font-size: 1.1rem; flex-shrink: 0;">RK</div>
+                                    <div>
+                                        <h5 class="h6 mb-0 text-ink fw-bold">Rajesh Kumar, FCA</h5>
+                                        <small class="text-muted d-block" style="font-size: 0.74rem;">Designated Senior CPA Partner</small>
+                                        <span class="badge bg-success-subtle text-success small" style="font-size: 0.7rem;"><i class="bi bi-shield-check me-1"></i>ICAI Reg #084912</span>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between small text-muted mb-1" style="font-size: 0.76rem;">
+                                        <span>Advisory Response SLA:</span>
+                                        <strong class="text-teal2">&lt; 30 Minutes</strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between small text-muted mb-1" style="font-size: 0.76rem;">
+                                        <span>Direct Email:</span>
+                                        <strong class="text-ink">rajesh.fca@veraledger.example</strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between small text-muted" style="font-size: 0.76rem;">
+                                        <span>Coverage:</span>
+                                        <span class="text-ink fw-semibold">ITR, AIS, 115BAC &amp; Capital Gains</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-2 bg-light rounded-3 border">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <span class="small fw-bold text-ink" style="font-size: 0.78rem;"><i class="bi bi-telephone-fill text-teal2 me-1"></i>Urgent Phone Support</span>
+                                        <span class="badge bg-light text-muted border" style="font-size: 0.68rem;">Mon–Sat</span>
+                                    </div>
+                                    <a href="tel:+919876543210" class="btn btn-outline-primary btn-sm w-100 py-1" style="font-size: 0.8rem;">
+                                        <i class="bi bi-telephone-outbound me-1"></i> Call +91 98765 43210
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================================================================
+                     TAB 7: PROFILE SETTINGS
+                     ================================================================== -->
+                <div class="dashboard-tab-pane" id="tab-profile">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+                        <div>
+                            <h2 class="h4 fw-bold text-ink mb-1">Profile &amp; Account Settings</h2>
+                            <p class="text-muted small mb-0">Manage your statutory personal identity details, communication preferences, and portal security.</p>
+                        </div>
+                    </div>
+
+                    <form id="profileSettingsForm">
+                        <div class="row g-4">
+                            <!-- Personal Info -->
+                            <div class="col-lg-6">
+                                <div class="dash-content-card p-4 h-100">
+                                    <h4 class="h6 fw-bold text-ink mb-3"><i class="bi bi-person text-teal2 me-2"></i>Personal &amp; Statutory Information</h4>
+                                    
+                                    <div class="mb-3">
+                                        <label class="form-label small fw-semibold">Full Legal Name (as per PAN Card)</label>
+                                        <input type="text" class="form-control" id="profileName" value="Alex Morgan" required>
+                                    </div>
+
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label small fw-semibold">Permanent Account Number (PAN)</label>
+                                            <input type="text" class="form-control text-uppercase" id="profilePan" value="ABCDE1234F" maxlength="10">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label small fw-semibold">Date of Birth</label>
+                                            <input type="date" class="form-control" id="profileDob" value="1990-08-14">
+                                        </div>
+                                    </div>
+
+                                    <div class="p-3 bg-light rounded-3 small text-muted border">
+                                        <i class="bi bi-patch-check-fill text-success me-1"></i> <strong>Aadhaar-PAN Link Status:</strong> Active &amp; Verified on CBDT Database.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Contact Details -->
+                            <div class="col-lg-6">
+                                <div class="dash-content-card p-4 h-100">
+                                    <h4 class="h6 fw-bold text-ink mb-3"><i class="bi bi-envelope text-teal2 me-2"></i>Contact &amp; Filing Notification Details</h4>
+                                    
+                                    <div class="mb-3">
+                                        <label class="form-label small fw-semibold">Email Address (Registered)</label>
+                                        <input type="email" class="form-control" id="profileEmail" value="alex@example.com" readonly style="background-color: var(--soft);">
+                                        <small class="text-muted">Contact practice administrator to alter primary email.</small>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label small fw-semibold">Mobile Number (with Country Code)</label>
+                                        <input type="tel" class="form-control" id="profilePhone" value="+91 98765 43210" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label small fw-semibold">Client Classification</label>
+                                        <select class="form-select" id="profileClientType">
+                                            <option value="Salaried Individual" selected>Salaried Individual (Form 16)</option>
+                                            <option value="Freelancer / Consultant">Freelancer / Independent Consultant (44ADA)</option>
+                                            <option value="Director / Partner">Director / LLP Partner</option>
+                                            <option value="NRI Client">Non-Resident Indian (NRI)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="col-lg-6">
+                                <div class="dash-content-card p-4">
+                                    <h4 class="h6 fw-bold text-ink mb-3"><i class="bi bi-geo-alt text-teal2 me-2"></i>Registered Residential / Business Address</h4>
+                                    
+                                    <div class="mb-3">
+                                        <label class="form-label small fw-semibold">Address Line</label>
+                                        <input type="text" class="form-control" id="profileAddress" value="#402, Green Glen Tech Enclave, Outer Ring Road">
+                                    </div>
+
+                                    <div class="row g-3">
+                                        <div class="col-md-5">
+                                            <label class="form-label small fw-semibold">City</label>
+                                            <input type="text" class="form-control" id="profileCity" value="Bengaluru">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label small fw-semibold">State</label>
+                                            <input type="text" class="form-control" id="profileState" value="Karnataka">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label small fw-semibold">Pincode</label>
+                                            <input type="text" class="form-control" id="profilePincode" value="560103" maxlength="6">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Password & Account Security -->
+                            <div class="col-lg-6">
+                                <div class="dash-content-card p-4">
+                                    <h4 class="h6 fw-bold text-ink mb-3"><i class="bi bi-shield-lock text-teal2 me-2"></i>Password &amp; Security</h4>
+                                    
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label small fw-semibold">New Password</label>
+                                            <input type="password" class="form-control" id="profileNewPass" placeholder="Leave empty to keep current">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label small fw-semibold">Confirm Password</label>
+                                            <input type="password" class="form-control" id="profileConfirmPass" placeholder="Repeat new password">
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex align-items-center justify-content-between p-3 bg-light rounded-3 border">
+                                        <div>
+                                            <div class="small fw-bold text-ink">Two-Factor Authentication (2FA)</div>
+                                            <div class="text-muted" style="font-size: 0.75rem;">Require SMS/OTP code for all portal sign-ins</div>
+                                        </div>
+                                        <div class="form-check form-switch mb-0">
+                                            <input class="form-check-input" type="checkbox" id="twoFactorSwitch" checked>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Save Button & Alert -->
+                            <div class="col-12">
+                                <div class="d-flex align-items-center gap-3">
+                                    <button type="submit" class="btn btn-brand px-4 py-2">
+                                        <i class="bi bi-check2-circle me-1"></i> Save Profile Settings
+                                    </button>
+                                    <span id="profileSaveFeedback" class="small text-success d-none">
+                                        <i class="bi bi-check-circle-fill me-1"></i> Profile settings updated successfully!
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Details & Progress Tracker Modal -->
+    <div class="modal fade" id="appDetailsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 18px;">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <div>
+                        <span class="badge bg-light text-muted border mb-1" id="modalAppIdBadge">VL-ITR-2026-104</span>
+                        <h5 class="modal-title fw-bold text-ink" id="modalAppServiceTitle">Income Tax Return (ITR-2)</h5>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-3">
+                    <!-- Modal 5-Stage Stepper -->
+                    <div class="timeline-5stage-wrap mb-4 p-3 bg-light rounded-3 border">
+                        <h6 class="small fw-bold text-ink mb-3"><i class="bi bi-clock-history text-teal2 me-2"></i>Filing Progress Lifecycle</h6>
+                        <div class="timeline-5stage mb-0" id="modalTimelineContainer">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Details Grid -->
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <div class="p-3 bg-paper rounded-3 border h-100">
+                                <h6 class="small fw-bold text-ink mb-2">Filing Parameters</h6>
+                                <div id="modalFilingParams" class="small text-muted"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 bg-paper rounded-3 border h-100">
+                                <h6 class="small fw-bold text-ink mb-2">Assigned Chartered Accountant</h6>
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <div class="app-user-avatar" style="width: 32px; height: 32px;">CA</div>
+                                    <div>
+                                        <strong class="text-ink small d-block" id="modalAssignedCpa">Rajesh Kumar, FCA</strong>
+                                        <span class="text-muted" style="font-size: 0.72rem;">Senior Practice Partner</span>
+                                    </div>
+                                </div>
+                                <div class="small text-muted">Advisory Fee: <strong class="text-ink" id="modalAppFee">₹2,499</strong> (Paid)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documents Attached -->
+                    <div class="p-3 bg-paper rounded-3 border">
+                        <h6 class="small fw-bold text-ink mb-2">Attached Documents &amp; Certificates</h6>
+                        <div id="modalDocsList" class="small text-muted"></div>
+                    </div>
+                </div>
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-brand btn-sm" onclick="switchTab('documents')" data-bs-dismiss="modal">
+                        <i class="bi bi-cloud-arrow-up me-1"></i> Upload More Files
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Global variables for dashboard state
+        let currentUser = null;
+        let userApplications = [];
+
+        // Tab Switching
+        function switchTab(tabId) {
+            document.querySelectorAll('.app-sidebar-link').forEach(link => {
+                if (link.getAttribute('data-tab') === tabId) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            document.querySelectorAll('.dashboard-tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+
+            const targetPane = document.getElementById(`tab-${tabId}`);
+            if (targetPane) {
+                targetPane.classList.add('active');
+            }
+
+            // Reset content container scroll position to top
+            const bodyContainer = document.querySelector('.app-body-container');
+            if (bodyContainer) {
+                bodyContainer.scrollTop = 0;
+            }
+
+            // Close mobile sidebar if open
+            document.getElementById('appSidebar')?.classList.remove('show');
+            document.getElementById('sidebarBackdrop')?.classList.remove('show');
+        }
+
+        // Realistic Simulated Document Download
+        function downloadMockDocument(filename) {
+            const element = document.createElement('a');
+            const fileContent = `========================================================\nVERALEDGER STATUTORY FILING RECEIPT & VAULT ARCHIVE\n========================================================\nDocument: ${filename}\nIssued To: ${currentUser ? currentUser.name : 'Alex Morgan'}\nStatus: VERIFIED & FILED WITH CENTRAL PROCESSING CENTRE (CPC)\nCPC Acknowledgement Hash: VL-${Math.random().toString(36).substring(2, 14).toUpperCase()}\nTimestamp: ${new Date().toISOString()}\nCertified Chartered Accountant: Rajesh Kumar, FCA (ICAI #084912)\n========================================================\nThis is an authentic verified digital acknowledgment generated by VeraLedger Advisory LLP.`;
+            
+            const file = new Blob([fileContent], { type: 'text/plain' });
+            element.href = URL.createObjectURL(file);
+            element.download = filename;
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        function loadDashboard() {
+            currentUser = VeraStore.getCurrentUser();
+            if (!currentUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Set current date
+            const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+            const todayStr = new Date().toLocaleDateString('en-IN', options);
+            const dateEl = document.getElementById('currentDateDisplay');
+            if (dateEl) dateEl.textContent = todayStr;
+
+            // Populate User in Topbar & Sidebar
+            const initials = currentUser.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+            document.getElementById('topUserAvatar').textContent = initials;
+            document.getElementById('topUserName').textContent = currentUser.name;
+            document.getElementById('topUserRole').textContent = currentUser.clientType || 'Verified Client';
+            document.getElementById('welcomeUserName').textContent = currentUser.name;
+            document.getElementById('profileName').value = currentUser.name;
+            document.getElementById('profileEmail').value = currentUser.email;
+            if (currentUser.phone) document.getElementById('profilePhone').value = currentUser.phone;
+            if (currentUser.pan) document.getElementById('profilePan').value = currentUser.pan;
+
+            // Fetch User Applications
+            userApplications = VeraStore.getApplications(currentUser.email);
+
+            // Calculate Metrics
+            const activeApps = userApplications.filter(a => a.status !== 'Completed' && a.status !== 'Rejected');
+            const completedFilings = userApplications.filter(a => a.status === 'Completed');
+            
+            // Count total docs & pending
+            let totalDocs = 0;
+            let pendingDocs = 0;
+            userApplications.forEach(a => {
+                (a.documents || []).forEach(d => {
+                    totalDocs++;
+                    if (d.status === 'Under Review' || d.status === 'Action Required') pendingDocs++;
+                });
+            });
+
+            document.getElementById('cardActiveApps').textContent = activeApps.length;
+            document.getElementById('sideActiveAppsCount').textContent = activeApps.length;
+            document.getElementById('cardCompletedFilings').textContent = completedFilings.length + 3; // including historical returns
+            document.getElementById('cardPendingDocs').textContent = pendingDocs > 0 ? pendingDocs : 1;
+            document.getElementById('cardOutstandingPay').textContent = '₹0';
+
+            // Populate Overview Primary Timeline
+            if (userApplications.length > 0) {
+                const primaryApp = userApplications[0];
+                document.getElementById('timelineFilingTitle').textContent = `${primaryApp.serviceName} — Assessment Year 2026–27`;
+                document.getElementById('timelineAppId').textContent = primaryApp.id;
+                document.getElementById('timelineCpaName').textContent = primaryApp.assignedTo || 'Rajesh Kumar, FCA';
+                
+                const progressPct = primaryApp.progress || 60;
+                document.getElementById('timelineProgressBar').style.width = `${progressPct}%`;
+            }
+
+            // Render Overview Applications Table
+            renderOverviewAppsTable();
+
+            // Render Applications Grid
+            renderApplicationsGrid();
+
+            // Render Documents Vault Table
+            renderDocumentsVaultTable();
+        }
+
+        function getStatusBadge(status) {
+            switch (status) {
+                case 'Pending':
+                case 'Submitted':
+                    return '<span class="badge bg-secondary-subtle text-secondary border">Pending</span>';
+                case 'Under Review':
+                    return '<span class="badge bg-warning-subtle text-warning border border-warning-subtle">Under Review</span>';
+                case 'Processing':
+                    return '<span class="badge bg-primary-subtle text-primary border border-primary-subtle">Processing</span>';
+                case 'Action Required':
+                    return '<span class="badge bg-danger-subtle text-danger border border-danger-subtle"><i class="bi bi-exclamation-circle me-1"></i>Action Required</span>';
+                case 'Completed':
+                    return '<span class="badge bg-success-subtle text-success border border-success-subtle"><i class="bi bi-check2-circle me-1"></i>Completed</span>';
+                case 'Rejected':
+                    return '<span class="badge bg-danger-subtle text-danger border">Rejected</span>';
+                default:
+                    return `<span class="badge bg-light text-dark border">${status}</span>`;
+            }
+        }
+
+        function renderOverviewAppsTable() {
+            const tbody = document.getElementById('overviewAppsTableBody');
+            if (!tbody) return;
+
+            if (userApplications.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-muted">No applications found. <a href="apply.html" class="text-teal2 fw-bold">Start a filing now</a>.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = userApplications.map(app => `
+                <tr>
+                    <td><code>${app.id}</code></td>
+                    <td><strong class="text-ink small">${app.serviceName}</strong></td>
+                    <td class="small text-muted">${app.submittedDate}</td>
+                    <td>${getStatusBadge(app.status)}</td>
+                    <td class="text-end">
+                        <button class="btn btn-sm btn-outline-brand" onclick="openAppDetailsModal('${app.id}')">
+                            View Details
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderApplicationsGrid(filter = 'all') {
+            const container = document.getElementById('applicationsGridContainer');
+            if (!container) return;
+
+            const filtered = filter === 'all' ? userApplications : userApplications.filter(a => a.status === filter);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12">
+                        <div class="dash-content-card text-center py-5">
+                            <i class="bi bi-folder-x fs-1 text-muted mb-2 d-block"></i>
+                            <h5 class="h6 text-ink mb-1">No Applications Match Filter</h5>
+                            <p class="text-muted small mb-3">Try choosing another filter or start a new filing application.</p>
+                            <a href="apply.html" class="btn btn-brand btn-sm">Apply for a Service</a>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(app => {
+                const docsCount = (app.documents || []).length;
+                return `
+                    <div class="col-lg-6">
+                        <div class="dash-content-card p-4 h-100 d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <span class="badge bg-light text-muted border me-2">${app.id}</span>
+                                    ${getStatusBadge(app.status)}
+                                    <h3 class="h5 fw-bold text-ink mt-2 mb-1">${app.serviceName}</h3>
+                                    <div class="small text-muted">Submitted on ${app.submittedDate}</div>
+                                </div>
+                                <div class="text-end">
+                                    <div class="fw-bold text-ink fs-5">${app.fee || '₹2,499'}</div>
+                                    <span class="badge bg-success-subtle text-success small">Paid</span>
+                                </div>
+                            </div>
+
+                            <!-- Progress Track -->
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between small text-muted mb-1">
+                                    <span>Milestone Progress</span>
+                                    <span class="fw-bold text-teal2">${app.progress || 60}%</span>
+                                </div>
+                                <div class="progress" style="height: 6px;">
+                                    <div class="progress-bar bg-teal2" style="width: ${app.progress || 60}%"></div>
+                                </div>
+                            </div>
+
+                            <div class="p-3 bg-light rounded-3 border small mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="text-muted">Assigned CPA:</span>
+                                    <strong class="text-ink">${app.assignedTo || 'Rajesh Kumar, FCA'}</strong>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted">Documents Attached:</span>
+                                    <span class="text-ink fw-semibold">${docsCount} verified files</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-auto d-flex gap-2">
+                                <button class="btn btn-brand btn-sm flex-grow-1" onclick="openAppDetailsModal('${app.id}')">
+                                    <i class="bi bi-eye me-1"></i> View Details &amp; Lifecycle
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm" onclick="switchTab('documents')">
+                                    <i class="bi bi-upload"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function openAppDetailsModal(appId) {
+            const app = userApplications.find(a => a.id === appId);
+            if (!app) return;
+
+            document.getElementById('modalAppIdBadge').textContent = app.id;
+            document.getElementById('modalAppServiceTitle').textContent = app.serviceName;
+            document.getElementById('modalAssignedCpa').textContent = app.assignedTo || 'Rajesh Kumar, FCA';
+            document.getElementById('modalAppFee').textContent = app.fee || '₹2,499';
+
+            // Modal Stepper
+            const p = app.progress || 60;
+            const s1 = 'completed';
+            const s2 = p >= 40 ? 'completed' : 'active';
+            const s3 = p >= 60 ? (p >= 80 ? 'completed' : 'active') : '';
+            const s4 = p >= 80 ? (p >= 100 ? 'completed' : 'active') : '';
+            const s5 = p >= 100 ? 'completed' : '';
+
+            document.getElementById('modalTimelineContainer').innerHTML = `
+                <div class="timeline-step-node ${s1}">
+                    <div class="timeline-node-circle"><i class="bi bi-check-lg"></i></div>
+                    <div class="timeline-node-title small">1. Requested</div>
+                </div>
+                <div class="timeline-step-node ${s2}">
+                    <div class="timeline-node-circle">${s2 === 'completed' ? '<i class="bi bi-check-lg"></i>' : '2'}</div>
+                    <div class="timeline-node-title small">2. Docs In</div>
+                </div>
+                <div class="timeline-step-node ${s3}">
+                    <div class="timeline-node-circle">${s3 === 'completed' ? '<i class="bi bi-check-lg"></i>' : '3'}</div>
+                    <div class="timeline-node-title small">3. CPA Audit</div>
+                </div>
+                <div class="timeline-step-node ${s4}">
+                    <div class="timeline-node-circle">${s4 === 'completed' ? '<i class="bi bi-check-lg"></i>' : '4'}</div>
+                    <div class="timeline-node-title small">4. Computed</div>
+                </div>
+                <div class="timeline-step-node ${s5}">
+                    <div class="timeline-node-circle">${s5 === 'completed' ? '<i class="bi bi-check-lg"></i>' : '5'}</div>
+                    <div class="timeline-node-title small">5. Filed</div>
+                </div>
+            `;
+
+            // Filing parameters
+            const fd = app.formData || {};
+            const paramsHtml = Object.keys(fd).map(k => `
+                <div class="d-flex justify-content-between py-1 border-bottom">
+                    <span class="text-muted text-capitalize">${k.replace(/([A-Z])/g, ' $1')}:</span>
+                    <strong class="text-ink">${fd[k]}</strong>
+                </div>
+            `).join('') || '<div class="text-muted">Standard filing parameters applied.</div>';
+            document.getElementById('modalFilingParams').innerHTML = paramsHtml;
+
+            // Documents list
+            const docsHtml = (app.documents || []).map(d => `
+                <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                    <span class="text-ink"><i class="bi bi-file-earmark-pdf text-danger me-2"></i>${d.name} (${d.size})</span>
+                    <div>
+                        <span class="badge ${d.status === 'Verified' ? 'bg-success' : 'bg-warning text-dark'} me-2">${d.status}</span>
+                        <button class="btn btn-sm btn-link p-0 text-teal2" onclick="downloadMockDocument('${d.name}')">Download</button>
+                    </div>
+                </div>
+            `).join('') || '<div class="text-muted">No files attached.</div>';
+            document.getElementById('modalDocsList').innerHTML = docsHtml;
+
+            const modal = new bootstrap.Modal(document.getElementById('appDetailsModal'));
+            modal.show();
+        }
+
+        function renderDocumentsVaultTable(catFilter = 'all') {
+            const tbody = document.getElementById('vaultDocumentsTableBody');
+            if (!tbody) return;
+
+            let allDocs = [];
+            userApplications.forEach(app => {
+                (app.documents || []).forEach(doc => {
+                    allDocs.push({ ...doc, appId: app.id });
+                });
+            });
+
+            // If empty, add standard default docs
+            if (allDocs.length === 0) {
+                allDocs = [
+                    { name: 'Form16_PartA_PartB_2025-26.pdf', type: 'Form 16', uploadedAt: '16 Nov 2026', size: '1.4 MB', status: 'Verified' },
+                    { name: 'Annual_Information_Statement_AIS.pdf', type: 'AIS / 26AS', uploadedAt: '16 Nov 2026', size: '890 KB', status: 'Verified' },
+                    { name: 'HomeLoan_Interest_Certificate_SBI.pdf', type: 'Deduction Proof', uploadedAt: '16 Nov 2026', size: '420 KB', status: 'Under Review' }
+                ];
+            }
+
+            const filtered = catFilter === 'all' ? allDocs : allDocs.filter(d => (d.type || '').includes(catFilter));
+
+            tbody.innerHTML = filtered.map(d => `
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-file-earmark-pdf text-danger fs-5"></i>
+                            <div>
+                                <strong class="text-ink small d-block">${d.name}</strong>
+                                <span class="text-muted" style="font-size: 0.72rem;">256-Bit Encrypted Vault</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td><span class="badge bg-light text-dark border">${d.type || 'Income Tax'}</span></td>
+                    <td class="small text-muted">${d.uploadedAt || '16 Nov 2026'}</td>
+                    <td class="small text-muted">${d.size || '1.2 MB'}</td>
+                    <td>
+                        <span class="badge ${d.status === 'Verified' ? 'bg-success-subtle text-success border border-success-subtle' : (d.status === 'Action Required' ? 'bg-danger-subtle text-danger' : 'bg-warning-subtle text-warning')}">
+                            ${d.status || 'Verified'}
+                        </span>
+                    </td>
+                    <td class="text-end">
+                        <button class="btn btn-sm btn-outline-success me-1" onclick="downloadMockDocument('${d.name}')" title="Download Document">
+                            <i class="bi bi-download"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-secondary me-1" onclick="document.getElementById('vaultFileInput').click()" title="Replace Document">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" onclick="this.closest('tr').remove()" title="Delete">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDashboard();
+
+            // Setup Navigation Tab Listeners
+            document.querySelectorAll('.app-sidebar-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    const tab = link.getAttribute('data-tab');
+                    if (tab) switchTab(tab);
+                });
+            });
+
+            // Mobile sidebar toggle
+            document.getElementById('sidebarToggleBtn')?.addEventListener('click', () => {
+                document.getElementById('appSidebar')?.classList.toggle('show');
+                document.getElementById('sidebarBackdrop')?.classList.toggle('show');
+            });
+
+            document.getElementById('sidebarBackdrop')?.addEventListener('click', () => {
+                document.getElementById('appSidebar')?.classList.remove('show');
+                document.getElementById('sidebarBackdrop')?.classList.remove('show');
+            });
+
+            // Logout buttons
+            const handleLogout = () => {
+                VeraStore.logout();
+                window.location.href = 'login.html';
+            };
+            document.getElementById('logoutBtn')?.addEventListener('click', handleLogout);
+            document.getElementById('topLogoutLink')?.addEventListener('click', handleLogout);
+
+            // Applications filter buttons
+            document.querySelectorAll('#appFilterButtons button').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('#appFilterButtons button').forEach(b => {
+                        b.classList.remove('btn-dark', 'active');
+                        b.classList.add('btn-outline-secondary');
+                    });
+                    btn.classList.add('btn-dark', 'active');
+                    btn.classList.remove('btn-outline-secondary');
+                    renderApplicationsGrid(btn.getAttribute('data-filter'));
+                });
+            });
+
+            // Documents filter buttons
+            document.querySelectorAll('[data-doc-cat]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('[data-doc-cat]').forEach(b => {
+                        b.classList.remove('btn-dark', 'active');
+                        b.classList.add('btn-outline-secondary');
+                    });
+                    btn.classList.add('btn-dark', 'active');
+                    btn.classList.remove('btn-outline-secondary');
+                    renderDocumentsVaultTable(btn.getAttribute('data-doc-cat'));
+                });
+            });
+
+            // Vault Upload Action
+            document.getElementById('vaultUploadBtn')?.addEventListener('click', () => {
+                const fileInput = document.getElementById('vaultFileInput');
+                const cat = document.getElementById('vaultCategorySelect').value;
+                const fileName = fileInput.files && fileInput.files[0] ? fileInput.files[0].name : `Uploaded_${cat.replace(/[^a-zA-Z0-9]/g, '_')}_${Date.now()}.pdf`;
+                
+                // Add document to store
+                const targetAppId = document.getElementById('vaultAppSelect').value;
+                VeraStore.addDocument(targetAppId, {
+                    name: fileName,
+                    type: cat,
+                    size: '1.2 MB',
+                    status: 'Under Review'
+                });
+
+                const alert = document.getElementById('vaultUploadSuccess');
+                if (alert) {
+                    alert.classList.remove('d-none');
+                    setTimeout(() => alert.classList.add('d-none'), 3000);
+                }
+
+                loadDashboard();
+            });
+
+            // Messages Chat Send
+            document.getElementById('chatSendForm')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const input = document.getElementById('chatInputText');
+                const text = input.value.trim();
+                if (!text) return;
+
+                const chatList = document.getElementById('chatMessagesList');
+                const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                
+                // Append User Bubble
+                const userBubble = document.createElement('div');
+                userBubble.className = 'chat-bubble user';
+                userBubble.innerHTML = `
+                    <div class="small text-white-50 mb-1">You &bull; ${now}</div>
+                    <div>${text}</div>
+                `;
+                chatList.appendChild(userBubble);
+                input.value = '';
+                chatList.scrollTop = chatList.scrollHeight;
+
+                // Simulate CPA response after 1.2s
+                setTimeout(() => {
+                    const cpaBubble = document.createElement('div');
+                    cpaBubble.className = 'chat-bubble cpa';
+                    cpaBubble.innerHTML = `
+                        <div class="fw-bold small text-teal2 mb-1">Rajesh Kumar, FCA &bull; Just now</div>
+                        <div>Acknowledged, Alex. I have logged your query and will update the calculation statement shortly.</div>
+                    `;
+                    chatList.appendChild(cpaBubble);
+                    chatList.scrollTop = chatList.scrollHeight;
+                }, 1200);
+            });
+
+            // Profile Settings Save
+            document.getElementById('profileSettingsForm')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('profileName').value;
+                const phone = document.getElementById('profilePhone').value;
+                const pan = document.getElementById('profilePan').value;
+                const clientType = document.getElementById('profileClientType').value;
+
+                currentUser.name = name;
+                currentUser.phone = phone;
+                currentUser.pan = pan;
+                currentUser.clientType = clientType;
+
+                VeraStore.setCurrentUser(currentUser);
+
+                const fb = document.getElementById('profileSaveFeedback');
+                if (fb) {
+                    fb.classList.remove('d-none');
+                    setTimeout(() => fb.classList.add('d-none'), 3000);
+                }
+
+                loadDashboard();
+            });
+        });
+    </script>
+</body>
+
+</html>

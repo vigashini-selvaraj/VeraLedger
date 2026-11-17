@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pricing Plans | VeraLedger — Transparent Financial Services</title>
+    <meta name="description"
+        content="Transparent pricing for personal income tax filing, GST compliance, full-stack bookkeeping, and CPA advisory. No hidden retainers. 100% CPA verified.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .pricing-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 50px;
+            background: rgba(13, 148, 136, 0.12);
+            color: var(--teal2);
+            border: 1px solid rgba(13, 148, 136, 0.28);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .dark-mode .pricing-hero-badge {
+            background: rgba(45, 212, 191, 0.15);
+            color: #2DD4BF;
+            border-color: rgba(45, 212, 191, 0.35);
+        }
+        .service-pricing-tab-btn {
+            border: 1.5px solid var(--line);
+            background: var(--paper);
+            color: var(--ink);
+            padding: 12px 22px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .dark-mode .service-pricing-tab-btn {
+            background: #111B2E;
+            border-color: #22324D;
+            color: #E2E8F0;
+        }
+        .service-pricing-tab-btn.active {
+            background: #0A2540;
+            color: #ffffff;
+            border-color: #0A2540;
+            box-shadow: 0 4px 14px rgba(10, 37, 64, 0.2);
+        }
+        .dark-mode .service-pricing-tab-btn.active {
+            background: #2DD4BF;
+            color: #0A0F1D;
+            border-color: #2DD4BF;
+            box-shadow: 0 4px 14px rgba(45, 212, 191, 0.25);
+        }
+        .compare-table th, .compare-table td {
+            padding: 16px 20px;
+            vertical-align: middle;
+        }
+        .compare-table thead th {
+            background: var(--soft);
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--ink);
+        }
+        .dark-mode .compare-table thead th {
+            background: #131E33;
+            color: #F8FAFC;
+        }
+        .payment-step-card {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            height: 100%;
+            position: relative;
+        }
+        .dark-mode .payment-step-card {
+            background: #111B2E;
+            border-color: #22324D;
+        }
+        .payment-step-number {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(13, 148, 136, 0.12);
+            color: var(--teal2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            margin: 0 auto 16px;
+        }
+    </style>
+</head>
+
+<body class="pricing-page">
+    <!-- Global Dynamic Navigation -->
+    <div id="siteHeader"></div>
+
+    <main>
+        <!-- ==========================================================================
+             01. PRICING HERO — Gemini-Style Showcase Hero
+             ========================================================================== -->
+        <section class="gemini-banner-hero pricing-hero">
+            <div class="container position-relative z-2">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 col-xl-6">
+                        <div class="gemini-breadcrumb-bar mb-3">
+                            <a href="index.html"><i class="bi bi-credit-card-2-front-fill me-1"></i> Home</a>
+                            <span class="mx-2">&gt;</span>
+                            <span class="text-teal2">Pricing</span>
+                        </div>
+
+                        <div class="gemini-eyebrow mb-2">
+                            TRANSPARENT &bull; FLEXIBLE &bull; VALUE-DRIVEN
+                        </div>
+
+                        <h1 class="gemini-hero-headline mb-3">
+                            Simple &amp; Transparent <br><span class="text-teal2">Pricing Plans</span>
+                        </h1>
+
+                        <p class="gemini-hero-copy mb-4">
+                            Choose the perfect plan for your tax needs. No hidden fees, just honest pricing with certified CPA verification and 100% notice defense.
+                        </p>
+
+                        <div class="d-flex flex-wrap gap-3 align-items-center mb-4 pb-2">
+                            <a href="#service-pricing" class="btn-gemini-teal">
+                                Explore Our Plans <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                            <a href="#how-payment-works" class="btn-gemini-outline">
+                                <i class="bi bi-play-circle me-2"></i> Learn More
+                            </a>
+                        </div>
+
+                        <div class="d-flex flex-wrap gap-4 pt-2">
+                            <div class="gemini-trust-item">
+                                <i class="bi bi-shield-check text-teal2 fs-5 me-2"></i> Secure &amp; Trusted
+                            </div>
+                            <div class="gemini-trust-item">
+                                <i class="bi bi-lightning-charge-fill text-teal2 fs-5 me-2"></i> Fast Processing
+                            </div>
+                            <div class="gemini-trust-item">
+                                <i class="bi bi-headset text-teal2 fs-5 me-2"></i> Expert Support
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             02. SERVICE-BASED PRICING & PLANS (DYNAMIC FROM DATA STORE)
+             ========================================================================== -->
+        <section class="section-pad" id="service-pricing">
+            <div class="container">
+                
+                <!-- Service Selector Tabs -->
+                <div class="d-flex justify-content-center flex-wrap gap-2 mb-5" id="pricingServiceTabs">
+                    <button type="button" class="service-pricing-tab-btn active" data-service="itr">
+                        <i class="bi bi-file-earmark-person"></i> Income Tax Filing
+                    </button>
+                    <button type="button" class="service-pricing-tab-btn" data-service="gst">
+                        <i class="bi bi-receipt"></i> GST Registration &amp; Filing
+                    </button>
+                    <button type="button" class="service-pricing-tab-btn" data-service="accounting">
+                        <i class="bi bi-calculator"></i> Accounting &amp; Bookkeeping
+                    </button>
+                    <button type="button" class="service-pricing-tab-btn" data-service="consultation">
+                        <i class="bi bi-chat-heart"></i> Financial Consultation
+                    </button>
+                </div>
+
+                <!-- Service Scope Headline & Subtitle -->
+                <div class="pricing-header-card text-center mx-auto mb-5 p-4 rounded-4">
+                    <div class="d-inline-flex align-items-center gap-2 mb-2 px-3 py-1 rounded-pill pricing-scope-pill">
+                        <i class="bi bi-shield-check text-teal2"></i>
+                        <span class="fw-bold small text-uppercase" id="activeServiceBadge">Personal &amp; Professional Tax</span>
+                    </div>
+                    <h2 class="h2 fw-bold text-ink mt-2 mb-3" id="activeServiceHeadline">Income Tax Filing Packages</h2>
+                    <p class="fs-5 text-muted-custom max-w-700 mx-auto mb-0" id="activeServiceDesc" style="line-height: 1.6;">
+                        Compare packages designed for salaried employees, independent freelancers filing under Section 44ADA, and corporate directors with complex capital gains.
+                    </p>
+                </div>
+
+                <!-- Dynamic Pricing Cards Grid (Basic / Professional / Business) -->
+                <div class="row g-4 justify-content-center" id="pricingCardsRow">
+                    <!-- Populated dynamically via JS from VeraStore.getPricing() -->
+                </div>
+
+                <div class="text-center mt-4">
+                    <span class="small text-muted-custom">
+                        <i class="bi bi-info-circle text-teal2 me-1"></i> All prices are all-inclusive with zero surprise fees. Need customized enterprise volume? 
+                        <a href="contact.html" class="text-teal2 fw-semibold text-decoration-none">Contact our practice team</a>.
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             03. WHAT'S INCLUDED ACROSS EVERY ENGAGEMENT
+             ========================================================================== -->
+        <section class="section-pad section-soft">
+            <div class="container">
+                <div class="section-heading text-center mx-auto mb-5">
+                    <span class="eyebrow">Practice Standards</span>
+                    <h2>What's included in <span>every VeraLedger plan.</span></h2>
+                    <p class="text-muted-custom">
+                        Regardless of the service tier you select, our certified Chartered Accountants enforce strict statutory quality benchmarks across every file.
+                    </p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="feature-card p-4 h-100">
+                            <div class="service-icon mb-3 text-teal2"><i class="bi bi-person-check-fill"></i></div>
+                            <h3 class="h5 mb-2">1-on-1 CPA Verification</h3>
+                            <p class="text-muted-custom small mb-0">Every return is audited by an ICAI accredited Chartered Accountant before electronic submission to statutory portals.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="feature-card p-4 h-100">
+                            <div class="service-icon mb-3 text-teal2"><i class="bi bi-graph-up-arrow"></i></div>
+                            <h3 class="h5 mb-2">Mathematical Optimization</h3>
+                            <p class="text-muted-custom small mb-0">We compare Old vs New tax regimes line by line or reconcile GSTR-2B inward ITC to eliminate costly overpayments.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="feature-card p-4 h-100">
+                            <div class="service-icon mb-3 text-teal2"><i class="bi bi-shield-fill-check"></i></div>
+                            <h3 class="h5 mb-2">100% Notice Shield</h3>
+                            <p class="text-muted-custom small mb-0">If the department sends an inquiry under Section 143(1) or DRC-01, our team drafts responses and represents you at zero surcharge.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="feature-card p-4 h-100">
+                            <div class="service-icon mb-3 text-teal2"><i class="bi bi-folder-check"></i></div>
+                            <h3 class="h5 mb-2">Encrypted Vault Archive</h3>
+                            <p class="text-muted-custom small mb-0">Permanent, 256-bit encrypted client repository with immediate download access to verified ITR-V receipts and signed statements.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             04. COMPARE PLANS (COMPREHENSIVE FEATURE MATRIX)
+             ========================================================================== -->
+        <section class="section-pad">
+            <div class="container">
+                <div class="section-heading text-center mx-auto mb-5">
+                    <span class="eyebrow">Feature Matrix</span>
+                    <h2>Compare our <span>service tiers.</span></h2>
+                    <p class="text-muted-custom">
+                        A detailed breakdown of capabilities, turnaround speed, and support levels across our three core requirement tiers.
+                    </p>
+                </div>
+
+                <div class="dash-content-card shadow-sm p-0 overflow-hidden">
+                    <div class="table-responsive">
+                        <table class="table compare-table align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th style="width: 38%;">Feature / Capability</th>
+                                    <th class="text-center" style="width: 20%;">Basic</th>
+                                    <th class="text-center text-teal2" style="width: 22%;">Professional <span class="badge bg-teal2 text-white ms-1 small">Popular</span></th>
+                                    <th class="text-center" style="width: 20%;">Business &amp; Enterprise</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="fw-semibold text-ink">Certified CPA Review</div>
+                                        <div class="small text-muted-custom">Independent Chartered Accountant audit prior to submission</div>
+                                    </td>
+                                    <td class="text-center"><i class="bi bi-check-circle-fill text-success fs-5"></i></td>
+                                    <td class="text-center"><i class="bi bi-check-circle-fill text-success fs-5"></i></td>
+                                    <td class="text-center"><i class="bi bi-check-circle-fill text-success fs-5"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="fw-semibold text-ink">Dual-Regime / 44ADA Optimization</div>
+                                        <div class="small text-muted-custom">Comparative mathematical tax modeling to minimize liability</div>
+                                    </td>
+                                    <td class="text-center"><span class="small text-muted">Standard</span></td>
+                                    <td class="text-center"><i class="bi bi-check-circle-fill text-success fs-5"></i></td>
+                                    <td class="text-center"><i class="bi bi-check-circle-fill text-success fs-5"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="fw-semibold text-ink">AIS &amp; Form 26AS Direct Cross-Sync</div>
+                                        <div class="small text-muted-custom">Retrieval and reconciliation of dividend, interest &amp; TDS entries</div>
+                                    </td>
+                                    <td class="text-center"><i class="bi bi-check-circle-fill text-success fs-5"></i></td>
+                                    <td class="text-center"><i class="bi bi-check-circle-fill text-success fs-5"></i></td>
+                                    <td class="text-center"><i class="bi bi-check-circle-fill text-success fs-5"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="fw-semibold text-ink">100% Notice Defense Shield</div>
+                                        <div class="small text-muted-custom">Full response drafting for scrutiny intimations (143/148/DRC-01)</div>
+                                    </td>
+                                    <td class="text-center"><span class="text-muted">—</span></td>
+                                    <td class="text-center"><i class="bi bi-check-circle-fill text-success fs-5"></i></td>
+                                    <td class="text-center"><i class="bi bi-check-circle-fill text-success fs-5"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="fw-semibold text-ink">Dedicated Financial Account Lead</div>
+                                        <div class="small text-muted-custom">Designated practitioner managing recurring filings &amp; queries</div>
+                                    </td>
+                                    <td class="text-center"><span class="text-muted">—</span></td>
+                                    <td class="text-center"><span class="pricing-lead-badge shared-lead">Shared Lead</span></td>
+                                    <td class="text-center"><span class="pricing-lead-badge dedicated-lead">Dedicated Lead</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="fw-semibold text-ink">Standard Turnaround Time</div>
+                                        <div class="small text-muted-custom">First computation draft delivery once documents are received</div>
+                                    </td>
+                                    <td class="text-center"><span class="small fw-semibold">48 Hours</span></td>
+                                    <td class="text-center"><span class="small fw-semibold text-teal2">24 Hours</span></td>
+                                    <td class="text-center"><span class="small fw-semibold text-primary">Priority Same-Day</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="fw-semibold text-ink">Multi-State / Export Invoicing Support</div>
+                                        <div class="small text-muted-custom">Cross-border LUT zero-rated export &amp; multi-branch GSTR setup</div>
+                                    </td>
+                                    <td class="text-center"><span class="text-muted">—</span></td>
+                                    <td class="text-center"><i class="bi bi-check-circle-fill text-success fs-5"></i></td>
+                                    <td class="text-center"><i class="bi bi-check-circle-fill text-success fs-5"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             05. ADDITIONAL SERVICES & OPTIONAL ADD-ONS
+             ========================================================================== -->
+        <section class="section-pad section-soft" id="additional-services">
+            <div class="container">
+                <div class="section-heading text-center mx-auto mb-5">
+                    <span class="eyebrow">Statutory Add-Ons</span>
+                    <h2>Additional services &amp; <span>ancillary solutions.</span></h2>
+                    <p class="text-muted-custom">
+                        Need specialized compliance tokens, notice resolution, or corporate filings? Add any of our fixed-fee ancillary services to your client workspace.
+                    </p>
+                </div>
+
+                <div class="row g-4" id="addonsGridRow">
+                    <!-- Populated dynamically via JS from VeraStore.getPricing().addons -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             06. HOW PAYMENT WORKS (6-STAGE WORKFLOW)
+             ========================================================================== -->
+        <section class="section-pad" id="how-payment-works">
+            <div class="container">
+                <div class="section-heading text-center mx-auto mb-5">
+                    <span class="eyebrow">Payment Workflow</span>
+                    <h2>How payment works <span>at VeraLedger.</span></h2>
+                    <p class="text-muted-custom">
+                        A seamless, fully digitized payment process with zero upfront risks. Submit your details first, review computed charges, and pay via secure methods.
+                    </p>
+                </div>
+
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-4 col-lg-2">
+                        <div class="payment-step-card">
+                            <div class="payment-step-number">1</div>
+                            <h4 class="h6 mb-2">Select Service</h4>
+                            <p class="small text-muted-custom mb-0">Choose your filing category (ITR, GST, Bookkeeping, or Advisory).</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-2">
+                        <div class="payment-step-card">
+                            <div class="payment-step-number">2</div>
+                            <h4 class="h6 mb-2">Choose Plan</h4>
+                            <p class="small text-muted-custom mb-0">Select Basic, Professional, or Business based on your income scale.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-2">
+                        <div class="payment-step-card">
+                            <div class="payment-step-number">3</div>
+                            <h4 class="h6 mb-2">Sign In / Register</h4>
+                            <p class="small text-muted-custom mb-0">Create your client workspace once to preserve encrypted records.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-2">
+                        <div class="payment-step-card">
+                            <div class="payment-step-number">4</div>
+                            <h4 class="h6 mb-2">Submit Details</h4>
+                            <p class="small text-muted-custom mb-0">Fill in specific parameters and attach Form 16, AIS, or sales registers.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-2">
+                        <div class="payment-step-card">
+                            <div class="payment-step-number">5</div>
+                            <h4 class="h6 mb-2">Review Charges</h4>
+                            <p class="small text-muted-custom mb-0">Review itemized fee breakdown in your Client Dashboard before payment.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-2">
+                        <div class="payment-step-card">
+                            <div class="payment-step-number">6</div>
+                            <h4 class="h6 mb-2">Make Payment</h4>
+                            <p class="small text-muted-custom mb-0">Pay instantly via UPI (GPay/PhonePe), Debit/Credit Cards, or Net Banking.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             07. FREQUENTLY ASKED QUESTIONS (PRICING & PAYMENTS)
+             ========================================================================== -->
+        <section class="section-pad section-soft">
+            <div class="container">
+                <div class="section-heading text-center mx-auto mb-5">
+                    <span class="eyebrow">Pricing FAQs</span>
+                    <h2>Frequently asked <span>questions.</span></h2>
+                    <p class="text-muted-custom">
+                        Everything you need to know about fees, payment methods, refund policies, and additional scope.
+                    </p>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-9">
+                        <div class="feature-card p-4 p-md-5">
+                            <details class="faq-item" open>
+                                <summary>Are there any hidden costs or surprise fees after I submit my application?</summary>
+                                <p>No. VeraLedger operates on strict all-inclusive pricing. The fee displayed when you select your service covers document parsing, comparative dual-regime tax computation, CPA review, electronic submission, and full receipt archiving. If an unexpected statutory complexity arises (such as undisclosed foreign assets), we discuss and approve any scope adjustment with you in advance.</p>
+                            </details>
+                            <details class="faq-item">
+                                <summary>What is your refund policy if I cancel before my return is filed?</summary>
+                                <p>We offer a 100% money-back guarantee if you cancel before our chartered accountants begin preparing your formal tax draft. If draft preparation has already commenced, a nominal 25% administrative fee applies, and the remaining 75% is refunded within 3–5 business days to your original payment method.</p>
+                            </details>
+                            <details class="faq-item">
+                                <summary>Do you charge extra if I switched employers and have multiple Form 16s?</summary>
+                                <p>Our Professional Tier (₹2,499) completely covers multiple employers, switch salary overlaps, and bonus/severance reconciliations at no additional surcharge. You do not need to purchase multiple return filings.</p>
+                            </details>
+                            <details class="faq-item">
+                                <summary>What payment methods do you accept?</summary>
+                                <p>We support all leading Indian digital payment methods including UPI (Google Pay, PhonePe, Paytm, BHIM), all major Credit/Debit Cards (Visa, MasterCard, RuPay, Amex), Net Banking across 50+ banks, and corporate NEFT/RTGS bank transfers with instant GST invoices.</p>
+                            </details>
+                            <details class="faq-item">
+                                <summary>How do I know my payment is secure?</summary>
+                                <p>All transactions are processed through RBI-authorized payment aggregators conforming to PCI-DSS Level 1 compliance and 256-bit bank-grade SSL encryption. VeraLedger never stores your raw card numbers or UPI PINs.</p>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             08. FINAL CTA
+             ========================================================================== -->
+        <section class="section-pad">
+            <div class="container">
+                <div class="cta-banner-card text-center p-5 rounded-4 position-relative overflow-hidden">
+                    <div class="hero-ambient-glow" aria-hidden="true"></div>
+                    <div class="position-relative z-2 max-w-640 mx-auto">
+                        <span class="eyebrow text-white-50 mb-2 d-block">Start Today</span>
+                        <h2 class="h1 text-white mb-3">Find the right support for <span>your financial needs.</span></h2>
+                        <p class="text-white-50 mb-4 fs-5">
+                            Join over 2,800+ salaried professionals, tech freelancers, and growing ventures who trust VeraLedger with their statutory compliance.
+                        </p>
+                        <div class="d-flex justify-content-center flex-wrap gap-3">
+                            <a href="apply.html?service=itr" class="btn-brand hero-cta-btn">
+                                Start Your Filing <i class="bi bi-arrow-up-right ms-2"></i>
+                            </a>
+                            <a href="contact.html" class="btn-outline-brand text-white border-white">
+                                Speak with a Tax Advisor
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Global Dynamic Footer -->
+    <div id="siteFooter"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        let currentSelectedService = 'itr';
+
+        function renderPricingPage() {
+            const pricingData = VeraStore.getPricing();
+            const service = pricingData.services[currentSelectedService] || pricingData.services.itr;
+
+            // Update Header descriptions
+            document.getElementById('activeServiceBadge').textContent = service.badge;
+            document.getElementById('activeServiceHeadline').textContent = `${service.name} Plans`;
+            
+            const descMap = {
+                itr: "Compare packages designed for salaried employees, independent freelancers filing under Section 44ADA, and corporate directors with complex capital gains.",
+                gst: "Select from quarterly QRMP filing, monthly active GSTR-1 & 3B compliance with 100% ITC matching, or enterprise annual audit certification.",
+                accounting: "Choose the bookkeeping volume tailored to your monthly transaction scale, bank reconciliation frequency, and management MIS needs.",
+                consultation: "Book a strategic 45-minute video consultation for dual-regime tax minimization, notice resolution, or cross-border structuring."
+            };
+            document.getElementById('activeServiceDesc').textContent = descMap[currentSelectedService] || descMap.itr;
+
+            // Render Cards (Basic / Professional / Business)
+            const cardsContainer = document.getElementById('pricingCardsRow');
+            if (!cardsContainer) return;
+
+            const plans = service.plans;
+            const planKeys = ['basic', 'professional', 'business'];
+
+            cardsContainer.innerHTML = planKeys.map(pk => {
+                const plan = plans[pk];
+                if (!plan) return '';
+
+                const isPopular = plan.popular;
+
+                return `
+                    <div class="col-md-6 col-xl-4">
+                        <div class="pricing-tier-card ${isPopular ? 'featured-tier' : ''}">
+                            ${isPopular ? `<span class="featured-popular-badge"><i class="bi bi-star-fill me-1"></i> Most Popular</span>` : ''}
+                            
+                            <div class="mb-3">
+                                <span class="pricing-tier-pill mb-2">${pk.toUpperCase()} TIER</span>
+                                <h3 class="h4 mt-2 mb-1">${plan.name}</h3>
+                                <p class="text-muted-custom small mb-0" style="min-height: 42px;">${plan.target}</p>
+                            </div>
+
+                            <div class="my-3 pb-3 border-bottom">
+                                <div class="d-flex align-items-baseline gap-1">
+                                    <span class="price fs-1 fw-bold text-ink">${plan.displayPrice}</span>
+                                    <span class="text-muted-custom small">/ ${plan.period}</span>
+                                </div>
+                                <small class="text-success fw-semibold"><i class="bi bi-shield-check me-1"></i> 100% CPA Verified Advisory</small>
+                            </div>
+
+                            <div class="mb-4 flex-grow-1">
+                                <div class="small fw-bold text-ink mb-2">What's included:</div>
+                                <ul class="list-unstyled small text-muted-custom mb-0">
+                                    ${plan.features.map(f => `
+                                        <li class="d-flex align-items-start gap-2 mb-2">
+                                            <i class="bi bi-check2 text-teal2 mt-1 fs-6"></i>
+                                            <span>${f}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+
+                            <div class="mt-auto pt-2">
+                                <a href="login.html?service=${currentSelectedService}&plan=${pk}&redirect=apply.html" 
+                                   class="${isPopular ? 'btn-brand' : 'btn-outline-brand'} w-100 text-center py-2">
+                                    Apply for this Plan <i class="bi bi-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Render Add-Ons
+            const addonsContainer = document.getElementById('addonsGridRow');
+            if (addonsContainer && pricingData.addons) {
+                const iconMap = {
+                    'notice-defense': 'bi-shield-check',
+                    'dsc': 'bi-key-fill',
+                    'lut': 'bi-globe2',
+                    'pan-aadhaar': 'bi-person-badge-fill',
+                    'mca-annual': 'bi-building-check',
+                    'pf-esic': 'bi-people-fill'
+                };
+
+                addonsContainer.innerHTML = pricingData.addons.map(add => {
+                    const icon = iconMap[add.id] || 'bi-patch-check-fill';
+                    return `
+                    <div class="col-md-6 col-lg-4">
+                        <div class="addon-card">
+                            <div class="d-flex align-items-start gap-3 mb-3">
+                                <div class="addon-card-icon">
+                                    <i class="bi ${icon}"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <span class="addon-unit-badge mb-1 d-inline-block">Unit: ${add.unit}</span>
+                                    <h4 class="h6 mb-0 text-ink fw-bold">${add.name}</h4>
+                                </div>
+                            </div>
+                            <div class="addon-price-tag mb-2">${add.displayPrice}</div>
+                            <p class="text-muted-custom small mb-4 flex-grow-1" style="line-height: 1.55;">${add.desc}</p>
+                            <div class="mt-auto pt-2 border-top">
+                                <a href="login.html?service=${currentSelectedService}&addon=${add.id}&redirect=apply.html" class="addon-btn w-100">
+                                    Add to workspace <i class="bi bi-plus-circle ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPricingPage();
+
+            // Service Tab Switchers
+            document.querySelectorAll('#pricingServiceTabs .service-pricing-tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('#pricingServiceTabs .service-pricing-tab-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentSelectedService = btn.getAttribute('data-service');
+                    renderPricingPage();
+                });
+            });
+
+            // React to live price changes from Admin Dashboard
+            window.addEventListener('vl_pricing_changed', () => {
+                renderPricingPage();
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1466 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Service Application Portal | VeraLedger</title>
+    <meta name="description"
+        content="Submit your tax filing, GST compliance, or accounting application with VeraLedger certified CPAs.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .app-portal-hero {
+            background: linear-gradient(180deg, var(--bg-soft) 0%, rgba(246, 248, 250, 0.4) 100%);
+            padding: 40px 0 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .dark-mode .app-portal-hero {
+            background: linear-gradient(180deg, #091322 0%, #0E1A2C 100%);
+            border-bottom-color: #1F2D44;
+        }
+
+        #portalHeaderTitle {
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 750;
+            letter-spacing: -0.035em;
+            color: var(--ink);
+        }
+
+        .dark-mode #portalHeaderTitle {
+            color: #F8FAFC !important;
+        }
+
+        #portalHeaderTitle span {
+            color: var(--teal2);
+        }
+
+        .dark-mode #portalHeaderTitle span {
+            color: #2DD4BF !important;
+        }
+
+        .app-portal-subheading {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #334155;
+            line-height: 1.6;
+            max-width: 760px;
+            letter-spacing: -0.01em;
+        }
+
+        .dark-mode .app-portal-subheading {
+            color: #E2E8F0 !important;
+        }
+
+        .service-form-subheading {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #475569;
+            line-height: 1.55;
+        }
+
+        .dark-mode .service-form-subheading {
+            color: #E2E8F0 !important;
+        }
+
+        .step-progress-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            max-width: 680px;
+            margin: 0 auto 36px;
+        }
+
+        .step-progress-line {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            right: 40px;
+            height: 3px;
+            background: var(--border-color);
+            z-index: 1;
+        }
+
+        .dark-mode .step-progress-line {
+            background: #22324D;
+        }
+
+        .step-progress-fill {
+            height: 100%;
+            background: var(--teal2);
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .dark-mode .step-progress-fill {
+            background: #2DD4BF;
+        }
+
+        .step-indicator-item {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .step-indicator-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--muted);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .step-indicator-circle {
+            background: #162238;
+            border-color: #2B3D5E;
+            color: #94A3B8;
+        }
+
+        .step-indicator-item.active .step-indicator-circle {
+            background: var(--teal2);
+            border-color: var(--teal2);
+            color: #fff;
+            box-shadow: 0 0 0 6px rgba(13, 148, 136, 0.18);
+        }
+
+        .dark-mode .step-indicator-item.active .step-indicator-circle {
+            background: #2DD4BF;
+            border-color: #2DD4BF;
+            color: #0A0F1D;
+            box-shadow: 0 0 0 6px rgba(45, 212, 191, 0.22);
+        }
+
+        .step-indicator-item.completed .step-indicator-circle {
+            background: var(--aqua);
+            border-color: var(--aqua);
+            color: #0A2540;
+        }
+
+        .step-indicator-label {
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: #64748B;
+            transition: color 0.2s ease;
+        }
+
+        .dark-mode .step-indicator-label {
+            color: #94A3B8;
+        }
+
+        .step-indicator-item.active .step-indicator-label {
+            color: var(--teal2) !important;
+            font-weight: 700;
+        }
+
+        .dark-mode .step-indicator-item.active .step-indicator-label {
+            color: #2DD4BF !important;
+            font-weight: 700;
+        }
+
+        .step-indicator-item.completed .step-indicator-label {
+            color: var(--aqua) !important;
+        }
+
+        .service-selector-strip {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            margin-bottom: 28px;
+        }
+
+        .service-selector-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--ink);
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .dark-mode .service-selector-btn {
+            background: #162238;
+            border-color: #2B3D5E;
+            color: #F8FAFC;
+        }
+
+        .service-selector-btn.active {
+            background: #0A2540;
+            color: #FFFFFF !important;
+            border-color: #0A2540;
+            box-shadow: 0 4px 14px rgba(10, 37, 64, 0.22);
+        }
+
+        .service-selector-btn.active i {
+            color: #2DD4BF !important;
+        }
+
+        .dark-mode .service-selector-btn.active {
+            background: #2DD4BF;
+            color: #0A0F1D !important;
+            border-color: #2DD4BF;
+            box-shadow: 0 4px 14px rgba(45, 212, 191, 0.25);
+        }
+
+        .dark-mode .service-selector-btn.active i {
+            color: #0A0F1D !important;
+        }
+
+        /* Content Card Headers */
+        .content-card h3.h5,
+        .service-form-panel h3.h5 {
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+        }
+
+        .dark-mode .content-card h3.h5,
+        .dark-mode .service-form-panel h3.h5 {
+            color: #F8FAFC !important;
+        }
+
+        /* Service Checklist Box */
+        .service-checklist-box {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+        }
+
+        .dark-mode .service-checklist-box {
+            background: #1A263C !important;
+            border-color: #2B3D5E !important;
+        }
+
+        .service-checklist-title {
+            color: var(--ink);
+            font-weight: 600;
+            font-size: 0.88rem;
+        }
+
+        .dark-mode .service-checklist-title {
+            color: #F8FAFC !important;
+        }
+
+        .service-checklist-list {
+            color: #475569;
+        }
+
+        .dark-mode .service-checklist-list,
+        .dark-mode .service-checklist-list li {
+            color: #CBD5E1 !important;
+        }
+
+        /* Dropzone Box */
+        .dropzone-box {
+            border: 2px dashed var(--border-color);
+            border-radius: 16px;
+            padding: 32px 20px;
+            text-align: center;
+            background: var(--bg-soft);
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .dark-mode .dropzone-box {
+            background: #162238;
+            border-color: #2B3D5E;
+        }
+
+        .dropzone-box:hover {
+            border-color: var(--teal2);
+            background: rgba(13, 148, 136, 0.04);
+        }
+
+        .dark-mode .dropzone-box:hover {
+            border-color: #2DD4BF;
+            background: #1A2B47;
+        }
+
+        .dropzone-title {
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .dark-mode .dropzone-title {
+            color: #F8FAFC !important;
+        }
+
+        .dropzone-sub {
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        .dark-mode .dropzone-sub {
+            color: #94A3B8 !important;
+        }
+
+        /* Uploaded Files */
+        .uploaded-file-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            margin-bottom: 8px;
+            font-size: 0.88rem;
+            color: var(--ink);
+        }
+
+        .dark-mode .uploaded-file-row {
+            background: #162238;
+            border-color: #2B3D5E;
+            color: #F8FAFC;
+        }
+
+        /* Advice / Tip Box */
+        .service-advice-box {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            color: #475569;
+        }
+
+        .dark-mode .service-advice-box {
+            background: #162238 !important;
+            border-color: #2B3D5E !important;
+            color: #CBD5E1 !important;
+        }
+
+        /* Summary Receipt Card (Right Column) */
+        .summary-receipt-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .dark-mode .summary-receipt-card {
+            background: #131D31 !important;
+            border-color: #22324D !important;
+        }
+
+        .summary-receipt-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 9px 0;
+            font-size: 0.9rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .dark-mode .summary-receipt-row {
+            border-bottom-color: #22324D;
+        }
+
+        .summary-receipt-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-receipt-label {
+            color: #64748B;
+            font-size: 0.92rem;
+        }
+
+        .dark-mode .summary-receipt-label {
+            color: #CBD5E1 !important;
+            font-size: 0.92rem;
+        }
+
+        .summary-receipt-val {
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        .dark-mode .summary-receipt-val {
+            color: #F8FAFC !important;
+        }
+
+        .summary-total-label {
+            color: var(--ink);
+        }
+
+        .dark-mode .summary-total-label {
+            color: #F8FAFC !important;
+        }
+
+        .summary-total-sub {
+            color: #64748B;
+        }
+
+        .dark-mode .summary-total-sub {
+            color: #94A3B8 !important;
+        }
+
+        .summary-guarantee-box {
+            background: #F1F5F9;
+            border: 1px solid #E2E8F0;
+            color: #475569;
+        }
+
+        .dark-mode .summary-guarantee-box {
+            background: #1A263C !important;
+            border-color: #2B3D5E !important;
+            color: #CBD5E1 !important;
+        }
+
+        .summary-guarantee-title {
+            color: var(--ink);
+        }
+
+        .dark-mode .summary-guarantee-title {
+            color: #F8FAFC !important;
+        }
+
+        .summary-support-line {
+            color: #64748B;
+        }
+
+        .dark-mode .summary-support-line {
+            color: #94A3B8 !important;
+        }
+
+        /* Form Labels & Controls in Dark Mode */
+        .dark-mode .form-label {
+            color: #F1F5F9 !important;
+        }
+
+        .dark-mode .form-control,
+        .dark-mode .form-select {
+            background-color: #162238 !important;
+            border-color: #2B3D5E !important;
+            color: #F8FAFC !important;
+        }
+
+        .dark-mode .form-control:focus,
+        .dark-mode .form-select:focus {
+            background-color: #1A2B47 !important;
+            border-color: #2DD4BF !important;
+            color: #FFFFFF !important;
+            box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.2) !important;
+        }
+
+        .dark-mode .form-text,
+        .dark-mode small.text-muted {
+            color: #94A3B8 !important;
+        }
+
+        /* Step 3 Review Elements */
+        .dark-mode .card.bg-paper {
+            background: #162238 !important;
+            border-color: #2B3D5E !important;
+            color: #CBD5E1 !important;
+        }
+
+        .dark-mode .card.bg-paper .text-muted {
+            color: #94A3B8 !important;
+        }
+
+        .dark-mode .card.bg-paper strong {
+            color: #F8FAFC !important;
+        }
+
+        .dark-mode .form-check-label {
+            color: #CBD5E1 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="siteHeader"></div>
+
+    <main>
+        <!-- Application Hero Strip -->
+        <section class="app-portal-hero">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                    <div>
+                        <span class="eyebrow d-block mb-1">Official Client Portal</span>
+                        <h1 class="h2 mb-1" id="portalHeaderTitle">Apply for <span>Tax &amp; Accounting Services</span>
+                        </h1>
+                        <p class="app-portal-subheading mb-0">Fill in your requirements and upload records. Certified
+                            CPAs review every calculation before filing.</p>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <span
+                            class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill small">
+                            <i class="bi bi-shield-lock-fill me-1"></i> Bank-Grade 256-Bit SSL
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wizard Container -->
+        <section class="section-pad pt-4">
+            <div class="container">
+                <!-- Step Navigation Bar -->
+                <div class="step-progress-bar">
+                    <div class="step-progress-line">
+                        <div class="step-progress-fill" id="stepProgressFill"></div>
+                    </div>
+                    <div class="step-indicator-item active" id="stepNav1" onclick="goToStep(1)">
+                        <div class="step-indicator-circle">1</div>
+                        <div class="step-indicator-label">Service Details</div>
+                    </div>
+                    <div class="step-indicator-item" id="stepNav2" onclick="goToStep(2)">
+                        <div class="step-indicator-circle">2</div>
+                        <div class="step-indicator-label">Upload Documents</div>
+                    </div>
+                    <div class="step-indicator-item" id="stepNav3" onclick="goToStep(3)">
+                        <div class="step-indicator-circle">3</div>
+                        <div class="step-indicator-label">Review &amp; Submit</div>
+                    </div>
+                </div>
+
+                <!-- Service Selector Strip -->
+                <div class="service-selector-strip" id="serviceTabs">
+                    <button type="button" class="service-selector-btn active" data-service="itr">
+                        <i class="bi bi-file-earmark-person"></i> Income Tax Filing (ITR)
+                    </button>
+                    <button type="button" class="service-selector-btn" data-service="gst">
+                        <i class="bi bi-receipt"></i> GST Compliance &amp; Returns
+                    </button>
+                    <button type="button" class="service-selector-btn" data-service="accounting">
+                        <i class="bi bi-calculator"></i> Bookkeeping &amp; Accounts
+                    </button>
+                    <button type="button" class="service-selector-btn" data-service="consultation">
+                        <i class="bi bi-chat-heart"></i> 1-on-1 CPA Consultation
+                    </button>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Left: Multi-Step Forms -->
+                    <div class="col-lg-8">
+                        <div class="content-card p-4 p-md-5">
+
+                            <!-- ==========================================
+                                 STEP 1: SERVICE SPECIFIC FORMS
+                                 ========================================== -->
+                            <div id="step1Container">
+
+                                <!-- FORM A: INCOME TAX (ITR) -->
+                                <div id="form-itr" class="service-form-panel">
+                                    <div class="d-flex align-items-center gap-3 mb-4 pb-3 border-bottom">
+                                        <div class="brand-mark"><i class="bi bi-file-earmark-person"></i></div>
+                                        <div>
+                                            <h3 class="h5 mb-1">Income Tax Filing Application</h3>
+                                            <p class="service-form-subheading mb-0">Covers ITR-1 (Sahaj), ITR-2 (Capital
+                                                Gains), ITR-3 (Business/F&amp;O), and ITR-4 (Presumptive 44ADA).</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Assessment Year</label>
+                                            <select class="form-select" id="itr_ay">
+                                                <option value="2026–27 (FY 2025–26)" selected>AY 2026–27 (Current
+                                                    Financial Year 2025–26)</option>
+                                                <option value="2025–26 (FY 2024–25)">AY 2025–26 (Belated / Updated
+                                                    Return)</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">PAN Card Number</label>
+                                            <input type="text" class="form-control text-uppercase" id="itr_pan"
+                                                placeholder="ABCDE1234F" maxlength="10" value="ABCDE1234F" required>
+                                            <small class="text-muted">Linked to your Income Tax e-filing portal.</small>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Employment / Income Source</label>
+                                            <select class="form-select" id="itr_employment">
+                                                <option value="Salaried Employee" selected>Salaried Employee (Form 16
+                                                    provided)</option>
+                                                <option value="Freelancer / Consultant (44ADA)">Freelancer / Consultant
+                                                    (Section 44ADA 50% write-off)</option>
+                                                <option value="Investor / Stocks & Mutual Funds">Investor / Stocks &amp;
+                                                    Crypto (Capital Gains)</option>
+                                                <option value="Multiple Form 16s / Job Switch">Multiple Employers in
+                                                    Same FY</option>
+                                                <option value="Director / Partner">Company Director / LLP Partner
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Estimated Gross Annual Income</label>
+                                            <select class="form-select" id="itr_income">
+                                                <option value="Up to ₹7.5 Lakhs">Up to ₹7.5 Lakhs (Rebate Eligible)
+                                                </option>
+                                                <option value="₹7.5 Lakhs – ₹15 Lakhs">₹7.5 Lakhs – ₹15 Lakhs</option>
+                                                <option value="₹15 Lakhs – ₹25 Lakhs" selected>₹15 Lakhs – ₹25 Lakhs
+                                                </option>
+                                                <option value="₹25 Lakhs – ₹50 Lakhs">₹25 Lakhs – ₹50 Lakhs</option>
+                                                <option value="Above ₹50 Lakhs">Above ₹50 Lakhs (Surcharge Applicable)
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Tax Regime Preference</label>
+                                            <select class="form-select" id="itr_regime">
+                                                <option value="Let CPA Compare & Choose Best" selected>Evaluate Both
+                                                    (Choose Lowest Tax Liability)</option>
+                                                <option value="New Tax Regime (Section 115BAC)">New Tax Regime (Lower
+                                                    Slabs, Zero Deductions)</option>
+                                                <option value="Old Tax Regime (With Deductions)">Old Tax Regime
+                                                    (Claiming 80C, 80D, HRA & Loan)</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Do you have Home Loan Interest /
+                                                HRA?</label>
+                                            <select class="form-select" id="itr_deductions">
+                                                <option value="Yes (Both HRA & Section 24b)" selected>Yes (Both HRA
+                                                    &amp; Home Loan Interest)</option>
+                                                <option value="Only HRA (Rent Paid)">Only HRA Rent Proofs</option>
+                                                <option value="None">None</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label class="form-label fw-semibold">Special Notes or Tax Concerns</label>
+                                            <textarea class="form-control" id="itr_notes" rows="2"
+                                                placeholder="e.g. Switched jobs in August, received RSUs/ESOPs, or have foreign equity holdings..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- FORM B: GST SERVICES -->
+                                <div id="form-gst" class="service-form-panel d-none">
+                                    <div class="d-flex align-items-center gap-3 mb-4 pb-3 border-bottom">
+                                        <div class="brand-mark"><i class="bi bi-receipt"></i></div>
+                                        <div>
+                                            <h3 class="h5 mb-1">GST Compliance &amp; Monthly Filing</h3>
+                                            <p class="service-form-subheading mb-0">GSTR-1 outward supplies, GSTR-3B
+                                                monthly tax computation, and automated GSTR-2B ITC reconciliation.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">GSTIN (15 Digits)</label>
+                                            <input type="text" class="form-control text-uppercase" id="gst_gstin"
+                                                placeholder="33AABCN8871K1Z2" maxlength="15" value="33AABCN8871K1Z2">
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Legal Entity / Trade Name</label>
+                                            <input type="text" class="form-control" id="gst_name"
+                                                placeholder="e.g. Apex Global Solutions LLP"
+                                                value="Apex Global Solutions LLP">
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Filing Frequency</label>
+                                            <select class="form-select" id="gst_freq">
+                                                <option value="Monthly (GSTR-1 & 3B)" selected>Monthly (GSTR-1 &amp;
+                                                    GSTR-3B Regular)</option>
+                                                <option value="Quarterly (QRMP Scheme)">Quarterly (QRMP Scheme with IFF)
+                                                </option>
+                                                <option value="Annual Return (GSTR-9 & 9C)">Annual Return (GSTR-9 /
+                                                    Audit 9C)</option>
+                                                <option value="New GST Registration">New GST Registration &amp; Setup
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Annual Turnover Range</label>
+                                            <select class="form-select" id="gst_turnover">
+                                                <option value="Under ₹40 Lakhs">Under ₹40 Lakhs (Voluntary / Service)
+                                                </option>
+                                                <option value="₹40 Lakhs – ₹1.5 Cr">₹40 Lakhs – ₹1.5 Crores</option>
+                                                <option value="₹1.5 Cr – ₹5 Cr" selected>₹1.5 Crores – ₹5 Crores
+                                                </option>
+                                                <option value="Above ₹5 Cr (E-Invoicing Required)">Above ₹5 Crores
+                                                    (E-Invoicing Compliant)</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label class="form-label fw-semibold">Nature of Supplies</label>
+                                            <select class="form-select" id="gst_supplies">
+                                                <option value="B2B & B2C Domestic Services" selected>B2B and B2C
+                                                    Domestic Services / Goods</option>
+                                                <option value="Export of Services / Software (LUT Zero-Rated)">Export of
+                                                    Software / Consulting Services (Under LUT)</option>
+                                                <option value="E-Commerce Seller (Amazon / Flipkart)">E-Commerce
+                                                    Operator / Marketplace Seller</option>
+                                                <option value="Manufacturing & Inter-State Trade">Manufacturing &amp;
+                                                    Inter-State Goods</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- FORM C: ACCOUNTING & BOOKKEEPING -->
+                                <div id="form-accounting" class="service-form-panel d-none">
+                                    <div class="d-flex align-items-center gap-3 mb-4 pb-3 border-bottom">
+                                        <div class="brand-mark"><i class="bi bi-calculator"></i></div>
+                                        <div>
+                                            <h3 class="h5 mb-1">Bookkeeping &amp; Financial Reporting</h3>
+                                            <p class="service-form-subheading mb-0">Monthly ledger hygiene, bank
+                                                reconciliation, depreciation schedules, and management accounts.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Entity Type</label>
+                                            <select class="form-select" id="acc_entity">
+                                                <option value="Private Limited Company" selected>Private Limited Company
+                                                </option>
+                                                <option value="Limited Liability Partnership (LLP)">Limited Liability
+                                                    Partnership (LLP)</option>
+                                                <option value="Sole Proprietorship / Freelance Studio">Sole
+                                                    Proprietorship / Studio</option>
+                                                <option value="Partnership Firm">Partnership Firm</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Preferred Software</label>
+                                            <select class="form-select" id="acc_software">
+                                                <option value="Zoho Books" selected>Zoho Books</option>
+                                                <option value="Tally Prime">Tally Prime / ERP 9</option>
+                                                <option value="QuickBooks Online">QuickBooks Online</option>
+                                                <option value="Excel / Needs Setup Assistance">Spreadsheets (Needs Setup
+                                                    Assistance)</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Monthly Transaction Volume</label>
+                                            <select class="form-select" id="acc_volume">
+                                                <option value="Under 100 Transactions/mo">Under 100 Transactions / month
+                                                </option>
+                                                <option value="100 – 300 Transactions/mo" selected>100 – 300
+                                                    Transactions / month</option>
+                                                <option value="300 – 600 Transactions/mo">300 – 600 Transactions / month
+                                                </option>
+                                                <option value="High Volume 600+ Transactions">High Volume (600+
+                                                    Transactions)</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Engagement Scope</label>
+                                            <select class="form-select" id="acc_scope">
+                                                <option value="Ongoing Monthly Accounting & P&L" selected>Ongoing
+                                                    Monthly Bookkeeping &amp; P&amp;L</option>
+                                                <option value="Past Financial Year Catch-Up Cleanup">Backlog Cleanup
+                                                    (Past Months Reconciliation)</option>
+                                                <option value="Audit Preparation & Finalization">Statutory Audit
+                                                    Preparation Only</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- FORM D: 1-ON-1 CPA CONSULTATION -->
+                                <div id="form-consultation" class="service-form-panel d-none">
+                                    <div class="d-flex align-items-center gap-3 mb-4 pb-3 border-bottom">
+                                        <div class="brand-mark"><i class="bi bi-chat-heart"></i></div>
+                                        <div>
+                                            <h3 class="h5 mb-1">Senior CPA Strategy Consultation</h3>
+                                            <p class="service-form-subheading mb-0">Direct 45-minute confidential
+                                                consultation with a licensed Chartered Accountant (ICAI / CPA).</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Advisory Topic</label>
+                                            <select class="form-select" id="con_topic">
+                                                <option value="Dual-Regime Tax Minimization Strategy" selected>
+                                                    Dual-Regime Tax Minimization Strategy</option>
+                                                <option value="CBDT / IT Dept Notice Resolution (143/148)">CBDT / Income
+                                                    Tax Notice Resolution (143/148)</option>
+                                                <option value="GST Audit, Scrutiny & ITC Mismatch">GST Audit Scrutiny
+                                                    &amp; ITC Mismatch Defense</option>
+                                                <option value="Startup Corporate Restructuring & ESOPs">Startup
+                                                    Structuring, Angel Tax &amp; ESOPs</option>
+                                                <option value="Cross-Border NRI / Foreign Income Taxation">Cross-Border
+                                                    Remittances &amp; DTAA Relief</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Preferred Mode of Meeting</label>
+                                            <select class="form-select" id="con_mode">
+                                                <option value="Secure Video Call (Google Meet)" selected>Secure Video
+                                                    Call (Google Meet)</option>
+                                                <option value="Zoom Meeting">Zoom Video Conference</option>
+                                                <option value="Phone Consultation">Telephone Call</option>
+                                                <option value="In-Person (Chennai Practice Office)">In-Person at Chennai
+                                                    Office</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Preferred Date</label>
+                                            <input type="date" class="form-control" id="con_date">
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Preferred Time Window</label>
+                                            <select class="form-select" id="con_time">
+                                                <option value="Morning (10:00 AM – 1:00 PM)">Morning (10:00 AM – 1:00
+                                                    PM)</option>
+                                                <option value="Afternoon (2:00 PM – 5:00 PM)" selected>Afternoon (2:00
+                                                    PM – 5:00 PM)</option>
+                                                <option value="Evening (5:30 PM – 7:30 PM)">Evening (5:30 PM – 7:30 PM)
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label class="form-label fw-semibold">Brief Summary of Your
+                                                Questions</label>
+                                            <textarea class="form-control" id="con_summary" rows="2"
+                                                placeholder="Describe the specific notice, transaction, or tax question you would like reviewed during the call..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                                    <a href="services.html" class="btn-outline-brand btn-sm">
+                                        <i class="bi bi-arrow-left me-1"></i> Back to Services
+                                    </a>
+                                    <button type="button" class="btn-brand" onclick="goToStep(2)">
+                                        Next: Upload Documents <i class="bi bi-arrow-right ms-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- ==========================================
+                                 STEP 2: DOCUMENT UPLOADS
+                                 ========================================== -->
+                            <div id="step2Container" class="d-none">
+                                <div class="d-flex align-items-center justify-content-between mb-4 pb-3 border-bottom">
+                                    <div>
+                                        <h3 class="h5 mb-1">Upload Your Financial Records</h3>
+                                        <p class="service-form-subheading mb-0">Our encrypted repository accepts PDF,
+                                            JPG, PNG, and XLSX files up to 25 MB each.</p>
+                                    </div>
+                                    <span class="badge bg-teal2 text-white small px-3 py-2 rounded-pill"
+                                        id="docServiceBadge">ITR Filing</span>
+                                </div>
+
+                                <!-- Dynamic checklist guide based on selected service -->
+                                <div class="service-checklist-box rounded-3 p-3 mb-4">
+                                    <div class="service-checklist-title mb-2"><i
+                                            class="bi bi-checklist me-1 text-teal2"></i> Checklist for this Service:
+                                    </div>
+                                    <ul class="small mb-0 ps-3 service-checklist-list" id="serviceDocChecklist">
+                                        <!-- Injected via JS -->
+                                    </ul>
+                                </div>
+
+                                <!-- Drag and drop upload zone -->
+                                <div class="dropzone-box mb-4" id="dropzoneTrigger">
+                                    <input type="file" id="fileInputEl" class="d-none" multiple
+                                        accept=".pdf,.jpg,.jpeg,.png,.xlsx,.csv,.zip">
+                                    <i class="bi bi-cloud-arrow-up text-teal2 fs-1 mb-2 d-block"></i>
+                                    <div class="dropzone-title mb-1">Click to browse or drop files here</div>
+                                    <div class="dropzone-sub">Supports PDF, Excel, scanned bills, or ZIP
+                                        archives</div>
+                                </div>
+
+                                <!-- List of Attached Files -->
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="small fw-bold text-ink">Attached Documents (<span
+                                                id="fileCountBadge">2</span>)</span>
+                                        <span class="small text-muted">Ready to submit</span>
+                                    </div>
+                                    <div id="uploadedFilesList">
+                                        <!-- Injected via JS -->
+                                    </div>
+                                </div>
+
+                                <div class="p-3 rounded-3 service-advice-box border small mb-4">
+                                    <i class="bi bi-shield-check text-success me-1"></i>
+                                    <strong>No rush:</strong> If you don't have every statement right now, submit what
+                                    you have. Your assigned CPA will assist you in pulling AIS and 26AS directly with
+                                    your authorization.
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                                    <button type="button" class="btn-outline-brand btn-sm" onclick="goToStep(1)">
+                                        <i class="bi bi-arrow-left me-1"></i> Back to Details
+                                    </button>
+                                    <button type="button" class="btn-brand" onclick="goToStep(3)">
+                                        Next: Review &amp; Submit <i class="bi bi-arrow-right ms-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- ==========================================
+                                 STEP 3: REVIEW & SUBMISSION
+                                 ========================================== -->
+                            <div id="step3Container" class="d-none">
+                                <div class="mb-4 pb-3 border-bottom">
+                                    <h3 class="h5 mb-1">Review Your Application</h3>
+                                    <p class="service-form-subheading mb-0">Please verify your details and attached
+                                        files before submitting to our CPA practice team.</p>
+                                </div>
+
+                                <div class="card p-3 rounded-3 mb-4 bg-paper border">
+                                    <h6 class="fw-bold text-ink mb-3"><i
+                                            class="bi bi-person-badge text-teal2 me-2"></i>Client Profile &amp; Contact
+                                    </h6>
+                                    <div class="row g-2 small">
+                                        <div class="col-sm-6"><span class="text-muted">Applicant:</span> <strong
+                                                id="revApplicant">Alex Morgan</strong></div>
+                                        <div class="col-sm-6"><span class="text-muted">Email:</span> <strong
+                                                id="revEmail">alex@example.com</strong></div>
+                                        <div class="col-sm-6"><span class="text-muted">Phone:</span> <strong
+                                                id="revPhone">+91 98765 43210</strong></div>
+                                        <div class="col-sm-6"><span class="text-muted">Service:</span> <strong
+                                                id="revService">Income Tax Filing (ITR)</strong></div>
+                                    </div>
+                                </div>
+
+                                <div class="card p-3 rounded-3 mb-4 bg-paper border">
+                                    <h6 class="fw-bold text-ink mb-3"><i
+                                            class="bi bi-file-earmark-check text-teal2 me-2"></i>Filing Specifications
+                                    </h6>
+                                    <div class="row g-2 small" id="revDetailsGrid">
+                                        <!-- Injected via JS -->
+                                    </div>
+                                </div>
+
+                                <div class="card p-3 rounded-3 mb-4 bg-paper border">
+                                    <h6 class="fw-bold text-ink mb-2"><i
+                                            class="bi bi-paperclip text-teal2 me-2"></i>Attached Documents for CPA
+                                        Verification</h6>
+                                    <div id="revDocsList" class="small text-muted-custom">
+                                        <!-- Injected via JS -->
+                                    </div>
+                                </div>
+
+                                <div class="form-check small text-muted-custom mb-4">
+                                    <input class="form-check-input" type="checkbox" id="appDeclarationCheck" checked
+                                        required>
+                                    <label class="form-check-label" for="appDeclarationCheck">
+                                        I hereby declare that the financial figures and uploaded records provided are
+                                        authentic to the best of my knowledge, and I authorize VeraLedger CPAs to
+                                        prepare and compute my statutory filings.
+                                    </label>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                                    <button type="button" class="btn-outline-brand btn-sm" onclick="goToStep(2)">
+                                        <i class="bi bi-arrow-left me-1"></i> Back to Documents
+                                    </button>
+                                    <button type="button" class="btn-brand" id="submitApplicationBtn">
+                                        <i class="bi bi-send-check me-1"></i> Submit Application &amp; Open Dashboard
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Live Fee Breakdown & Practice Guarantee -->
+                    <div class="col-lg-4">
+                        <div class="summary-receipt-card shadow-sm sticky-top" style="top: 100px;">
+                            <span class="eyebrow d-block mb-1">Pricing &amp; Scope</span>
+                            <h4 class="h5 mb-3" id="pricingServiceTitle">Income Tax Filing</h4>
+
+                            <div class="summary-receipt-row">
+                                <span class="summary-receipt-label">Base Filing Fee</span>
+                                <span class="summary-receipt-val" id="receiptBaseFee">₹2,499</span>
+                            </div>
+                            <div class="summary-receipt-row">
+                                <span class="summary-receipt-label">Dual-Regime Optimization</span>
+                                <span class="text-success fw-semibold">Included</span>
+                            </div>
+                            <div class="summary-receipt-row">
+                                <span class="summary-receipt-label">1-on-1 Certified CPA Review</span>
+                                <span class="text-success fw-semibold">Included</span>
+                            </div>
+                            <div class="summary-receipt-row">
+                                <span class="summary-receipt-label">100% Notice Support</span>
+                                <span class="text-success fw-semibold">Free Shield</span>
+                            </div>
+                            <div class="summary-receipt-row">
+                                <span class="summary-receipt-label">GST (18%)</span>
+                                <span class="summary-receipt-label">₹0 (All-inclusive)</span>
+                            </div>
+
+                            <hr class="my-3">
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <div class="fw-bold summary-total-label">Total Payable</div>
+                                    <small class="summary-total-sub">Pay after review or now</small>
+                                </div>
+                                <div class="price fs-3" id="receiptTotalFee">₹2,499</div>
+                            </div>
+
+                            <div class="p-3 rounded-3 summary-guarantee-box border small mb-3">
+                                <div class="d-flex align-items-center gap-2 mb-1 summary-guarantee-title fw-semibold">
+                                    <i class="bi bi-award-fill text-warning"></i> VeraLedger Guarantee
+                                </div>
+                                Every calculation is mathematically cross-referenced against your AIS/26AS to prevent
+                                Section 143(1) defective notice discrepancies.
+                            </div>
+
+                            <div class="d-flex align-items-center gap-2 summary-support-line small">
+                                <i class="bi bi-headset text-teal2"></i>
+                                <span>Need help? WhatsApp: <strong class="text-ink">+91 98765 43210</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3 text-center border-0 shadow-lg">
+                <div class="modal-body p-4">
+                    <div class="brand-mark mx-auto mb-3 text-success bg-success-subtle"
+                        style="width: 64px; height: 64px; font-size: 1.8rem;">
+                        <i class="bi bi-check-lg"></i>
+                    </div>
+                    <span class="eyebrow text-success">Application Received</span>
+                    <h2 class="h3 mt-2 mb-2">Application Submitted!</h2>
+                    <p class="text-muted-custom mb-3">
+                        Your application reference is <strong class="text-ink"
+                            id="createdAppId">VL-ITR-2026-104</strong>.
+                        Our practice team has received your documents and will review your file within 24 hours.
+                    </p>
+                    <div class="p-3 bg-light rounded-3 text-start mb-4 small">
+                        <div class="d-flex justify-content-between py-1 border-bottom">
+                            <span class="text-muted">Assigned CPA:</span>
+                            <span class="fw-semibold text-ink">Rajesh Kumar, FCA</span>
+                        </div>
+                        <div class="d-flex justify-content-between py-1 border-bottom">
+                            <span class="text-muted">Current Status:</span>
+                            <span class="badge bg-primary text-white">Submitted</span>
+                        </div>
+                        <div class="d-flex justify-content-between py-1">
+                            <span class="text-muted">Next Action:</span>
+                            <span class="text-ink">Preliminary document check</span>
+                        </div>
+                    </div>
+                    <a href="dashboard.html" class="btn-brand w-100 py-2">
+                        Go to Client Dashboard <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="siteFooter"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // State Management for Multi-Step Form
+        let currentStep = 1;
+        let selectedService = 'itr';
+
+        const serviceConfigs = {
+            itr: {
+                title: 'Income Tax Return (ITR)',
+                price: '₹2,499',
+                category: 'Personal & Professional Tax',
+                checklist: [
+                    'Form 16 (Part A and Part B from Employer)',
+                    'Annual Information Statement (AIS) or Form 26AS',
+                    'Rent receipts / Landlord PAN (if claiming HRA exemption)',
+                    'Interest Certificate on Home Loan / Education Loan',
+                    'Capital Gains Statement (from Zerodha, Groww, CAMS, or Karvy)'
+                ],
+                defaultDocs: [
+                    { name: 'Form16_FY2025-26_PartA_B.pdf', size: '1.2 MB', type: 'Form 16' },
+                    { name: 'AIS_Annual_Information_Statement.pdf', size: '840 KB', type: 'AIS Report' }
+                ]
+            },
+            gst: {
+                title: 'GST Compliance & Filing',
+                price: '₹3,999',
+                category: 'Goods & Services Tax',
+                checklist: [
+                    'Sales Invoices / Monthly Outward Register (Excel or CSV)',
+                    'Purchase Bills & Expense Invoices for Input Tax Credit (ITC)',
+                    'Previous Month GSTR-3B Acknowledgement',
+                    'Bank Statement showing tax challan debits'
+                ],
+                defaultDocs: [
+                    { name: 'Sales_Register_CurrentMonth.xlsx', size: '2.4 MB', type: 'Sales Register' },
+                    { name: 'Purchase_Invoices_Summary.pdf', size: '4.8 MB', type: 'Purchase Bills' }
+                ]
+            },
+            accounting: {
+                title: 'Bookkeeping & Management Accounts',
+                price: '₹7,500',
+                category: 'Accounting & Payroll',
+                checklist: [
+                    'Bank Statements of all active current accounts (PDF/Excel)',
+                    'Sample Sales Invoices and Vendor Bills',
+                    'Existing Chart of Accounts or Previous Year Balance Sheet',
+                    'Payment Gateway / Stripe / Razorpay settlement reports'
+                ],
+                defaultDocs: [
+                    { name: 'Current_Account_Bank_Statement.pdf', size: '3.1 MB', type: 'Bank Statement' },
+                    { name: 'Trial_Balance_Draft.xlsx', size: '620 KB', type: 'Trial Balance' }
+                ]
+            },
+            consultation: {
+                title: '1-on-1 CPA Consultation',
+                price: '₹1,500',
+                category: 'Senior Advisory',
+                checklist: [
+                    'Copy of Tax Notice / Query (if seeking notice resolution)',
+                    'Latest Tax Return / Form 16 / Profit & Loss Statement',
+                    'Specific agenda or transaction background notes'
+                ],
+                defaultDocs: [
+                    { name: 'CBDT_Notice_Copy.pdf', size: '750 KB', type: 'Notice Notice' }
+                ]
+            }
+        };
+
+        let uploadedFiles = [];
+        let activePlanKey = 'professional';
+
+        function setService(serviceKey, planKey) {
+            selectedService = serviceKey;
+            if (planKey) activePlanKey = planKey;
+
+            const config = serviceConfigs[serviceKey] || serviceConfigs.itr;
+            const pricingData = VeraStore.getPricing();
+            const servicePricing = pricingData.services[serviceKey] || pricingData.services.itr;
+            const chosenPlan = servicePricing.plans[activePlanKey] || servicePricing.plans.professional || servicePricing.plans.basic;
+            const activeFee = chosenPlan ? chosenPlan.displayPrice : config.price;
+
+            // Update Tab styles
+            document.querySelectorAll('#serviceTabs .service-selector-btn').forEach(btn => {
+                if (btn.getAttribute('data-service') === serviceKey) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Toggle Form Panels
+            document.querySelectorAll('.service-form-panel').forEach(p => p.classList.add('d-none'));
+            const activePanel = document.getElementById(`form-${serviceKey}`);
+            if (activePanel) activePanel.classList.remove('d-none');
+
+            // Update Right Side Pricing Card with dynamic fee from DataStore
+            document.getElementById('pricingServiceTitle').textContent = `${config.title} (${chosenPlan ? chosenPlan.name.split('(')[0].trim() : 'Standard'})`;
+            document.getElementById('receiptBaseFee').textContent = activeFee;
+            document.getElementById('receiptTotalFee').textContent = activeFee;
+
+            // Update Doc Checklist
+            const checklistEl = document.getElementById('serviceDocChecklist');
+            if (checklistEl) {
+                checklistEl.innerHTML = config.checklist.map(item => `<li><i class="bi bi-check-circle text-teal2 me-1"></i> ${item}</li>`).join('');
+            }
+            document.getElementById('docServiceBadge').textContent = config.title;
+
+            // Reset uploaded files with realistic initial samples for this service
+            uploadedFiles = [...config.defaultDocs];
+            renderUploadedFiles();
+        }
+
+        function renderUploadedFiles() {
+            const listEl = document.getElementById('uploadedFilesList');
+            const countEl = document.getElementById('fileCountBadge');
+            if (countEl) countEl.textContent = uploadedFiles.length;
+
+            if (!listEl) return;
+
+            if (uploadedFiles.length === 0) {
+                listEl.innerHTML = `<div class="text-muted small text-center py-2">No documents attached yet. Click above to upload.</div>`;
+                return;
+            }
+
+            listEl.innerHTML = uploadedFiles.map((f, i) => `
+                <div class="uploaded-file-row">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-file-earmark-pdf-fill text-danger fs-5"></i>
+                        <div>
+                            <div class="fw-semibold text-ink">${f.name}</div>
+                            <span class="text-muted small">${f.size} · ${f.type || 'Document'}</span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-sm text-danger" onclick="removeFile(${i})" title="Remove file">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function removeFile(index) {
+            uploadedFiles.splice(index, 1);
+            renderUploadedFiles();
+        }
+
+        function goToStep(stepNumber) {
+            currentStep = stepNumber;
+
+            // Update indicators
+            [1, 2, 3].forEach(n => {
+                const nav = document.getElementById(`stepNav${n}`);
+                const cont = document.getElementById(`step${n}Container`);
+
+                if (nav) {
+                    nav.classList.remove('active', 'completed');
+                    if (n === currentStep) nav.classList.add('active');
+                    else if (n < currentStep) nav.classList.add('completed');
+                }
+
+                if (cont) {
+                    if (n === currentStep) cont.classList.remove('d-none');
+                    else cont.classList.add('d-none');
+                }
+            });
+
+            // Progress Bar line fill
+            const fill = document.getElementById('stepProgressFill');
+            if (fill) {
+                if (currentStep === 1) fill.style.width = '0%';
+                if (currentStep === 2) fill.style.width = '50%';
+                if (currentStep === 3) fill.style.width = '100%';
+            }
+
+            // If entering Step 3, populate the Review Summary
+            if (currentStep === 3) {
+                populateReview();
+            }
+
+            window.scrollTo({ top: 120, behavior: 'smooth' });
+        }
+
+        function populateReview() {
+            const user = VeraStore.getCurrentUser() || { name: 'Alex Morgan', email: 'alex@example.com', phone: '+91 98765 43210' };
+            const config = serviceConfigs[selectedService] || serviceConfigs.itr;
+
+            document.getElementById('revApplicant').textContent = user.name;
+            document.getElementById('revEmail').textContent = user.email;
+            document.getElementById('revPhone').textContent = user.phone || '+91 98765 43210';
+            document.getElementById('revService').textContent = config.title;
+
+            const grid = document.getElementById('revDetailsGrid');
+            let detailsHtml = '';
+
+            if (selectedService === 'itr') {
+                const ay = document.getElementById('itr_ay').value;
+                const pan = document.getElementById('itr_pan').value;
+                const emp = document.getElementById('itr_employment').value;
+                const inc = document.getElementById('itr_income').value;
+                const reg = document.getElementById('itr_regime').value;
+
+                detailsHtml = `
+                    <div class="col-sm-6"><span class="text-muted">Assessment Year:</span> <strong>${ay}</strong></div>
+                    <div class="col-sm-6"><span class="text-muted">PAN Card:</span> <strong>${pan}</strong></div>
+                    <div class="col-sm-6"><span class="text-muted">Income Source:</span> <strong>${emp}</strong></div>
+                    <div class="col-sm-6"><span class="text-muted">Income Bracket:</span> <strong>${inc}</strong></div>
+                    <div class="col-12"><span class="text-muted">Tax Regime:</span> <strong>${reg}</strong></div>
+                `;
+            } else if (selectedService === 'gst') {
+                const gstin = document.getElementById('gst_gstin').value;
+                const name = document.getElementById('gst_name').value;
+                const freq = document.getElementById('gst_freq').value;
+                const turnover = document.getElementById('gst_turnover').value;
+
+                detailsHtml = `
+                    <div class="col-sm-6"><span class="text-muted">GSTIN:</span> <strong>${gstin}</strong></div>
+                    <div class="col-sm-6"><span class="text-muted">Business Name:</span> <strong>${name}</strong></div>
+                    <div class="col-sm-6"><span class="text-muted">Filing Frequency:</span> <strong>${freq}</strong></div>
+                    <div class="col-sm-6"><span class="text-muted">Turnover:</span> <strong>${turnover}</strong></div>
+                `;
+            } else if (selectedService === 'accounting') {
+                const ent = document.getElementById('acc_entity').value;
+                const soft = document.getElementById('acc_software').value;
+                const vol = document.getElementById('acc_volume').value;
+                const scope = document.getElementById('acc_scope').value;
+
+                detailsHtml = `
+                    <div class="col-sm-6"><span class="text-muted">Entity Type:</span> <strong>${ent}</strong></div>
+                    <div class="col-sm-6"><span class="text-muted">Software:</span> <strong>${soft}</strong></div>
+                    <div class="col-sm-6"><span class="text-muted">Volume:</span> <strong>${vol}</strong></div>
+                    <div class="col-sm-6"><span class="text-muted">Scope:</span> <strong>${scope}</strong></div>
+                `;
+            } else {
+                const topic = document.getElementById('con_topic').value;
+                const mode = document.getElementById('con_mode').value;
+                const time = document.getElementById('con_time').value;
+
+                detailsHtml = `
+                    <div class="col-sm-6"><span class="text-muted">Topic:</span> <strong>${topic}</strong></div>
+                    <div class="col-sm-6"><span class="text-muted">Mode:</span> <strong>${mode}</strong></div>
+                    <div class="col-sm-6"><span class="text-muted">Slot:</span> <strong>${time}</strong></div>
+                `;
+            }
+
+            if (grid) grid.innerHTML = detailsHtml;
+
+            const docsListEl = document.getElementById('revDocsList');
+            if (docsListEl) {
+                if (uploadedFiles.length === 0) {
+                    docsListEl.innerHTML = `<em>No documents attached yet (can be added later via dashboard).</em>`;
+                } else {
+                    docsListEl.innerHTML = `<ul class="mb-0 ps-3">` + uploadedFiles.map(f => `<li><strong>${f.name}</strong> (${f.size})</li>`).join('') + `</ul>`;
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check URL query parameters for preselected service
+            const urlParams = new URLSearchParams(window.location.search);
+            const requestedService = urlParams.get('service');
+            const requestedPlan = urlParams.get('plan');
+            if (requestedService && serviceConfigs[requestedService]) {
+                setService(requestedService, requestedPlan);
+            } else {
+                setService('itr', requestedPlan || 'professional');
+            }
+
+            // Set default date for consultation to tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const conDateInput = document.getElementById('con_date');
+            if (conDateInput) {
+                conDateInput.value = tomorrow.toISOString().split('T')[0];
+            }
+
+            // Tab click handlers
+            document.querySelectorAll('#serviceTabs .service-selector-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const svc = btn.getAttribute('data-service');
+                    setService(svc);
+                });
+            });
+
+            // Dropzone file handling
+            const dropzone = document.getElementById('dropzoneTrigger');
+            const fileInput = document.getElementById('fileInputEl');
+
+            dropzone?.addEventListener('click', () => fileInput?.click());
+
+            fileInput?.addEventListener('change', (e) => {
+                const files = e.target.files;
+                if (!files || files.length === 0) return;
+
+                for (let i = 0; i < files.length; i++) {
+                    const f = files[i];
+                    uploadedFiles.push({
+                        name: f.name,
+                        size: (f.size / (1024 * 1024)).toFixed(1) + ' MB',
+                        type: 'Client Upload'
+                    });
+                }
+                renderUploadedFiles();
+            });
+
+            // Submit Button
+            document.getElementById('submitApplicationBtn')?.addEventListener('click', () => {
+                const config = serviceConfigs[selectedService] || serviceConfigs.itr;
+                const user = VeraStore.getCurrentUser();
+
+                let formData = {};
+                if (selectedService === 'itr') {
+                    formData = {
+                        ay: document.getElementById('itr_ay').value,
+                        pan: document.getElementById('itr_pan').value,
+                        employment: document.getElementById('itr_employment').value,
+                        income: document.getElementById('itr_income').value,
+                        regime: document.getElementById('itr_regime').value,
+                        deductions: document.getElementById('itr_deductions').value
+                    };
+                } else if (selectedService === 'gst') {
+                    formData = {
+                        gstin: document.getElementById('gst_gstin').value,
+                        name: document.getElementById('gst_name').value,
+                        freq: document.getElementById('gst_freq').value,
+                        turnover: document.getElementById('gst_turnover').value
+                    };
+                } else if (selectedService === 'accounting') {
+                    formData = {
+                        entity: document.getElementById('acc_entity').value,
+                        software: document.getElementById('acc_software').value,
+                        volume: document.getElementById('acc_volume').value,
+                        scope: document.getElementById('acc_scope').value
+                    };
+                } else {
+                    formData = {
+                        topic: document.getElementById('con_topic').value,
+                        mode: document.getElementById('con_mode').value,
+                        slot: document.getElementById('con_time').value,
+                        date: document.getElementById('con_date').value
+                    };
+                }
+
+                // Format documents
+                const formattedDocs = uploadedFiles.map((f, i) => ({
+                    id: 'doc_' + Date.now() + '_' + i,
+                    name: f.name,
+                    size: f.size,
+                    type: f.type || 'Supporting Record',
+                    uploadedAt: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+                    status: 'Under Review'
+                }));
+
+                const createdApp = VeraStore.createApplication({
+                    serviceKey: selectedService,
+                    serviceName: config.title,
+                    category: config.category,
+                    fee: config.price,
+                    formData: formData,
+                    documents: formattedDocs
+                });
+
+                document.getElementById('createdAppId').textContent = createdApp.id;
+
+                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
+            });
+        });
+    </script>
+</body>
+
+</html>

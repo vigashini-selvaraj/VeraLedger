@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create Account | VeraLedger Client Portal</title>
+    <meta name="description" content="Create your secure VeraLedger tax filing and accounting workspace.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .register-service-notice {
+            background: rgba(13, 148, 136, 0.12);
+            border: 1px solid rgba(45, 212, 191, 0.35);
+            border-radius: 12px;
+            padding: 12px 14px;
+            font-size: 0.86rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            color: #E2E8F0;
+        }
+        .auth-select-field {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1.5px solid rgba(45, 212, 191, 0.22);
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 0.92rem;
+            color: #FFFFFF;
+            transition: all 0.2s ease;
+        }
+        .auth-select-field:focus {
+            outline: none;
+            border-color: #2DD4BF;
+            box-shadow: 0 0 0 3.5px rgba(45, 212, 191, 0.22);
+        }
+        .auth-select-field option {
+            background: #0B192C;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+
+<body class="dark-mode" style="background-color: #070F1E;">
+
+    <div class="auth-split-wrapper">
+        <!-- ==========================================================================
+             LEFT SIDE: REGISTRATION FORM
+             ========================================================================== -->
+        <div class="auth-form-column">
+            <!-- Top: Brand Logo (redirects to Home) -->
+            <div>
+                <a href="index.html" class="auth-brand-logo" title="Back to VeraLedger Home">
+                    <div class="auth-logo-icon">
+                        <i class="bi bi-layers"></i>
+                    </div>
+                    <div class="auth-logo-text">
+                        <span class="auth-logo-name">VeraLedger</span>
+                        <span class="auth-logo-tagline">TAX &amp; ACCOUNTING, MADE CLEAR</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Middle: Main Form Card -->
+            <div class="auth-form-inner" style="max-width: 480px;">
+                <h1 class="auth-title">Create Account</h1>
+                <p class="auth-subtitle">Set up your private portal to start filing and consulting with CPAs.</p>
+
+                <!-- Contextual Alert if redirected from a Service Apply button -->
+                <div id="registerServiceNotice" class="register-service-notice d-none">
+                    <i class="bi bi-patch-check-fill text-teal2 fs-5"></i>
+                    <div>
+                        <div class="fw-semibold text-white" id="regServiceTitle">Filing Package Selected</div>
+                        <div class="small text-white-50">Create your profile once and proceed directly to your application form.</div>
+                    </div>
+                </div>
+
+                <form id="registerForm">
+                    <!-- Full Name -->
+                    <div class="auth-input-group">
+                        <label class="auth-input-label" for="regName">Full Legal Name</label>
+                        <div class="auth-input-wrap">
+                            <i class="bi bi-person auth-input-icon"></i>
+                            <input type="text" id="regName" class="auth-input-field" required placeholder="e.g. Vikram Iyer" value="Vikram Iyer">
+                        </div>
+                    </div>
+
+                    <!-- Email & Phone in 2-cols -->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="auth-input-group">
+                                <label class="auth-input-label" for="regEmail">Email Address</label>
+                                <div class="auth-input-wrap">
+                                    <i class="bi bi-envelope auth-input-icon"></i>
+                                    <input type="email" id="regEmail" class="auth-input-field" required placeholder="vikram@example.com" value="vikram@example.com">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="auth-input-group">
+                                <label class="auth-input-label" for="regPhone">Mobile Number</label>
+                                <div class="auth-input-wrap">
+                                    <i class="bi bi-phone auth-input-icon"></i>
+                                    <input type="tel" id="regPhone" class="auth-input-field" placeholder="+91 98765 43210" value="+91 98123 45678">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile / Client Type -->
+                    <div class="auth-input-group">
+                        <label class="auth-input-label" for="regClientType">Client Type / Profile</label>
+                        <select id="regClientType" class="auth-select-field">
+                            <option value="Salaried Individual" selected>Salaried Employee / Executive</option>
+                            <option value="Freelancer / Consultant">Freelancer / Consultant (Section 44ADA)</option>
+                            <option value="Startup / Private Limited">Startup Founder / Pvt Ltd Company</option>
+                            <option value="Sole Proprietor / Trader">Business Owner / Sole Proprietorship</option>
+                            <option value="Non-Resident Indian (NRI)">Non-Resident Indian (NRI / Expat)</option>
+                        </select>
+                    </div>
+
+                    <!-- Password with Show/Hide Toggle -->
+                    <div class="auth-input-group">
+                        <label class="auth-input-label" for="regPassword">Create Password</label>
+                        <div class="auth-input-wrap">
+                            <i class="bi bi-lock auth-input-icon"></i>
+                            <input type="password" id="regPassword" class="auth-input-field" required placeholder="Minimum 6 characters" value="password123">
+                            <button type="button" class="auth-password-toggle" id="toggleRegPasswordBtn" aria-label="Toggle password visibility">
+                                <i class="bi bi-eye" id="toggleRegPasswordIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Terms Checkbox -->
+                    <div class="mb-4">
+                        <label class="d-flex align-items-start gap-2 small text-white-50 cursor-pointer user-select-none mb-0">
+                            <input class="form-check-input mt-1 bg-transparent border-secondary" type="checkbox" id="termsCheck" checked required>
+                            <span>I agree to VeraLedger's <a href="terms.html" class="text-teal2 text-decoration-none" target="_blank">Terms of Service</a> and <a href="privacy.html" class="text-teal2 text-decoration-none" target="_blank">Privacy Policy</a>.</span>
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn-auth-primary">
+                        Complete Registration &amp; Continue <i class="bi bi-arrow-right ms-2"></i>
+                    </button>
+
+                    <div id="registerFeedback" class="small mt-3 text-center" role="status"></div>
+                </form>
+
+                <!-- Sign In Link -->
+                <div class="text-center mt-4">
+                    <p class="small text-white-50 mb-0">Already have an account? 
+                        <a href="login.html" id="loginLinkWithParams" class="text-teal2 fw-bold text-decoration-none">Sign in here</a>
+                    </p>
+                </div>
+
+                <!-- Trust & Security Strip -->
+                <div class="auth-trust-strip">
+                    <div class="auth-trust-item">
+                        <i class="bi bi-shield-check"></i>
+                        <span>Bank-grade security</span>
+                    </div>
+                    <div class="auth-trust-item">
+                        <i class="bi bi-lock-fill"></i>
+                        <span>Data privacy</span>
+                    </div>
+                    <div class="auth-trust-item">
+                        <i class="bi bi-key-fill"></i>
+                        <span>Secure access</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Auth Footer -->
+            <div class="auth-footer">
+                <div class="d-flex gap-3">
+                    <a href="privacy.html" class="auth-footer-link">Privacy Policy</a>
+                    <span>&bull;</span>
+                    <a href="terms.html" class="auth-footer-link">Terms &amp; Conditions</a>
+                    <span>&bull;</span>
+                    <a href="help-center.html" class="auth-footer-link">Help &amp; Support</a>
+                </div>
+                <div>
+                    <span>&copy; 2026 VeraLedger Advisory LLP.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================================================
+             RIGHT SIDE: BRANDING PANEL
+             ========================================================================== -->
+        <div class="auth-brand-column">
+            <!-- Branding Header -->
+            <div class="auth-brand-hero-content">
+                <div class="d-inline-flex align-items-center gap-2 mb-3 px-3 py-1 rounded-pill" style="background: rgba(13, 148, 136, 0.15); border: 1px solid rgba(45, 212, 191, 0.3); font-size: 0.8rem; font-weight: 700; color: #2DD4BF;">
+                    <i class="bi bi-patch-check-fill"></i> Client Onboarding
+                </div>
+                <h2 class="auth-brand-headline">Your Taxes, <br><span>Simplified.</span></h2>
+                <p class="auth-brand-copy">
+                    Experience effortless tax filing, statutory compliance, and year-round advisory with 100% CPA verification and bank-grade privacy.
+                </p>
+            </div>
+
+            <!-- 3D Financial Illustration Frame -->
+            <div class="auth-illustration-frame">
+                <img src="images/login-financial-art.jpg" alt="VeraLedger 3D Financial Management" class="auth-illustration-img">
+            </div>
+
+            <!-- Security Highlights (3 Cards) -->
+            <div class="auth-security-highlights">
+                <div class="auth-security-pill">
+                    <div class="auth-security-icon">
+                        <i class="bi bi-shield-lock-fill"></i>
+                    </div>
+                    <div class="auth-security-title">256-Bit Encryption</div>
+                    <div class="auth-security-sub">Bank-grade SSL/TLS data protection</div>
+                </div>
+
+                <div class="auth-security-pill">
+                    <div class="auth-security-icon">
+                        <i class="bi bi-folder-check"></i>
+                    </div>
+                    <div class="auth-security-title">Secure Storage</div>
+                    <div class="auth-security-sub">Encrypted client vault repository</div>
+                </div>
+
+                <div class="auth-security-pill">
+                    <div class="auth-security-icon">
+                        <i class="bi bi-person-check-fill"></i>
+                    </div>
+                    <div class="auth-security-title">Trusted Assistance</div>
+                    <div class="auth-security-sub">ICAI certified Chartered Accountants</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const serviceKey = urlParams.get('service');
+            const planKey = urlParams.get('plan');
+            const redirectUrl = urlParams.get('redirect');
+
+            // Password Toggle
+            const toggleRegPasswordBtn = document.getElementById('toggleRegPasswordBtn');
+            const regPasswordInput = document.getElementById('regPassword');
+            const toggleRegPasswordIcon = document.getElementById('toggleRegPasswordIcon');
+
+            if (toggleRegPasswordBtn && regPasswordInput && toggleRegPasswordIcon) {
+                toggleRegPasswordBtn.addEventListener('click', () => {
+                    const isPassword = regPasswordInput.getAttribute('type') === 'password';
+                    regPasswordInput.setAttribute('type', isPassword ? 'text' : 'password');
+                    toggleRegPasswordIcon.className = isPassword ? 'bi bi-eye-slash text-teal2' : 'bi bi-eye';
+                });
+            }
+
+            const serviceNames = {
+                'itr': 'Income Tax Return (ITR)',
+                'gst': 'GST Compliance & Filing',
+                'accounting': 'Full-Stack Bookkeeping',
+                'bookkeeping': 'Full-Stack Bookkeeping',
+                'consultation': 'Senior CPA Consultation'
+            };
+
+            if (serviceKey) {
+                const notice = document.getElementById('registerServiceNotice');
+                const title = document.getElementById('regServiceTitle');
+                if (notice && title) {
+                    title.textContent = `Selected Service: ${serviceNames[serviceKey] || serviceKey.toUpperCase()}${planKey ? ' (' + planKey.toUpperCase() + ')' : ''}`;
+                    notice.classList.remove('d-none');
+                }
+                const loginLink = document.getElementById('loginLinkWithParams');
+                if (loginLink) {
+                    loginLink.href = `login.html?service=${encodeURIComponent(serviceKey)}${planKey ? '&plan=' + encodeURIComponent(planKey) : ''}&redirect=${encodeURIComponent(redirectUrl || 'apply.html')}`;
+                }
+            }
+
+            const form = document.getElementById('registerForm');
+            form?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('regName').value.trim();
+                const email = document.getElementById('regEmail').value.trim();
+                const phone = document.getElementById('regPhone').value.trim();
+                const clientType = document.getElementById('regClientType').value;
+                const password = document.getElementById('regPassword').value;
+
+                const result = VeraStore.register({
+                    name,
+                    email,
+                    phone,
+                    clientType,
+                    password
+                });
+
+                const feedback = document.getElementById('registerFeedback');
+                if (result.success) {
+                    if (feedback) {
+                        feedback.className = 'small mt-3 text-center text-success';
+                        feedback.innerHTML = `<i class="bi bi-check-circle-fill me-1"></i> Registration successful! Setting up your workspace...`;
+                    }
+                    setTimeout(() => {
+                        if (serviceKey) {
+                            window.location.href = `apply.html?service=${encodeURIComponent(serviceKey)}${planKey ? '&plan=' + encodeURIComponent(planKey) : ''}`;
+                        } else if (redirectUrl) {
+                            window.location.href = redirectUrl;
+                        } else {
+                            window.location.href = 'dashboard.html';
+                        }
+                    }, 800);
+                } else {
+                    if (feedback) {
+                        feedback.className = 'small mt-3 text-center text-danger';
+                        feedback.textContent = result.error || 'Registration failed. Email might already be registered.';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

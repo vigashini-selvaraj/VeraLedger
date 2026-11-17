@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact Support &amp; Client Help Desk | VeraLedger</title>
+    <meta name="description"
+        content="Reach the VeraLedger support desk for filing queries, document verifications, payment receipts, or CPA statutory assistance.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .support-channel-card {
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            background: var(--bg-card);
+            transition: all 0.25s ease;
+            height: 100%;
+        }
+
+        .support-channel-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--teal2);
+            box-shadow: var(--shadow);
+        }
+
+        .dark-mode .support-channel-card {
+            background: #162238;
+            border-color: #2B3D5E;
+        }
+
+        .support-icon-pill {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(13, 148, 136, 0.1);
+            color: var(--teal2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+        }
+
+        .system-status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 50px;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--aqua);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .status-pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--aqua);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Global Dynamic Header Loaded via main.js -->
+    <div id="siteHeader"></div>
+
+    <main>
+        <!-- ==========================================================================
+             01. HERO SECTION
+             ========================================================================== -->
+        <section class="page-hero text-center position-relative">
+            <div class="container position-relative z-2">
+                <div class="d-inline-flex align-items-center gap-2 mb-2 text-teal2 small fw-semibold">
+                    <a href="index.html" class="text-decoration-none text-muted">Home</a>
+                    <span>&rsaquo;</span>
+                    <a href="help-center.html" class="text-decoration-none text-muted">Support</a>
+                    <span>&rsaquo;</span>
+                    <span class="text-teal2">Contact Support</span>
+                </div>
+                <h1 class="mx-auto">Client &amp; Practice <span>Support Desk</span></h1>
+                <p class="hero-copy mx-auto">
+                    Need help with an ongoing filing, document verification, or statutory notice? Our dedicated CPA team is here to assist.
+                </p>
+
+                <div class="mt-3">
+                    <span class="system-status-indicator">
+                        <span class="status-pulse-dot"></span> All VeraLedger Systems &amp; CPC Portals Operational
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             02. SUPPORT CHANNELS
+             ========================================================================== -->
+        <section class="section-pad">
+            <div class="container">
+                <div class="row g-4 mb-5">
+
+                    <!-- Channel 1 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="support-channel-card">
+                            <div class="support-icon-pill"><i class="bi bi-telephone-inbound-fill"></i></div>
+                            <h2 class="h6 fw-bold mb-1">Direct Phone Hotline</h2>
+                            <p class="text-muted small mb-3">Speak directly with our senior practice coordinator for immediate filing advice.</p>
+                            <a href="tel:+919876543210" class="fw-bold text-teal2 text-decoration-none">+91 98765 43210</a>
+                            <div class="small text-muted mt-1">Mon&ndash;Sat, 9:30 AM&ndash;6:00 PM IST</div>
+                        </div>
+                    </div>
+
+                    <!-- Channel 2 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="support-channel-card">
+                            <div class="support-icon-pill"><i class="bi bi-chat-dots-fill"></i></div>
+                            <h2 class="h6 fw-bold mb-1">WhatsApp &amp; Live Chat</h2>
+                            <p class="text-muted small mb-3">Instant status updates, document upload confirmations, and quick tax queries.</p>
+                            <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="fw-bold text-teal2 text-decoration-none">Chat on WhatsApp &rsaquo;</a>
+                            <div class="small text-muted mt-1">Typical response time: ~15 mins</div>
+                        </div>
+                    </div>
+
+                    <!-- Channel 3 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="support-channel-card">
+                            <div class="support-icon-pill"><i class="bi bi-envelope-check-fill"></i></div>
+                            <h2 class="h6 fw-bold mb-1">Support Email Desk</h2>
+                            <p class="text-muted small mb-3">Send official notices, computation sheets, or payment receipt inquiries.</p>
+                            <a href="mailto:support@veraledger.example" class="fw-bold text-teal2 text-decoration-none">support@veraledger.example</a>
+                            <div class="small text-muted mt-1">Guaranteed response within 4 hours</div>
+                        </div>
+                    </div>
+
+                    <!-- Channel 4 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="support-channel-card">
+                            <div class="support-icon-pill"><i class="bi bi-person-badge-fill"></i></div>
+                            <h2 class="h6 fw-bold mb-1">Client Workspace</h2>
+                            <p class="text-muted small mb-3">Registered users can exchange messages directly with their assigned CPA.</p>
+                            <a href="dashboard.html" class="fw-bold text-teal2 text-decoration-none">Open Messages &rsaquo;</a>
+                            <div class="small text-muted mt-1">Secure end-to-end encrypted</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ==========================================================================
+                     03. SUBMIT A SUPPORT TICKET
+                     ========================================================================== -->
+                <div class="row g-5">
+                    <div class="col-lg-7">
+                        <div class="content-card p-4 p-md-5">
+                            <div class="d-flex align-items-center gap-2 mb-3">
+                                <span class="badge bg-teal2-subtle text-teal2 px-3 py-1 rounded-pill small fw-bold">Ticket Submission</span>
+                                <span class="text-muted small">&bull; SLA: 2 to 4 Business Hours</span>
+                            </div>
+                            <h2 class="h4 fw-bold mb-1">Submit a Support Request</h2>
+                            <p class="text-muted small mb-4">Please provide detailed information so our certified accountants can review your query swiftly.</p>
+
+                            <!-- Success alert placeholder -->
+                            <div id="ticketSuccessAlert" class="alert alert-success d-none mb-4" role="alert">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-check-circle-fill fs-5"></i>
+                                    <div>
+                                        <strong>Support Ticket Created Successfully!</strong><br>
+                                        <span id="ticketSuccessMsg">Your ticket reference is <strong>#VL-TK-9021</strong>. A senior CPA has been assigned and will reply to your registered email shortly.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <form id="supportTicketForm">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-semibold" for="tk_name">Your Full Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="tk_name" placeholder="e.g. Vikram Iyer" required>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-semibold" for="tk_email">Email Address <span class="text-danger">*</span></label>
+                                        <input type="email" class="form-control" id="tk_email" placeholder="vikram@example.com" required>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-semibold" for="tk_category">Issue Category <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="tk_category" required>
+                                            <option value="" disabled selected>Select category...</option>
+                                            <option value="itr">Income Tax Filing / Form 16</option>
+                                            <option value="gst">GST Returns &amp; Input Tax Credit (ITC)</option>
+                                            <option value="docs">Document Upload &amp; Verification</option>
+                                            <option value="billing">Invoices, Billing &amp; Receipts</option>
+                                            <option value="notice">Statutory Tax Notice Resolution (143/139)</option>
+                                            <option value="account">Account Access, Password &amp; 2FA</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-semibold" for="tk_priority">Priority Level</label>
+                                        <select class="form-select" id="tk_priority">
+                                            <option value="standard" selected>Standard (General query)</option>
+                                            <option value="high">High (Upcoming filing deadline)</option>
+                                            <option value="critical">Critical (Tax notice response deadline within 48h)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label class="form-label small fw-semibold" for="tk_subject">Application ID or Subject</label>
+                                        <input type="text" class="form-control" id="tk_subject" placeholder="e.g. Query on Application #VL-ITR-2026-104" required>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label class="form-label small fw-semibold" for="tk_message">Detailed Description <span class="text-danger">*</span></label>
+                                        <textarea class="form-control" id="tk_message" rows="5"
+                                            placeholder="Explain your requirements, error messages, or questions in detail..." required></textarea>
+                                    </div>
+
+                                    <div class="col-12 mt-4">
+                                        <button type="submit" class="btn btn-brand w-100 py-2" id="submitTicketBtn">
+                                            <i class="bi bi-send-check me-2"></i> Submit Support Ticket
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Support FAQ & Escalations -->
+                    <div class="col-lg-5">
+                        <div class="content-card p-4 mb-4">
+                            <h3 class="h6 fw-bold mb-3 d-flex align-items-center gap-2">
+                                <i class="bi bi-shield-lock-fill text-teal2"></i>
+                                Notice Resolution Guarantee
+                            </h3>
+                            <p class="text-muted small mb-3">
+                                If you have received an inquiry or notice from the Central Processing Centre (CPC Bengaluru) or State GST Commissionerate, our certified CPAs provide end-to-end statutory representation.
+                            </p>
+                            <ul class="list-unstyled small mb-0">
+                                <li class="mb-2 d-flex align-items-start gap-2">
+                                    <i class="bi bi-check2 text-teal2 fw-bold"></i>
+                                    <span>Same-day notice analysis &amp; reconciliation</span>
+                                </li>
+                                <li class="mb-2 d-flex align-items-start gap-2">
+                                    <i class="bi bi-check2 text-teal2 fw-bold"></i>
+                                    <span>Preparation of revised computation &amp; rectification</span>
+                                </li>
+                                <li class="d-flex align-items-start gap-2">
+                                    <i class="bi bi-check2 text-teal2 fw-bold"></i>
+                                    <span>Direct submission on government e-filing portal</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="content-card p-4">
+                            <h3 class="h6 fw-bold mb-3">Operating Hours &amp; Practice Address</h3>
+                            <div class="d-flex align-items-start gap-3 mb-3">
+                                <i class="bi bi-geo-alt-fill text-teal2 mt-1"></i>
+                                <div class="small">
+                                    <strong>VeraLedger Advisory LLP</strong><br>
+                                    Chartered Accountants &bull; FRN: 014820S<br>
+                                    Business District, Mount Road, Chennai, Tamil Nadu, India
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start gap-3 mb-3">
+                                <i class="bi bi-clock-fill text-teal2 mt-1"></i>
+                                <div class="small">
+                                    <strong>Standard Desk Hours:</strong><br>
+                                    Monday &ndash; Friday: 9:30 AM &ndash; 6:00 PM IST<br>
+                                    Saturday: 10:00 AM &ndash; 2:00 PM IST
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="bi bi-info-circle-fill text-teal2 mt-1"></i>
+                                <div class="small text-muted">
+                                    During peak tax seasons (July &amp; October), our support desk and CPA helpline operate 24/7 for urgent client filings.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Global Dynamic Footer Loaded via main.js -->
+    <div id="siteFooter"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Support Ticket Submission Handler
+        document.getElementById('supportTicketForm')?.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitTicketBtn');
+            const alertBox = document.getElementById('ticketSuccessAlert');
+            const name = document.getElementById('tk_name').value.trim();
+            const email = document.getElementById('tk_email').value.trim();
+            const ticketId = 'VL-TK-' + Math.floor(1000 + Math.random() * 9000);
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Submitting...';
+
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="bi bi-send-check me-2"></i> Submit Support Ticket';
+                document.getElementById('ticketSuccessMsg').innerHTML = 
+                    `Thank you <strong>${name}</strong>! Your ticket reference is <strong>#${ticketId}</strong>. A confirmation has been sent to <strong>${email}</strong> and our senior accountant will respond within 2 to 4 hours.`;
+                alertBox.classList.remove('d-none');
+                alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.getElementById('supportTicketForm').reset();
+            }, 600);
+        });
+    </script>
+</body>
+
+</html>
