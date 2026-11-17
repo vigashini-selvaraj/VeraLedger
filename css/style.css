@@ -44,7 +44,7 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
 }
 
@@ -55,7 +55,7 @@ body {
   margin: 0;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
   position: relative;
   width: 100%;
@@ -218,10 +218,11 @@ a {
    STICKY NAVBAR & TOPBAR
    ========================================================================== */
 #siteHeader {
-  position: sticky;
-  top: 0;
-  z-index: 1040;
-  width: 100%;
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1040 !important;
+  width: 100% !important;
   transition: all 0.3s ease;
 }
 
@@ -2182,14 +2183,18 @@ a {
     position: absolute;
     left: 0;
     right: 0;
-    top: 72px;
+    top: 100%;
     background: var(--paper);
     border-bottom: 1px solid var(--line);
-    padding: 20px 24px;
+    padding: 16px 20px 24px;
     align-items: stretch;
     flex-direction: column;
-    gap: 6px;
-    box-shadow: var(--shadow-lg);
+    gap: 4px;
+    box-shadow: 0 16px 36px rgba(10, 25, 47, 0.22);
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1045;
   }
 
   .main-nav.open {
@@ -2199,7 +2204,57 @@ a {
   .main-nav>a,
   .main-nav .nav-link-item {
     font-size: 0.95rem;
-    padding: 11px 16px;
+    padding: 10px 14px;
+    border-radius: 8px;
+  }
+
+  /* Mobile Hamburger Account & Portal Section */
+  .mobile-portal-section {
+    border-top: 1px solid var(--line);
+  }
+
+  .mobile-portal-item {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: var(--ink);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-portal-item:hover,
+  .mobile-portal-item:focus {
+    background: rgba(32, 205, 187, 0.12);
+    color: #20CDBB !important;
+    transform: translateX(3px);
+  }
+
+  body.rtl .mobile-portal-item:hover,
+  body.rtl .mobile-portal-item:focus {
+    transform: translateX(-3px);
+  }
+
+  .dark-mode .main-nav {
+    background: #0E1726;
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+  }
+
+  .dark-mode .mobile-portal-section {
+    border-top-color: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .dark-mode .mobile-portal-item {
+    color: #E2E8F0;
+  }
+
+  .dark-mode .mobile-portal-item:hover,
+  .dark-mode .mobile-portal-item:focus {
+    background: rgba(32, 205, 187, 0.18);
+    color: #2DD4BF !important;
   }
 
   .nav-actions {
@@ -7754,20 +7809,30 @@ body.dashboard-page {
 @media (max-width: 991.98px) {
   .app-sidebar {
     position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    height: 100dvh;
+    z-index: 1060 !important;
     transform: translateX(-100%);
+    box-shadow: 12px 0 36px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .app-sidebar.show {
-    transform: translateX(0);
+    transform: translateX(0) !important;
   }
   .app-sidebar-backdrop {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1040;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 1050 !important;
   }
   .app-sidebar-backdrop.show {
-    display: block;
+    display: block !important;
   }
   .app-topbar {
     padding: 0 18px;
@@ -7824,10 +7889,13 @@ body.rtl .app-search-input {
 
 @media (max-width: 991.98px) {
   body.rtl .app-sidebar {
+    left: auto;
+    right: 0;
     transform: translateX(100%);
+    box-shadow: -12px 0 36px rgba(0, 0, 0, 0.5);
   }
   body.rtl .app-sidebar.show {
-    transform: translateX(0);
+    transform: translateX(0) !important;
   }
 }
 

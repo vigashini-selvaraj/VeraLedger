@@ -25,12 +25,14 @@
 <body class="dashboard-page admin-dashboard">
 
     <div class="app-dashboard-layout">
+        <!-- Backdrop for mobile sidebar -->
+        <div class="app-sidebar-backdrop" id="sidebarBackdrop"></div>
 
         <!-- ==========================================================================
              ADMIN SIDEBAR NAVIGATION (13 Navigation Items)
              ========================================================================== -->
         <aside class="app-sidebar" id="appSidebar">
-            <div class="app-sidebar-header">
+            <div class="app-sidebar-header d-flex align-items-center justify-content-between">
                 <a href="index.html" class="brand app-sidebar-brand" title="Back to VeraLedger Home">
                     <span class="brand-mark"><i class="bi bi-layers"></i></span>
                     <span>
@@ -38,64 +40,67 @@
                         <span class="brand-tag d-block">TAX &amp; ACCOUNTING, MADE CLEAR</span>
                     </span>
                 </a>
+                <button class="btn btn-sm text-white-50 d-lg-none p-1 border-0 bg-transparent" id="closeSidebarBtn" type="button" aria-label="Close sidebar">
+                    <i class="bi bi-x-lg fs-5"></i>
+                </button>
             </div>
 
             <nav class="app-sidebar-nav">
                 <div class="app-sidebar-section-title">Core Operations</div>
-                <a class="app-sidebar-link active" data-tab="overview" onclick="switchAdminTab('overview')">
+                <a class="app-sidebar-link active" data-tab="overview" href="javascript:void(0)" role="button" onclick="switchAdminTab('overview')">
                     <i class="bi bi-speedometer2"></i>
                     <span>Overview</span>
                 </a>
-                <a class="app-sidebar-link" data-tab="applications" onclick="switchAdminTab('applications')">
+                <a class="app-sidebar-link" data-tab="applications" href="javascript:void(0)" role="button" onclick="switchAdminTab('applications')">
                     <i class="bi bi-folder2-open"></i>
                     <span>Applications</span>
                     <span class="app-sidebar-badge" id="sideBadgeApps">42</span>
                 </a>
-                <a class="app-sidebar-link" data-tab="customers" onclick="switchAdminTab('customers')">
+                <a class="app-sidebar-link" data-tab="customers" href="javascript:void(0)" role="button" onclick="switchAdminTab('customers')">
                     <i class="bi bi-people"></i>
                     <span>Customers</span>
                     <span class="app-sidebar-badge">1.2k</span>
                 </a>
-                <a class="app-sidebar-link" data-tab="services" onclick="switchAdminTab('services')">
+                <a class="app-sidebar-link" data-tab="services" href="javascript:void(0)" role="button" onclick="switchAdminTab('services')">
                     <i class="bi bi-grid-3x3-gap"></i>
                     <span>Tax Services</span>
                 </a>
-                <a class="app-sidebar-link" data-tab="team" onclick="switchAdminTab('team')">
+                <a class="app-sidebar-link" data-tab="team" href="javascript:void(0)" role="button" onclick="switchAdminTab('team')">
                     <i class="bi bi-person-badge"></i>
                     <span>Accountants / Team</span>
                     <span class="app-sidebar-badge">8 CPAs</span>
                 </a>
-                <a class="app-sidebar-link" data-tab="documents" onclick="switchAdminTab('documents')">
+                <a class="app-sidebar-link" data-tab="documents" href="javascript:void(0)" role="button" onclick="switchAdminTab('documents')">
                     <i class="bi bi-file-earmark-lock"></i>
                     <span>Document Vault</span>
                 </a>
 
                 <div class="app-sidebar-section-title mt-2">Billing &amp; Intelligence</div>
-                <a class="app-sidebar-link" data-tab="payments" onclick="switchAdminTab('payments')">
+                <a class="app-sidebar-link" data-tab="payments" href="javascript:void(0)" role="button" onclick="switchAdminTab('payments')">
                     <i class="bi bi-credit-card"></i>
                     <span>Payments &amp; Txns</span>
                 </a>
-                <a class="app-sidebar-link" data-tab="invoices" onclick="switchAdminTab('invoices')">
+                <a class="app-sidebar-link" data-tab="invoices" href="javascript:void(0)" role="button" onclick="switchAdminTab('invoices')">
                     <i class="bi bi-receipt"></i>
                     <span>Invoices</span>
                 </a>
-                <a class="app-sidebar-link" data-tab="analytics" onclick="switchAdminTab('analytics')">
+                <a class="app-sidebar-link" data-tab="analytics" href="javascript:void(0)" role="button" onclick="switchAdminTab('analytics')">
                     <i class="bi bi-graph-up-arrow"></i>
                     <span>Reports &amp; Analytics</span>
                 </a>
 
                 <div class="app-sidebar-section-title mt-2">System &amp; Publishing</div>
-                <a class="app-sidebar-link" data-tab="notifications" onclick="switchAdminTab('notifications')">
+                <a class="app-sidebar-link" data-tab="notifications" href="javascript:void(0)" role="button" onclick="switchAdminTab('notifications')">
                     <i class="bi bi-bell"></i>
                     <span>Notifications</span>
                     <span class="badge bg-danger rounded-pill px-2 py-1 ms-auto"
                         style="font-size: 0.65rem;">Alerts</span>
                 </a>
-                <a class="app-sidebar-link" data-tab="website" onclick="switchAdminTab('website')">
+                <a class="app-sidebar-link" data-tab="website" href="javascript:void(0)" role="button" onclick="switchAdminTab('website')">
                     <i class="bi bi-globe2"></i>
                     <span>Website CMS</span>
                 </a>
-                <a class="app-sidebar-link" data-tab="settings" onclick="switchAdminTab('settings')">
+                <a class="app-sidebar-link" data-tab="settings" href="javascript:void(0)" role="button" onclick="switchAdminTab('settings')">
                     <i class="bi bi-gear"></i>
                     <span>Settings</span>
                 </a>
@@ -1566,9 +1571,11 @@
             // Reset scroll position
             const bodyContainer = document.querySelector('.app-body-container');
             if (bodyContainer) bodyContainer.scrollTop = 0;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
 
             // Close mobile sidebar
             document.getElementById('appSidebar')?.classList.remove('show');
+            document.getElementById('sidebarBackdrop')?.classList.remove('show');
 
             // Trigger chart renders if needed
             if (tabId === 'overview' && revChart) {
@@ -2507,10 +2514,19 @@
                 }
             });
 
-            // Mobile sidebar toggle
+            // Mobile sidebar toggle & close
             document.getElementById('sidebarToggleBtn')?.addEventListener('click', () => {
                 document.getElementById('appSidebar')?.classList.toggle('show');
+                document.getElementById('sidebarBackdrop')?.classList.toggle('show');
             });
+
+            const closeAdminSidebar = () => {
+                document.getElementById('appSidebar')?.classList.remove('show');
+                document.getElementById('sidebarBackdrop')?.classList.remove('show');
+            };
+
+            document.getElementById('sidebarBackdrop')?.addEventListener('click', closeAdminSidebar);
+            document.getElementById('closeSidebarBtn')?.addEventListener('click', closeAdminSidebar);
 
             // Notification Form
             document.getElementById('adminNotificationForm')?.addEventListener('submit', (e) => {

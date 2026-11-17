@@ -28,7 +28,7 @@
              ========================================================================== -->
         <aside class="app-sidebar" id="appSidebar">
             <!-- Sidebar Header / Logo -->
-            <div class="app-sidebar-header">
+            <div class="app-sidebar-header d-flex align-items-center justify-content-between">
                 <a href="index.html" class="brand app-sidebar-brand" title="Back to VeraLedger Home">
                     <span class="brand-mark"><i class="bi bi-layers"></i></span>
                     <span>
@@ -36,47 +36,50 @@
                         <span class="brand-tag d-block">TAX &amp; ACCOUNTING, MADE CLEAR</span>
                     </span>
                 </a>
+                <button class="btn btn-sm text-white-50 d-lg-none p-1 border-0 bg-transparent" id="closeSidebarBtn" type="button" aria-label="Close sidebar">
+                    <i class="bi bi-x-lg fs-5"></i>
+                </button>
             </div>
 
             <!-- Navigation Links -->
             <nav class="app-sidebar-nav">
                 <div class="app-sidebar-section-title">Main Portal</div>
                 
-                <a class="app-sidebar-link active" data-tab="overview">
+                <a class="app-sidebar-link active" data-tab="overview" href="javascript:void(0)" role="button">
                     <i class="bi bi-grid-1x2-fill"></i>
                     <span>Overview</span>
                 </a>
 
-                <a class="app-sidebar-link" data-tab="applications">
+                <a class="app-sidebar-link" data-tab="applications" href="javascript:void(0)" role="button">
                     <i class="bi bi-file-earmark-text-fill"></i>
                     <span>My Applications</span>
                     <span class="app-sidebar-badge" id="sideActiveAppsCount">1</span>
                 </a>
 
-                <a class="app-sidebar-link" data-tab="documents">
+                <a class="app-sidebar-link" data-tab="documents" href="javascript:void(0)" role="button">
                     <i class="bi bi-folder2-open"></i>
                     <span>Documents</span>
                 </a>
 
-                <a class="app-sidebar-link" data-tab="returns">
+                <a class="app-sidebar-link" data-tab="returns" href="javascript:void(0)" role="button">
                     <i class="bi bi-check2-circle"></i>
                     <span>My Returns</span>
                 </a>
 
                 <div class="app-sidebar-section-title mt-2">Billing &amp; Support</div>
 
-                <a class="app-sidebar-link" data-tab="payments">
+                <a class="app-sidebar-link" data-tab="payments" href="javascript:void(0)" role="button">
                     <i class="bi bi-credit-card-2-front-fill"></i>
                     <span>Payments &amp; Invoices</span>
                 </a>
 
-                <a class="app-sidebar-link" data-tab="messages">
+                <a class="app-sidebar-link" data-tab="messages" href="javascript:void(0)" role="button">
                     <i class="bi bi-chat-left-dots-fill"></i>
                     <span>Messages</span>
                     <span class="badge bg-danger rounded-pill" style="font-size: 0.65rem; margin-left: auto;">1 New</span>
                 </a>
 
-                <a class="app-sidebar-link" data-tab="profile">
+                <a class="app-sidebar-link" data-tab="profile" href="javascript:void(0)" role="button">
                     <i class="bi bi-gear-fill"></i>
                     <span>Profile Settings</span>
                 </a>
@@ -1008,6 +1011,7 @@
             if (bodyContainer) {
                 bodyContainer.scrollTop = 0;
             }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
 
             // Close mobile sidebar if open
             document.getElementById('appSidebar')?.classList.remove('show');
@@ -1340,22 +1344,26 @@
 
             // Setup Navigation Tab Listeners
             document.querySelectorAll('.app-sidebar-link').forEach(link => {
-                link.addEventListener('click', () => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
                     const tab = link.getAttribute('data-tab');
                     if (tab) switchTab(tab);
                 });
             });
 
-            // Mobile sidebar toggle
+            // Mobile sidebar toggle & close
             document.getElementById('sidebarToggleBtn')?.addEventListener('click', () => {
                 document.getElementById('appSidebar')?.classList.toggle('show');
                 document.getElementById('sidebarBackdrop')?.classList.toggle('show');
             });
 
-            document.getElementById('sidebarBackdrop')?.addEventListener('click', () => {
+            const closeSidebar = () => {
                 document.getElementById('appSidebar')?.classList.remove('show');
                 document.getElementById('sidebarBackdrop')?.classList.remove('show');
-            });
+            };
+
+            document.getElementById('sidebarBackdrop')?.addEventListener('click', closeSidebar);
+            document.getElementById('closeSidebarBtn')?.addEventListener('click', closeSidebar);
 
             // Logout buttons
             const handleLogout = () => {

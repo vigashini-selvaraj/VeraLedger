@@ -86,8 +86,28 @@ function header() {
 
       <nav class="main-nav" id="mainNav">
         ${navItemsHtml}
-        <div class="mobile-cta-wrap d-lg-none mt-3 pt-3 border-top w-100 text-center">
-          <a class="btn-brand d-block w-100" href="${ctaLink}">${ctaText}</a>
+
+        <div class="mobile-portal-section d-lg-none mt-3 pt-3">
+          <div class="small fw-bold text-muted text-uppercase mb-2 px-2" style="font-size: 0.72rem; letter-spacing: 0.08em;">
+            ${user ? `<i class="bi bi-person-badge text-teal2 me-1"></i> Account (${user.name})` : '<i class="bi bi-person-circle text-teal2 me-1"></i> Account & Portals'}
+          </div>
+          <a href="login.html" class="nav-link-item mobile-portal-item">
+            <i class="bi bi-box-arrow-in-right text-teal2 me-2"></i> Login / Register
+          </a>
+          <a href="admin.html" class="nav-link-item mobile-portal-item">
+            <i class="bi bi-speedometer2 text-teal2 me-2"></i> Admin Dashboard
+          </a>
+          <a href="dashboard.html" class="nav-link-item mobile-portal-item">
+            <i class="bi bi-person-workspace text-teal2 me-2"></i> User Dashboard
+          </a>
+          ${user ? `
+          <a href="javascript:void(0)" onclick="if(window.VeraStore)window.VeraStore.logout(); location.reload();" class="nav-link-item mobile-portal-item text-danger">
+            <i class="bi bi-box-arrow-left text-danger me-2"></i> Sign Out
+          </a>` : ''}
+        </div>
+
+        <div class="mobile-cta-wrap d-lg-none mt-3 pt-2 w-100 text-center">
+          <a class="btn-brand d-block w-100 py-2" href="${ctaLink}">${ctaText}</a>
         </div>
       </nav>
 
@@ -246,9 +266,34 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById(id)?.addEventListener("click", toggleDirection);
   });
 
-  document.getElementById("menuToggle")?.addEventListener("click", () => {
-    document.getElementById("mainNav")?.classList.toggle("open");
-  });
+  const menuBtn = document.getElementById("menuToggle");
+  const mainNav = document.getElementById("mainNav");
+  if (menuBtn && mainNav) {
+    menuBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = mainNav.classList.toggle("open");
+      menuBtn.innerHTML = isOpen ? '<i class="bi bi-x-lg fs-4"></i>' : '<i class="bi bi-list fs-4"></i>';
+      menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    // Close mobile nav when clicking any link inside it
+    mainNav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        mainNav.classList.remove("open");
+        menuBtn.innerHTML = '<i class="bi bi-list fs-4"></i>';
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Close when clicking outside of nav and toggle button
+    document.addEventListener("click", (e) => {
+      if (!mainNav.contains(e.target) && !menuBtn.contains(e.target) && mainNav.classList.contains("open")) {
+        mainNav.classList.remove("open");
+        menuBtn.innerHTML = '<i class="bi bi-list fs-4"></i>';
+        menuBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
 
   document.getElementById("profileToggle")?.addEventListener("click", () => {
     document.getElementById("profileMenu")?.classList.toggle("show");
